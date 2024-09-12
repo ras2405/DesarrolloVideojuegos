@@ -35,15 +35,16 @@ public class PlayerController : MonoBehaviour
         {
             bool success = TryMove(movementInput);
             Debug.Log("Success: " + success.ToString());
-            if (!success)
+            if (!success) //&& movementInput.x > 0
             {
                 success = TryMove(new Vector2(movementInput.x, 0));
-                if (!success)
-                {
-                    success = TryMove(new Vector2(0, movementInput.y));
-                }
-
             }
+
+            if (!success) //&& movementInput.y > 0
+            {
+                success = TryMove(new Vector2(0, movementInput.y));
+            }
+
             animator.SetBool("isMovingR", success);
             Debug.Log("isMovingR: " + success.ToString());
 
@@ -64,22 +65,28 @@ public class PlayerController : MonoBehaviour
     }
 
     private bool TryMove(Vector2 direction) {
-        int count = rb.Cast(
-            direction,
-            movementFilter,
-            castCollisions,
-            moveSpeed * Time.fixedDeltaTime + collisionOffset
-        );
-
-        if (count == 0)
+        if (direction != Vector2.zero)
         {
-            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-            return true;
+            int count = rb.Cast(
+                direction,
+                movementFilter,
+                castCollisions,
+                moveSpeed * Time.fixedDeltaTime + collisionOffset
+            );
+
+            if (count == 0)
+            {
+                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        else { 
+        else {
             return false;
         }
-
     }
 
     void OnMove(InputValue movementValue)
