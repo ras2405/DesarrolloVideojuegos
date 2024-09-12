@@ -31,36 +31,40 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (movementInput != Vector2.zero)
+        if (canMove)
         {
-            bool success = TryMove(movementInput);
-         // Debug.Log("Success: " + success.ToString());
-            if (!success) //&& movementInput.x > 0
+            if (movementInput != Vector2.zero)
             {
-                success = TryMove(new Vector2(movementInput.x, 0));
-            }
+                bool success = TryMove(movementInput);
+                // Debug.Log("Success: " + success.ToString());
+                if (!success) //&& movementInput.x > 0
+                {
+                    success = TryMove(new Vector2(movementInput.x, 0));
+                }
 
-            if (!success) //&& movementInput.y > 0
+                if (!success) //&& movementInput.y > 0
+                {
+                    success = TryMove(new Vector2(0, movementInput.y));
+                }
+
+                animator.SetBool("isMovingR", success);
+                //  Debug.Log("isMovingR: " + success.ToString());
+
+            }
+            else
             {
-                success = TryMove(new Vector2(0, movementInput.y));
+                animator.SetBool("isMovingR", false);
+                //  Debug.Log("isMovingR: " + false.ToString());
             }
-
-            animator.SetBool("isMovingR", success);
-        //  Debug.Log("isMovingR: " + success.ToString());
-
-        }
-        else {
-            animator.SetBool("isMovingR", false);
-        //  Debug.Log("isMovingR: " + false.ToString());
-        }
-        // Podemos hacer flop del sprite para cambiar de direccion!!! movement direction
-        if (movementInput.x < 0)
-        {
-            SpriteRenderer.flipX = true;
-        }
-        else if (movementInput.x > 0)
-        {
-            SpriteRenderer.flipX = false;
+            // Podemos hacer flop del sprite para cambiar de direccion!!! movement direction
+            if (movementInput.x < 0)
+            {
+                SpriteRenderer.flipX = true;
+            }
+            else if (movementInput.x > 0)
+            {
+                SpriteRenderer.flipX = false;
+            }
         }
     }
 
@@ -98,6 +102,16 @@ public class PlayerController : MonoBehaviour
     void OnFire() {
         //print("Fire pressed");
         animator.SetTrigger("attack");
+    }
+
+    //Si no queremos que pueda caminar mientras ataque o riegue en nuestro caso
+    public void LockMovement() {
+        print("Lock movement");
+        canMove = false;
+    }
+    public void UnlockMovement() {
+        print("Unlock movement");
+        canMove = true;
     }
 
 }
