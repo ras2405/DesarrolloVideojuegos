@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,7 +13,9 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
 
     Vector2 movementInput; // 2 valores, X,Y (izq der, arriba abajo)
+    SpriteRenderer SpriteRenderer;
     Rigidbody2D rb;
+    Animator animator;
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     bool canMove = true;
@@ -22,6 +25,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        SpriteRenderer = GetComponent<SpriteRenderer>(); //En que direccion inciia el sprite
     }
 
     private void FixedUpdate()
@@ -29,14 +34,32 @@ public class PlayerController : MonoBehaviour
         if (movementInput != Vector2.zero)
         {
             bool success = TryMove(movementInput);
-            if (!success) { 
-                success = TryMove(new Vector2 (movementInput.x,0));
-                if (!success) {
+            Debug.Log("Success: " + success.ToString());
+            if (!success)
+            {
+                success = TryMove(new Vector2(movementInput.x, 0));
+                if (!success)
+                {
                     success = TryMove(new Vector2(0, movementInput.y));
                 }
-            
-            }
 
+            }
+            animator.SetBool("isMovingR", success);
+            Debug.Log("isMovingR: " + success.ToString());
+
+        }
+        else {
+            animator.SetBool("isMovingR", false);
+            Debug.Log("isMovingR: " + false.ToString());
+        }
+        // Podemos hacer flop del sprite para cambiar de direccion!!! movement direction
+        if (movementInput.x < 0)
+        {
+            SpriteRenderer.flipX = true;
+        }
+        else if (movementInput.x > 0)
+        {
+            SpriteRenderer.flipX = false;
         }
     }
 
