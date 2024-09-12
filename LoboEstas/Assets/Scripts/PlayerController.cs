@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         if (movementInput != Vector2.zero)
         {
             bool success = TryMove(movementInput);
-            Debug.Log("Success: " + success.ToString());
+         // Debug.Log("Success: " + success.ToString());
             if (!success) //&& movementInput.x > 0
             {
                 success = TryMove(new Vector2(movementInput.x, 0));
@@ -46,12 +46,12 @@ public class PlayerController : MonoBehaviour
             }
 
             animator.SetBool("isMovingR", success);
-            Debug.Log("isMovingR: " + success.ToString());
+        //  Debug.Log("isMovingR: " + success.ToString());
 
         }
         else {
             animator.SetBool("isMovingR", false);
-            Debug.Log("isMovingR: " + false.ToString());
+        //  Debug.Log("isMovingR: " + false.ToString());
         }
         // Podemos hacer flop del sprite para cambiar de direccion!!! movement direction
         if (movementInput.x < 0)
@@ -92,7 +92,12 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
+    }
 
+    //Boton derecho presionado para atacar (En nuestro caso podria servir como boton de accion)
+    void OnFire() {
+        //print("Fire pressed");
+        animator.SetTrigger("attack");
     }
 
 }

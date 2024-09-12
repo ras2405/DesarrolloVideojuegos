@@ -7341,7 +7341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 3
+  m_BindingMode: 1
   m_FollowOffset: {x: 0, y: 0, z: -10}
   m_XDamping: 0
   m_YDamping: 0
@@ -7492,10 +7492,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.002105263
-    width: 1.0004742
-    height: 0.9936842
+    x: 0.0019305019
+    y: 0
+    width: 0.996139
+    height: 0.99828476
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
