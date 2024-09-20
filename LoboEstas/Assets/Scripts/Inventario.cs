@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Puntaje : MonoBehaviour
+public class Inventario : MonoBehaviour
 {
     private TextMeshProUGUI textMesh; // Reference to the TextMeshProUGUI component
     private float harvested_carrots;
@@ -16,8 +16,6 @@ public class Puntaje : MonoBehaviour
 
     void Update()
     {
-        //harvested_carrots += Time.deltaTime;
-      //  HarvestCarrot(10);
         UpdateCollectibleDisplay();
     }
 
@@ -28,6 +26,7 @@ public class Puntaje : MonoBehaviour
 
     public void HarvestCarrot(float amount)
     {
+        Debug.Log("Se llama a HarvestCarrot con cantidad: " + amount);
         harvested_carrots += amount;
     }
 }
