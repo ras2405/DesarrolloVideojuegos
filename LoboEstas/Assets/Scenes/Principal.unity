@@ -5741,7 +5741,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &407003747
 RectTransform:
@@ -6106,7 +6106,7 @@ BoxCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: -1
+  m_LayerOverridePriority: -3
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
