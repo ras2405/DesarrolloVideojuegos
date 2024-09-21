@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // Necesario para trabajar con UI
+using UnityEngine.SceneManagement;
 
 public class HouseInteraction : MonoBehaviour
 {
@@ -44,14 +45,14 @@ public class HouseInteraction : MonoBehaviour
     void EnterHouse()
     {
         insideHouse = true;
-        player.transform.position = new Vector3(0, 0, 0); // Cambia la posición del jugador al interior de la casa (ajústalo según tu escena)
+        SceneManager.LoadScene("House");
         Debug.Log("Entraste a la casa");
     }
 
     void ExitHouse()
     {
         insideHouse = false;
-        player.transform.position = new Vector3(5, 5, 0); // Cambia la posición del jugador a la granja
+        SceneManager.LoadScene("Principal");
         Debug.Log("Saliste de la casa");
     }
 

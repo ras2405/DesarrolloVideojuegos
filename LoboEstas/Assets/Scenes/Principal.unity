@@ -6015,6 +6015,7 @@ GameObject:
   - component: {fileID: 769690648}
   - component: {fileID: 769690649}
   - component: {fileID: 769690650}
+  - component: {fileID: 769690651}
   m_Layer: 0
   m_Name: casita_prueba_1
   m_TagString: Untagged
@@ -6105,7 +6106,7 @@ BoxCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: -1
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -6149,7 +6150,34 @@ MonoBehaviour:
   player: {fileID: 387344902}
   interactText: {fileID: 275313535}
   interactionKey: 102
-  insideHouse: 1
+  insideHouse: 0
+--- !u!50 &769690651
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769690646}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &921742552
 GameObject:
   m_ObjectHideFlags: 0
