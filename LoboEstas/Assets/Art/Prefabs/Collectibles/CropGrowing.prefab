@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6079f4426914e48b3217eaf7077498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carrotPrefab: {fileID: 4093764476435328611, guid: bba53e0f5ddc8b249bda2f2cae129379, type: 3}
+  interactableMap: {fileID: 7353022596758592976, guid: 5e759ec2ae3a2d44f99dfdbb9aa67f9c, type: 3}

@@ -1,20 +1,26 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
-    [Header("Animacion")]
-    Animator animator;
-    bool harvested = false;
-    bool sow = false;
+
+    [Header("Animación")]
+    private Animator animator;
+    private bool hasSown = false;
+
+    [Header("Prefab del Vegetal")]
+   // [SerializeField] private GameObject carrotPrefab;
+
+    [Header("Tilemap Interactuable")]
+  // [SerializeField] private Tilemap interactableMap; // Tilemap donde se instanciará el vegetal
+
+    bool isGrowing = true;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        harvested = false;
-        sow = true;
-        StartGrowing(sow, harvested);
+        StartGrowing();
     }
 
     void Update()
@@ -22,17 +28,27 @@ public class Crop : MonoBehaviour
 
     }
 
-    public void StartGrowing(bool sow, bool harvested) {
-        animator.SetBool("sowB", sow);
-        animator.SetBool("harvestedB", harvested);
-        Debug.Log("sow: " + sow);
-        Debug.Log("harvested: " + harvested);
-        
+    public void StartGrowing() {
+        Debug.Log("Ejecuta la animación (sow)");
+        animator.SetTrigger("sow");
+
+    }
+
+    public void StartGrow()
+    {
+        print("Star growing");
+        isGrowing = true;
+    }
+    public void FinishGrow()
+    {
+        print("Finish growing");
+        isGrowing = false;
     }
 
 }
-*/
 
+
+/*
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -44,11 +60,12 @@ public class Crop : MonoBehaviour
     private bool hasSown = false;
 
     [Header("Prefab del Vegetal")]
-    [SerializeField] private GameObject carrotPrefab; // Prefab del vegetal
+    [SerializeField] private GameObject carrotPrefab; 
 
     [Header("Tilemap Interactuable")]
     [SerializeField] private Tilemap interactableMap; // Tilemap donde se instanciará el vegetal
 
+    bool isGrowing = true;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -57,26 +74,27 @@ public class Crop : MonoBehaviour
 
     private IEnumerator StartGrowing()
     {
-        // Ejecuta la animación "sow"
+        Debug.Log("Ejecuta la animación (sow)");
         animator.SetTrigger("sow");
 
-        // Espera hasta que la animación "sow" termine
+        
+        Debug.Log("Espera hasta que la animación (sow) termine");
         yield return new WaitUntil(() =>
             animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f &&
-            animator.GetCurrentAnimatorStateInfo(0).IsName("sow"));
+            animator.GetCurrentAnimatorStateInfo(0).IsName("sow") &&
+            animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
 
-        // Pasa a la animación "harvested"
+        Debug.Log("Pasa a la animación (harvested)");
         animator.SetTrigger("harvested");
 
-        // Espera a que termine la animación "harvested"
+        Debug.Log("Espera a que termine la animación (harvested)");
         yield return new WaitUntil(() =>
             animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f &&
             animator.GetCurrentAnimatorStateInfo(0).IsName("harvested"));
 
-        // Determina la posición en el Tilemap (cambia esto según tu lógica)
-        Vector3Int tilePosition = new Vector3Int(0, 0, 0); // Cambia esto a la celda donde quieras instanciar el vegetal
+        Debug.Log("Determina la posición en el Tilemap  en 0,0,0");
+        Vector3Int tilePosition = new Vector3Int(0, 0, 0); // Cambia esto a la celda donde quieras instanciar el vegetal   
 
-        // Asegúrate de que la celda sea válida
         if (interactableMap.HasTile(tilePosition))
         {
             // Convierte la posición del Tilemap a coordenadas del mundo
@@ -89,4 +107,16 @@ public class Crop : MonoBehaviour
             Debug.LogWarning("No hay un tile en la posición especificada del Tilemap.");
         }
     }
-}
+
+    public void StartGrow()
+    {
+        print("Star growing");
+        isGrowing = true;
+    }
+    public void FinishGrow()
+    {
+        print("Finish growing");
+        isGrowing = false;
+    }
+
+}*/
