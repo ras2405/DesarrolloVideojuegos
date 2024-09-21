@@ -11,8 +11,10 @@ public class Crop : MonoBehaviour
     [Header("Prefab CarrotPlant")] //Esta es la planta que dropea zanahorias
     [SerializeField] private GameObject carrotPlantPrefab;
 
-   // [Header("Tilemap Interactuable")]
-  // [SerializeField] private Tilemap interactableMap; // Tilemap donde se instanciará el vegetal
+   // [SerializeField] private Inventario inventario;
+
+    // [Header("Tilemap Interactuable")]
+    // [SerializeField] private Tilemap interactableMap; // Tilemap donde se instanciará el vegetal
 
     bool isGrowing = true;
     int harvestTimes = 1;
@@ -37,18 +39,18 @@ public class Crop : MonoBehaviour
     }
 
     public void StartGrowing() {
-        Debug.Log("Ejecuta la animación (sow)");
+       // Debug.Log("Ejecuta la animación (sow)");
         animator.SetTrigger("sow");
     }
 
     public void StartGrow()
     {
-        print("Star growing");
+      //  print("Star growing");
         isGrowing = true;
     }
     public void FinishGrow()
     {
-        print("Finish growing");
+        //print("Finish growing");
         isGrowing = false;
     }
     private void DropCarrotPlant()
@@ -60,8 +62,13 @@ public class Crop : MonoBehaviour
         Destroy(gameObject);
 
         // Instancia el prefab de carrotPlant en la posición actual
-        Instantiate(carrotPlantPrefab, currentPosition, Quaternion.identity);
+        GameObject newCarrot = Instantiate(carrotPlantPrefab, currentPosition, Quaternion.identity);
         Debug.Log("Crop replaced with carrot plant at position: " + currentPosition);
+       // CollectibleVegetable collectible = newCarrot.GetComponent<CollectibleVegetable>();
+     /*   if (collectible != null)
+        {
+            collectible.inventario = inventario; // Asigna la referencia aquí
+        }*/
     }
 
 

@@ -120,3 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carrotPlantPrefab: {fileID: 534224764211545521, guid: e3feae14c99029943bb514b7f47176e9, type: 3}
+  inventario: {fileID: 8473429872239215114, guid: cd0a9b398a247a3439220480ea949995, type: 3}
