@@ -126,17 +126,17 @@ public class PlayerController : MonoBehaviour
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            Debug.Log("Se presionó Space");
-            Debug.Log("position Vector2 personaje: " + transform.position.x + " , " + transform.position.y);
+           // Debug.Log("Se presionó Space");
+           // Debug.Log("position Vector2 personaje: " + transform.position.x + " , " + transform.position.y);
             //Vector3Int position = new Vector3Int(((int)transform.position.x), (int)transform.position.y, 0);
 
             Vector3Int position = MapPositionInteractiveTilemap();
 
-            Debug.Log("position Vector3 buscada en tilemapInteractive: "+ position.x + " , " + position.y + " , " + 0);
+            //Debug.Log("position Vector3 buscada en tilemapInteractive: "+ position.x + " , " + position.y + " , " + 0);
 
             if (GameManager.instance.tileManager.IsInteractable(position))
             {
-                Debug.Log("Player Controller: Tile is interactable2");
+              //  Debug.Log("Player Controller: Tile is interactable2");
                 GameManager.instance.tileManager.SetInteracted(position);
             }
         }
@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
         {
             if (posx >= posx_i + ((i - 1) * tileLength) && posx <= posx_i + (i * tileLength))
             {
-                Debug.Log("posx = " + i);
+                //Debug.Log("posx = " + i);
                 posx_f = i;
             }
         }
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
         {
             if (posy >= posy_i + (separacionCuadrante_y * i * tileLength) && posy <= posy_i + (separacionCuadrante_y * i * tileLength) + tileLength)
             {
-                Debug.Log("posy = " + (2 * i - 5));
+                //Debug.Log("posy = " + (2 * i - 5));
                 posy_f = 2 * i - 5;
             }
         }

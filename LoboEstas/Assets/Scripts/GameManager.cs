@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     //Singleton
     public static GameManager instance;
     public TileManager tileManager;
+    //public float actualTime = 0.0f;
+   // public TMP_Text counterText;
     private void Awake()
     {
         if (instance == null)
@@ -22,4 +25,14 @@ public class GameManager : MonoBehaviour
 
         tileManager = GetComponent<TileManager>(); 
     }
+/*
+    void update() {
+        actualTime += Time.deltaTime;
+        updateTimeText();
+    }
+
+    void updateTimeText() {
+        counterText.text = Mathf.FloorToInt(actualTime).ToString();
+    
+    }*/
 }
