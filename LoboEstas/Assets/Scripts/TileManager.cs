@@ -8,7 +8,8 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Tilemap interactableMap;
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile interactableTile;
-  //  public bool tn;
+
+    [SerializeField] private GameObject cropGrowing;
 
     void Start()
     {
@@ -48,6 +49,9 @@ public class TileManager : MonoBehaviour
 
     public void SetInteracted(Vector3Int position) { 
         interactableMap.SetTile(position, interactableTile);
-        
+
+        //Generar gameobject CropGrowing en la posición correspondiente
+        Vector3 worldPosition = interactableMap.GetCellCenterWorld(position);
+        Instantiate(cropGrowing, worldPosition, Quaternion.identity);
     }
 }
