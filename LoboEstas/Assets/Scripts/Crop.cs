@@ -7,15 +7,15 @@ public class Crop : MonoBehaviour
 
     [Header("Animación")]
     private Animator animator;
-    private bool hasSown = false;
 
-    [Header("Prefab del Vegetal")]
-   // [SerializeField] private GameObject carrotPrefab;
+    [Header("Prefab CarrotPlant")] //Esta es la planta que dropea zanahorias
+    [SerializeField] private GameObject carrotPlantPrefab;
 
-    [Header("Tilemap Interactuable")]
+   // [Header("Tilemap Interactuable")]
   // [SerializeField] private Tilemap interactableMap; // Tilemap donde se instanciará el vegetal
 
     bool isGrowing = true;
+    int harvestTimes = 1;
 
     void Start()
     {
@@ -25,13 +25,20 @@ public class Crop : MonoBehaviour
 
     void Update()
     {
-
+        int harvestT = 0;
+        if (harvestT < harvestTimes) {
+            // Comprueba si la animación "harvested" está en reproducción
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("harvested"))
+            {
+                DropCarrotPlant();
+                harvestT++;
+            }
+        }
     }
 
     public void StartGrowing() {
         Debug.Log("Ejecuta la animación (sow)");
         animator.SetTrigger("sow");
-
     }
 
     public void StartGrow()
@@ -44,6 +51,19 @@ public class Crop : MonoBehaviour
         print("Finish growing");
         isGrowing = false;
     }
+    private void DropCarrotPlant()
+    {
+        // Guarda la posición actual
+        Vector3 currentPosition = transform.position;
+
+        // Elimina el objeto actual
+        Destroy(gameObject);
+
+        // Instancia el prefab de carrotPlant en la posición actual
+        Instantiate(carrotPlantPrefab, currentPosition, Quaternion.identity);
+        Debug.Log("Crop replaced with carrot plant at position: " + currentPosition);
+    }
+
 
 }
 

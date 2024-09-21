@@ -19,7 +19,7 @@ public class Inventario : MonoBehaviour
         UpdateCollectibleDisplay();
     }
 
-    private void UpdateCollectibleDisplay()
+    public void UpdateCollectibleDisplay()
     {
         textMesh.text = harvested_carrots.ToString("Carrots:" + harvested_carrots);
     }
@@ -28,5 +28,6 @@ public class Inventario : MonoBehaviour
     {
         Debug.Log("Se llama a HarvestCarrot con cantidad: " + amount);
         harvested_carrots += amount;
+       // UpdateCollectibleDisplay();
     }
 }
