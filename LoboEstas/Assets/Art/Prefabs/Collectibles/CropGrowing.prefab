@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -554423216, guid: c92eac762857b2048a628b066d4aba7d, type: 3}
+  m_Sprite: {fileID: 1402015730, guid: 88e4c9ce32e10af4cb6ee75ab53239ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,5 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6079f4426914e48b3217eaf7077498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carrotPlantPrefab: {fileID: 534224764211545521, guid: e3feae14c99029943bb514b7f47176e9, type: 3}
-  inventario: {fileID: 8473429872239215114, guid: cd0a9b398a247a3439220480ea949995, type: 3}
+  carrotPlantPrefab: {fileID: 4731349033437090325, guid: d50f1cbca55b7504b9251619349c4dff, type: 3}

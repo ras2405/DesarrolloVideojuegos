@@ -20,30 +20,30 @@ public class TileManager : MonoBehaviour
             if (tile != null && tile.name == "Tierra_Seca_interactable") //&& tile.name == "Interactable_Visible"
             {
                 interactableMap.SetTile(position, hiddenInteractableTile);
-                Debug.Log("Posicion en interactableMap: " + position);
-                Debug.Log("TileManager - Tile name: " + tile.name);
+                //Debug.Log("Posicion en interactableMap: " + position);
+                //Debug.Log("TileManager - Tile name: " + tile.name);
             }
         }
     }
 
     public bool IsInteractable(Vector3Int position) {
         TileBase tile = interactableMap.GetTile(position);
-        Debug.Log("TileManager - Obtener tile de TileBase:" + interactableMap.GetTile(position));
+        //Debug.Log("TileManager - Obtener tile de TileBase:" + interactableMap.GetTile(position));
         if (tile != null)
         {
-            Debug.Log("TileManager - Tile name" + tile.name);
+           // Debug.Log("TileManager - Tile name" + tile.name);
             if (tile.name == "Tierra_Seca")
             {
-                Debug.Log("TileManager - Tile is interactable");
+              //  Debug.Log("TileManager - Tile is interactable");
                 return true;
             }
         }
         else {
-            Debug.Log("TileManager - No se encontro tile en esta posicion: " + position);
+           // Debug.Log("TileManager - No se encontro tile en esta posicion: " + position);
 
         }
    
-        Debug.Log("TileManager -2  is not interactable");
+       // Debug.Log("TileManager -2  is not interactable");
         return false;
     }
 
