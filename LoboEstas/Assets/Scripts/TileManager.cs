@@ -13,11 +13,11 @@ public class TileManager : MonoBehaviour
 
     void Start()
     {
-        //Debug.Log("TileManager, posicion en interactableMap?");
+        Debug.Log("TileManager, posicion en interactableMap?");
         //Posibilidad de cambiar los tiles que vemos en dev y cuando jugamos
         foreach (var position in interactableMap.cellBounds.allPositionsWithin) { // Mide en unidades de celda del tilemap no en pixeles
             TileBase tile = interactableMap.GetTile(position);
-            if (tile != null && tile.name == "Interactable") //&& tile.name == "Interactable_Visible"
+            if (tile != null && tile.name == "Tierra_Seca_interactable") //&& tile.name == "Interactable_Visible"
             {
                 interactableMap.SetTile(position, hiddenInteractableTile);
                 //Debug.Log("Posicion en interactableMap: " + position);
@@ -31,19 +31,19 @@ public class TileManager : MonoBehaviour
         //Debug.Log("TileManager - Obtener tile de TileBase:" + interactableMap.GetTile(position));
         if (tile != null)
         {
-            //Debug.Log("TileManager - Tile name" + tile.name);
-            if (tile.name == "interactiveGrownd")
+           // Debug.Log("TileManager - Tile name" + tile.name);
+            if (tile.name == "Tierra_Seca")
             {
-                //Debug.Log("TileManager - Tile is interactable");
+              //  Debug.Log("TileManager - Tile is interactable");
                 return true;
             }
         }
         else {
-            //Debug.Log("TileManager - No se encontro tile en esta posicion: " + position);
+           // Debug.Log("TileManager - No se encontro tile en esta posicion: " + position);
 
         }
    
-        //Debug.Log("TileManager -2  is not interactable");
+       // Debug.Log("TileManager -2  is not interactable");
         return false;
     }
 

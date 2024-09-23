@@ -98,17 +98,14 @@ public class PlayerController : MonoBehaviour
         if (movementInput != Vector2.zero)
         {
             bool success = TryMove(movementInput);
-
             if (!success)
             {
                 success = TryMove(new Vector2(movementInput.x, 0));
             }
-
             if (!success)
             {
                 success = TryMove(new Vector2(0, movementInput.y));
             }
-
             animator.SetBool("isMovingR", success);
 
             // Flipping the sprite based on movement direction
@@ -123,7 +120,6 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInteraction()
     {
-
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
            // Debug.Log("Se presionó Space");
@@ -132,16 +128,15 @@ public class PlayerController : MonoBehaviour
 
             Vector3Int position = MapPositionInteractiveTilemap();
 
-            //Debug.Log("position Vector3 buscada en tilemapInteractive: "+ position.x + " , " + position.y + " , " + 0);
+           //Debug.Log("position Vector3 buscada en tilemapInteractive: "+ position.x + " , " + position.y + " , " + 0);
 
             if (GameManager.instance.tileManager.IsInteractable(position))
             {
-              //  Debug.Log("Player Controller: Tile is interactable2");
+             //   Debug.Log("Player Controller: Tile is interactable2");
                 GameManager.instance.tileManager.SetInteracted(position);
             }
         }
     }
-
 
     private Vector3Int MapPositionInteractiveTilemap() {
         //TODO: Por ahora solo mapea a los tiles de cultivo fijos, generalizar
@@ -149,31 +144,66 @@ public class PlayerController : MonoBehaviour
         double posy = transform.position.y;
         double posx_f = 0;
         double posy_f = 0;
-        double posx_i = 0.981;
-        double posy_i = -0.490;
-        double tileLength = 0.155; //Medida reportada por el player
+        double posx_i = -2.554902;//0.981;
+        double posy_i = -2.858896;//-0.490;
+        double tileLength = 0.64;//0.155; //Medida reportada por el player
         int separacionCuadrante_x = 1; //Los tiles estan pegados
-        int separacionCuadrante_y = 2; //Los tiles estan separados por uno
+        int separacionCuadrante_y = 1; //Los tiles estan separados por uno
         int cuadrante_x = 0;
         int cuadrante_y = 0;
-        int filas = 4;
-        int columnas = 4;
-        for (int i = 1; i < (columnas + 1); i++)
+        int filas = 2;
+        int columnas = 8;
+
+
+        if (posx >= posx_i && posx <= posx_i + tileLength)
         {
-            if (posx >= posx_i + ((i - 1) * tileLength) && posx <= posx_i + (i * tileLength))
-            {
-                //Debug.Log("posx = " + i);
-                posx_f = i;
-            }
+           // Debug.Log("posy = " + (-4));
+            posx_f = -4;
         }
-        for (int i = 0; i < filas; i++)
+        else if (posx >= posx_i + tileLength && posx <= posx_i + 2 * tileLength)
         {
-            if (posy >= posy_i + (separacionCuadrante_y * i * tileLength) && posy <= posy_i + (separacionCuadrante_y * i * tileLength) + tileLength)
-            {
-                //Debug.Log("posy = " + (2 * i - 5));
-                posy_f = 2 * i - 5;
-            }
+           // Debug.Log("posy = " + (-3));
+            posx_f = -3;
         }
+        else if (posx >= posx_i + 6 * tileLength && posx <= posx_i + 7 * tileLength)
+        {
+           // Debug.Log("posy = " + (2));
+            posx_f = 2;
+        }
+        else if (posx >= posx_i + 7 * tileLength && posx <= posx_i + 8 * tileLength)
+        {
+          //  Debug.Log("posy = " + (3));
+            posx_f = 3;
+        }
+
+        if (posy >= posy_i && posy <= posy_i + tileLength)
+        {
+           // Debug.Log("posy = " + (-5));
+            posy_f = -5;
+        }
+        else if (posy >= posy_i + tileLength && posy <= posy_i + 2 * tileLength)
+        {
+           // Debug.Log("posy = " + (-4));
+            posy_f = -4;
+        }
+ 
+
+        /*  for (int i = 1; i < (columnas + 1); i++)
+          {
+              if (posx >= posx_i + ((i - 1) * tileLength) && posx <= posx_i + (i * tileLength))
+              {
+                  Debug.Log("posx = " + i);
+                  posx_f = i;
+              }
+          }
+          for (int i = 0; i < filas; i++)
+          {
+              if (posy >= posy_i + (separacionCuadrante_y * i * tileLength) && posy <= posy_i + (separacionCuadrante_y * i * tileLength) + tileLength)
+              {
+                  Debug.Log("posy = " + (2 * i - 5));
+                  posy_f = 2 * i - 5;
+              }
+          }*/
         return new Vector3Int(((int)posx_f), ((int)posy_f), 0);
     }
 
@@ -186,7 +216,6 @@ public class PlayerController : MonoBehaviour
                 castCollisions,
                 moveSpeed * Time.fixedDeltaTime + collisionOffset
             );
-
             if (count == 0)
             {
                 rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
