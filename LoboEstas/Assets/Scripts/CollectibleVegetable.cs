@@ -5,8 +5,11 @@ using UnityEngine;
 public class CollectibleVegetable : MonoBehaviour
 {
     public GameObject onCollectEffect;
+    public Item item;
+    public int count =1;
     [SerializeField] private float cantidadPuntos;
     [SerializeField] public Inventario inventario;
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,10 +17,10 @@ public class CollectibleVegetable : MonoBehaviour
         // Check if the other object has a PlayerController component
         if (other.GetComponent<PlayerController>() != null)
         {
-            Debug.Log("Recolección iniciada: " + cantidadPuntos);
+            Debug.Log("Recolecciï¿½n iniciada: " + cantidadPuntos);
             if (inventario == null)
             {
-                Debug.LogError("El inventario no está asignado!");
+                Debug.LogError("El inventario no estï¿½ asignado!");
             }
             else
             {
@@ -28,6 +31,14 @@ public class CollectibleVegetable : MonoBehaviour
 
             // Instantiate the particle effect
             // Instantiate(onCollectEffect, transform.position, transform.rotation);
+        }
+
+        if(GameManager.instance.inventoryContainer != null)
+        {
+            GameManager.instance.inventoryContainer.Add(item,count);
+        }
+        else{
+            Debug.LogError("No inventory container attached to game manager");
         }
     }
 }

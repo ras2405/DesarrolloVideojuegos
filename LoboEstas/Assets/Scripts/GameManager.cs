@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     //Singleton
     public static GameManager instance;
     public TileManager tileManager;
+
+    public ItemContainer inventoryContainer;
+
     //public float actualTime = 0.0f;
    // public TMP_Text counterText;
     private void Awake()

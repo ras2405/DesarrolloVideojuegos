@@ -144,5 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onCollectEffect: {fileID: 9163842254569548763, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+  item: {fileID: 11400000, guid: 39352951a3176e94c9a1ca34e2dc4d26, type: 2}
+  count: 1
   cantidadPuntos: 1
   inventario: {fileID: 0}
