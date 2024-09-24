@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject); 
         }
 
-        DontDestroyOnLoad(this.gameObject);
+       // DontDestroyOnLoad(this.gameObject);
 
         tileManager = GetComponent<TileManager>(); 
     }

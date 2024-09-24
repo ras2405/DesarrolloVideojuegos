@@ -8,19 +8,25 @@ public class Farming : MonoBehaviour
     public GameObject carrotPrefab;
     private float state; //0 is growing, 1 is ready to harvest
 
-    // Start is called before the first frame update
-    //void Start()
-   // {
+    //[SerializeField] public Inventario inventario;
+    private Inventario inventario;
 
-  //  }
+    private void Start()
+    {
+        inventario = FindObjectOfType<Inventario>();
+        if (inventario == null)
+        {
+            Debug.LogError("No hay una instancia de Inventario en la escena.");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+        //   if (other.CompareTag("Carrot")) - Debemos agregar esto para que luego segun el tipo que de tag que tengamos podamos sumarlos
         // Check if the other object has a PlayerController component
         if (other.GetComponent<PlayerController>() != null)
         {
-
+           // Debug.LogError("Farming: ");
             // Destroy the collectible
             Destroy(gameObject);
 
@@ -28,13 +34,24 @@ public class Farming : MonoBehaviour
             Instantiate(onCollectEffect, transform.position, transform.rotation);
 
             // Calcular una nueva posición para la zanahoria
-            Vector3 dropPosition = transform.position + new Vector3(0.10f, 0, 0); // Cambia (1f, 0, 0) por la distancia deseada
-            //Estaria bueno que luego segun la direccion donde esta el player, dropee para el lado opuesto
+            //Vector3 dropPosition = transform.position + new Vector3(0.10f, 0, 0); // Cambia (1f, 0, 0) por la distancia deseada
+                                                                                  //Estaria bueno que luego segun la direccion donde esta el player, dropee para el lado opuesto
 
             // Deberia dropear una zanahoria aca
-            Instantiate(carrotPrefab, dropPosition, transform.rotation);
-        }
+            //Instantiate(carrotPrefab, dropPosition, transform.rotation);
 
+            if (inventario == null)
+            {
+                Debug.LogError("El inventario no está asignado!");
+            }
+            else
+            {
+              //  Debug.LogError("El inventario está asignado...");
+                inventario.HarvestCarrot(1);
+              //  Debug.LogError("Llamamos a collectible display...");
+                inventario.UpdateCollectibleDisplay();
+            }
+        }
 
     }
 

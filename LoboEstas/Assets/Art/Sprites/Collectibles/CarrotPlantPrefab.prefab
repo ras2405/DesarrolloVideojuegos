@@ -145,3 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onCollectEffect: {fileID: 9163842254569548763, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
   carrotPrefab: {fileID: 602173564442712383, guid: c4f7fc78ef4b99448b8503d347069ece, type: 3}
+  inventario: {fileID: 8473429872239215114, guid: cd0a9b398a247a3439220480ea949995, type: 3}
