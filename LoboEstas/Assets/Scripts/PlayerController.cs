@@ -252,4 +252,10 @@ public class PlayerController : MonoBehaviour
         canMove = true;
     }
 
+    public void Watering()
+    {
+        
+        //canMove = false;
+    }
+
 }
