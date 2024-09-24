@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
 
+    public AudioSource audioSource; // Referencia al componente AudioSource
+    public AudioClip wateringSound; // Clip de sonido que se reproducirá
+
     Vector2 movementInput; // 2 valores, X,Y (izq der, arriba abajo)
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
@@ -147,6 +150,11 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetTrigger("watering");
                 GameManager.instance.tileManager.WaterPlant(position);
+
+                if (audioSource != null && wateringSound != null)
+                {
+                    audioSource.PlayOneShot(wateringSound);
+                }
             }
             else {
                 Debug.Log("Ese tile no fue plantado");
