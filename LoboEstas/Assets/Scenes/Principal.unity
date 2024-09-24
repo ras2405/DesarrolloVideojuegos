@@ -30246,6 +30246,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1224479596}
   - {fileID: 1747570362}
   - {fileID: 1379224798}
   m_Father: {fileID: 964239108}
@@ -31816,6 +31817,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211304772}
   m_CullTransparentMesh: 1
+--- !u!4 &1224479596 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 729097128838417966, guid: d50f1cbca55b7504b9251619349c4dff, type: 3}
+  m_PrefabInstance: {fileID: 7630693245374377706}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1271822863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 64608675675252260, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
@@ -33292,15 +33298,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 389022983}
     m_Modifications:
     - target: {fileID: 729097128838417966, guid: d50f1cbca55b7504b9251619349c4dff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.7
+      value: -1.7429999
       objectReference: {fileID: 0}
     - target: {fileID: 729097128838417966, guid: d50f1cbca55b7504b9251619349c4dff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.408
+      value: 0.15600002
       objectReference: {fileID: 0}
     - target: {fileID: 729097128838417966, guid: d50f1cbca55b7504b9251619349c4dff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33420,5 +33426,4 @@ SceneRoots:
   - {fileID: 3560777}
   - {fileID: 324697629}
   - {fileID: 4841251178575427882}
-  - {fileID: 7630693245374377706}
   - {fileID: 953603530}

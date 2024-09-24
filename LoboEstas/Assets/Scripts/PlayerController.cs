@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     Animator animator;
+
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     bool canMove = true;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>(); //En que direccion inciia el sprite
+        
     }
 
     void Update()
@@ -120,15 +123,15 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInteraction()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-           // Debug.Log("Se presionó Space");
-           // Debug.Log("position Vector2 personaje: " + transform.position.x + " , " + transform.position.y);
+        Vector3Int position = MapPositionInteractiveTilemap();
+
+        //CULTIVAR LA PLANTA
+        if (Keyboard.current.spaceKey.wasPressedThisFrame) // Usa la tecla 'SPACE' para cultivar
+        {   
+            // Debug.Log("Se presionó Space");
+            // Debug.Log("position Vector2 personaje: " + transform.position.x + " , " + transform.position.y);
             //Vector3Int position = new Vector3Int(((int)transform.position.x), (int)transform.position.y, 0);
-
-            Vector3Int position = MapPositionInteractiveTilemap();
-
-           //Debug.Log("position Vector3 buscada en tilemapInteractive: "+ position.x + " , " + position.y + " , " + 0);
+            // Debug.Log("position Vector3 buscada en tilemapInteractive: "+ position.x + " , " + position.y + " , " + 0);
 
             if (GameManager.instance.tileManager.IsInteractable(position))
             {
@@ -136,7 +139,21 @@ public class PlayerController : MonoBehaviour
                 GameManager.instance.tileManager.SetInteracted(position);
             }
         }
+
+        //REGAR LA PLANTA
+        if (Keyboard.current.rKey.wasPressedThisFrame) // Usa la tecla 'R' para regar
+        {
+            if (GameManager.instance.tileManager.IsPlanted(position))
+            {
+                animator.SetTrigger("watering");
+                GameManager.instance.tileManager.WaterPlant(position);
+            }
+            else {
+                Debug.Log("Ese tile no fue plantado");
+            }
+        }
     }
+
 
     private Vector3Int MapPositionInteractiveTilemap() {
         //TODO: Por ahora solo mapea a los tiles de cultivo fijos, generalizar
@@ -186,8 +203,6 @@ public class PlayerController : MonoBehaviour
            // Debug.Log("posy = " + (-4));
             posy_f = -4;
         }
- 
-
         /*  for (int i = 1; i < (columnas + 1); i++)
           {
               if (posx >= posx_i + ((i - 1) * tileLength) && posx <= posx_i + (i * tileLength))
@@ -238,8 +253,10 @@ public class PlayerController : MonoBehaviour
 
     //Boton derecho presionado para atacar (En nuestro caso podria servir como boton de accion)
     void OnFire() {
-        //print("Fire pressed");
+        print("Se hizo clic");
         animator.SetTrigger("attack");
+        // Si se hace clic sobre un tile y este es interactivo => el tile debe regarce
+
     }
 
     //Si no queremos que pueda caminar mientras ataque o riegue en nuestro caso
@@ -252,10 +269,6 @@ public class PlayerController : MonoBehaviour
         canMove = true;
     }
 
-    public void Watering()
-    {
-        
-        //canMove = false;
-    }
+
 
 }
