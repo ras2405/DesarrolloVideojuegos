@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     //Singleton
     public static GameManager instance;
+    public ItemContainer inventoryContainer;
     public TileManager tileManager;
     //public float actualTime = 0.0f;
    // public TMP_Text counterText;

@@ -6,6 +6,8 @@ public class Farming : MonoBehaviour
 {
     public GameObject onCollectEffect;
     public GameObject carrotPrefab;
+    public Item item;
+    public int count=1;
     private float state; //0 is growing, 1 is ready to harvest
 
     //[SerializeField] public Inventario inventario;
@@ -33,20 +35,26 @@ public class Farming : MonoBehaviour
             // Instantiate the particle effect
             Instantiate(onCollectEffect, transform.position, transform.rotation);
 
-            // Calcular una nueva posición para la zanahoria
+            // Calcular una nueva posiciï¿½n para la zanahoria
             //Vector3 dropPosition = transform.position + new Vector3(0.10f, 0, 0); // Cambia (1f, 0, 0) por la distancia deseada
                                                                                   //Estaria bueno que luego segun la direccion donde esta el player, dropee para el lado opuesto
 
             // Deberia dropear una zanahoria aca
             //Instantiate(carrotPrefab, dropPosition, transform.rotation);
-
+            if(GameManager.instance.inventoryContainer != null)
+            {
+                GameManager.instance.inventoryContainer.Add(item, count);
+            }
+            else{
+                Debug.LogWarning("No inventory container attached to the game manager");
+            }
             if (inventario == null)
             {
-                Debug.LogError("El inventario no está asignado!");
+                Debug.LogError("El inventario no estï¿½ asignado!");
             }
             else
             {
-              //  Debug.LogError("El inventario está asignado...");
+              //  Debug.LogError("El inventario estï¿½ asignado...");
                 inventario.HarvestCarrot(1);
               //  Debug.LogError("Llamamos a collectible display...");
                 inventario.UpdateCollectibleDisplay();
