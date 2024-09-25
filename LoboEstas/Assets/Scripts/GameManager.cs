@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public ItemContainer inventoryContainer;
     public TileManager tileManager;
-    //public float actualTime = 0.0f;
-   // public TMP_Text counterText;
     private void Awake()
     {
         if (instance == null)
@@ -22,18 +20,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject); 
         }
 
-       // DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         tileManager = GetComponent<TileManager>(); 
     }
-/*
-    void update() {
-        actualTime += Time.deltaTime;
-        updateTimeText();
-    }
-
-    void updateTimeText() {
-        counterText.text = Mathf.FloorToInt(actualTime).ToString();
-    
-    }*/
 }

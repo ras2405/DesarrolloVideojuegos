@@ -13,22 +13,18 @@ public class TileManager : MonoBehaviour
     [SerializeField] private GameObject cropGrowing;
 
     // Diccionario para rastrear si un tile ha sido plantado
-    //private Dictionary<Vector3Int, bool> plantedTiles = new Dictionary<Vector3Int, bool>();
     private Dictionary<Vector3Int, (bool isPlanted, int waterCount)> tileStates = new Dictionary<Vector3Int, (bool, int)>();
 
     void Start()
     {
-        //Debug.Log("TileManager, posicion en interactableMap?");
         //Posibilidad de cambiar los tiles que vemos en dev y cuando jugamos
         foreach (var position in interactableMap.cellBounds.allPositionsWithin) { // Mide en unidades de celda del tilemap no en pixeles
             TileBase tile = interactableMap.GetTile(position);
-            if (tile != null && tile.name == "Tierra_Seca_interactable") //&& tile.name == "Interactable_Visible"
+            if (tile != null && tile.name == "Tierra_Seca_interactable") 
             {
                 interactableMap.SetTile(position, hiddenInteractableTile);
                 tileStates[position] = (false, 0); // Inicializa como no plantado y sin agua 
                 // Inicializa como no plantado, luego de cultivar queremos que vuelva a estar vacio y saber que esta plantado y cuantas veces se rego
-                //Debug.Log("Posicion en interactableMap: " + position);
-                //Debug.Log("TileManager - Tile name: " + tile.name);
             }
         }
     }
@@ -38,19 +34,16 @@ public class TileManager : MonoBehaviour
         //Debug.Log("TileManager - Obtener tile de TileBase:" + interactableMap.GetTile(position));
         if (tile != null)
         {
-           // Debug.Log("TileManager - Tile name" + tile.name);
+            // Debug.Log("TileManager - Tile name" + tile.name);
             if (tile.name == "Tierra_Seca")
             {
-              //  Debug.Log("TileManager - Tile is interactable");
+                //Debug.Log("TileManager - Tile is interactable");
                 return true;
             }
         }
         else {
-           // Debug.Log("TileManager - No se encontro tile en esta posicion: " + position);
-
+           //Debug.Log("TileManager - No se encontro tile en esta posicion: " + position);
         }
-   
-       // Debug.Log("TileManager -2  is not interactable");
         return false;
     }
 
