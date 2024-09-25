@@ -95,37 +95,45 @@ public class PlayerController : MonoBehaviour
     {
         Vector3Int position = MapPositionInteractiveTilemap();
 
-        if (Mouse.current.leftButton.wasPressedThisFrame) // Clic izquierdo del mouse
+        if (GameManager.instance != null && GameManager.instance.tileManager != null)
         {
 
-            //CULTIVAR LA PLANTA
-            if (GameManager.instance.tileManager.IsInteractable(position))
+            if (Mouse.current.leftButton.wasPressedThisFrame) // Clic izquierdo del mouse
             {
-                GameManager.instance.tileManager.SetInteracted(position);
-            }
-            else {
-                //REGAR LA PLANTA
-                if (GameManager.instance.tileManager.IsPlanted(position))
+                //CULTIVAR LA PLANTA
+                if (GameManager.instance.tileManager.IsInteractable(position))
                 {
-                    animator.SetTrigger("watering");
-                    GameManager.instance.tileManager.WaterPlant(position);
-
-                    if (audioSource != null && wateringSound != null)
-                    {
-                        audioSource.PlayOneShot(wateringSound);
-                    }
+                    GameManager.instance.tileManager.SetInteracted(position);
                 }
                 else
                 {
-                    if (GameManager.instance.tileManager.IsInteractable(position))
+                    //REGAR LA PLANTA
+                    if (GameManager.instance.tileManager.IsPlanted(position))
                     {
-                        Debug.Log("Ese tile no fue plantado");
+                        animator.SetTrigger("watering");
+                        GameManager.instance.tileManager.WaterPlant(position);
+
+                        if (audioSource != null && wateringSound != null)
+                        {
+                            audioSource.PlayOneShot(wateringSound);
+                        }
                     }
-                    else {
-                        Debug.Log("No se puede interactuar con este tile");
+                    else
+                    {
+                        if (GameManager.instance.tileManager.IsInteractable(position))
+                        {
+                            Debug.Log("Ese tile no fue plantado");
+                        }
+                        else
+                        {
+                            Debug.Log("No se puede interactuar con este tile");
+                        }
                     }
                 }
             }
+        }
+        else {
+            Debug.Log("No se puede interactuar con este tile");
         }
     }
 
