@@ -7,7 +7,7 @@ public class Farming : MonoBehaviour
     public GameObject onCollectEffect;
     public GameObject carrotPrefab;
     public Item item;
-    public int count=1;
+    public int count = 1;
     private float state; //0 is growing, 1 is ready to harvest
 
     //[SerializeField] public Inventario inventario;
@@ -54,10 +54,13 @@ public class Farming : MonoBehaviour
             }
             else
             {
-              //  Debug.LogError("El inventario est� asignado...");
-                inventario.HarvestCarrot(1);
-              //  Debug.LogError("Llamamos a collectible display...");
-                inventario.UpdateCollectibleDisplay();
+                //if (other.CompareTag("Carrot"))
+               // {
+                //    Debug.LogError("Se encontro una Carrot...");
+                    inventario.HarvestCarrot(count);
+                    //  Debug.LogError("Llamamos a collectible display...");
+                    inventario.UpdateCollectibleDisplay();
+                //}
             }
         }
 

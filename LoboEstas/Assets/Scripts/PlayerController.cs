@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
 
+    public AudioClip footstepsSound; // Clip de sonido de pasos
+    private float stepCooldown = 0.5f; // Tiempo entre pasos
+    private float stepTimer;
+
     public AudioSource audioSource; // Referencia al componente AudioSource
     public AudioClip wateringSound; // Clip de sonido que se reproducirá
 
@@ -36,7 +40,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>(); //En que direccion inciia el sprite
-        
+
+        stepTimer = 0; // Inicializa el temporizador
     }
 
     void Update()
@@ -49,6 +54,7 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             HandleMovement();
+            stepTimer += Time.fixedDeltaTime; // Actualiza el temporizador
         }
         /*  if (canMove)
           {
@@ -114,12 +120,20 @@ public class PlayerController : MonoBehaviour
             }
             animator.SetBool("isMovingR", success);
 
+            // Reproducir sonido de pasos
+            if (success && stepTimer >= stepCooldown)
+            {
+                audioSource.PlayOneShot(footstepsSound);
+                stepTimer = 0; // Reinicia el temporizador
+            }
+
             // Flipping the sprite based on movement direction
             spriteRenderer.flipX = movementInput.x < 0;
         }
         else
         {
             animator.SetBool("isMovingR", false);
+            audioSource.Stop(); // Detener el sonido si no se está moviendo
         }
     }
 
