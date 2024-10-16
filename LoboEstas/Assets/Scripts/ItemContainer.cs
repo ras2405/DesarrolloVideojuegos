@@ -42,4 +42,20 @@ public class ItemContainer : ScriptableObject
         }
     }
    }
+   public bool Remove(Item item)
+   {
+    ItemSlot slot = slots.Find(x => x.item == item);
+    if(slot == null)
+    {
+        return false;
+    }
+    if(slot.count == 1)
+    {
+        slot.item = null;
+    }
+    else{
+        slot.count -=1;
+    }
+    return true;
+   }
 }
