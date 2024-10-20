@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); //En que direccion inciia el sprite
 
         stepTimer = 0; // Inicializa el temporizador
+
+        InitializePosition();
     }
 
     void Update()
@@ -211,8 +213,7 @@ public class PlayerController : MonoBehaviour
     {
         movementInput = movementValue.Get<Vector2>();
     }
-
-    
+  
     void OnFire() {
         animator.SetTrigger("attack");
     }
@@ -227,4 +228,26 @@ public class PlayerController : MonoBehaviour
         canMove = true;
     }
 
+    public Vector2 GetPosition() {
+        print("GetPosition: " + transform.position);
+        return transform.position;//rb.position;
+    }
+
+    public void SetPosition(Vector2 position) { 
+        transform.position = position;
+    }
+
+    private void InitializePosition()
+    {
+        // Este método se llama al inicio del juego
+        if (GameManager.instance != null && GameManager.instance.saveSystem != null)
+        {
+            // Cargar los datos guardados
+            saveData data = GameManager.instance.saveSystem.LoadGame();
+            if (data != null)
+            {
+                SetPosition(data.playerPosition);
+            }
+        }
+    }
 }
