@@ -96,8 +96,8 @@ public class CycleDayController : MonoBehaviour
     {
         int totalMinutes = Mathf.FloorToInt(gameTimeInMinutes) % 1440; // 1440 minutos en un día
 
-        // noche es entre 8 PM (1200 minutos) y 4:59 AM (299 minutos) !!!!!!!!! PROVISORIO !!!!!!!!!!!!!
-        return (totalMinutes >= 1200 || totalMinutes < 300);
+        // noche es entre 7 PM (1140 minutos) y 4:59 AM (299 minutos) !!!!!!!!! PROVISORIO !!!!!!!!!!!!!
+        return (totalMinutes >= 1140 || totalMinutes < 300);
     }
 }
 
