@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private float stepTimer;
 
     public AudioSource audioSource; // Referencia al componente AudioSource
-    public AudioClip wateringSound; // Clip de sonido que se reproducirá
+    public AudioClip wateringSound; // Clip de sonido que se reproducirÃ¡
 
     Vector2 movementInput; // 2 valores, X,Y (izq der, arriba abajo)
     SpriteRenderer spriteRenderer;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance == null)
         {
-            Debug.LogError("GameManager no está inicializado");
+            Debug.LogError("GameManager no estÃ¡ inicializado");
         }
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -227,4 +227,28 @@ public class PlayerController : MonoBehaviour
         canMove = true;
     }
 
+    public Vector2 GetPosition()
+    {
+        print("GetPosition: " + transform.position);
+        return transform.position;//rb.position;
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        transform.position = position;
+    }
+
+    private void InitializePosition()
+    {
+        // Este mï¿½todo se llama al inicio del juego
+        if (GameManager.instance != null && GameManager.instance.saveSystem != null)
+        {
+            // Cargar los datos guardados
+            saveData data = GameManager.instance.saveSystem.LoadGame();
+            if (data != null)
+            {
+                SetPosition(data.playerPosition);
+            }
+        }
+    }
 }
