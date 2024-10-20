@@ -91,6 +91,14 @@ public class CycleDayController : MonoBehaviour
         // Mostrar el tiempo y el d�a actual
         timeText.text = $"Día {currentDay}, {displayHour:D2}:{displayMinute:D2} {period}";
     }
+
+    public bool IsNight()
+    {
+        int totalMinutes = Mathf.FloorToInt(gameTimeInMinutes) % 1440; // 1440 minutos en un día
+
+        // noche es entre 8 PM (1200 minutos) y 4:59 AM (299 minutos) !!!!!!!!! PROVISORIO !!!!!!!!!!!!!
+        return (totalMinutes >= 1200 || totalMinutes < 300);
+    }
 }
 
 /*using System.Collections;
