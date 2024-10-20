@@ -12,32 +12,54 @@ public class FollowPlayer : MonoBehaviour
     SpriteRenderer spriteRenderer;
     private Vector3 lastPosition;
 
+    private CycleDayController cycleDayController;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         lastPosition = transform.position;
+
+        // busca controlador del ciclo del dia en la escena
+        cycleDayController = FindObjectOfType<CycleDayController>();
     }
 
     void Update()
     {
-        if (player != null)
+        if(cycleDayController != null && cycleDayController.IsNight())
         {
-            // calcula nueva posición 
-            Vector3 targetPosition = player.position + offset;
-
-            // mueve al lobo
-            transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
-
-            if (transform.position.x > lastPosition.x)
+            if (player != null)
             {
-                spriteRenderer.flipX = false;
-            }
-            else if (transform.position.x < lastPosition.x)
-            {
-                spriteRenderer.flipX = true;
-            }
+                // hace visible al lobo
+                spriteRenderer.enabled = true;
 
-            lastPosition = transform.position;
+                // calcula nueva posición 
+                Vector3 targetPosition = player.position + offset;
+
+                // mueve al lobo
+                transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+
+                if (transform.position.x > lastPosition.x)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                else if (transform.position.x < lastPosition.x)
+                {
+                    spriteRenderer.flipX = true;
+                }
+
+                lastPosition = transform.position;
+            }
+        }
+        else
+        {
+            // lobo invisible
+            spriteRenderer.enabled = false;
+
+            // mueve al lobo a una posición random (para prox aparición)
+            float randomX = Random.Range(-10f, 10f);
+            float randomY = Random.Range(-10f, 10f);
+
+            transform.position = new Vector3(randomX, randomY, transform.position.z);
         }
     }
 }

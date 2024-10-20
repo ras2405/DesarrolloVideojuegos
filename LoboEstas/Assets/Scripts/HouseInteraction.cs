@@ -7,38 +7,23 @@ using UnityEngine.SceneManagement;
 public class HouseInteraction : MonoBehaviour
 {
     public GameObject player; // Referencia al jugador
-    public Text interactText; // Texto que aparece cuando el jugador está cerca de la puerta
-    public KeyCode interactionKey = KeyCode.E; // Tecla para interactuar
     public bool insideHouse = false; // Para saber si está dentro de la casa
 
     private bool canInteract = false; // Si el jugador puede interactuar con la casa
-
-    void Start()
-    {
-        interactText.gameObject.SetActive(false); // Ocultamos el texto al principio
-    }
 
     void Update()
     {
         // Si el jugador está cerca y puede interactuar
         if (canInteract)
         {
-            interactText.gameObject.SetActive(true); // Mostramos el texto
-            if (Input.GetKeyDown(interactionKey)) // Si el jugador presiona la tecla de interacción
+            if (!insideHouse)
             {
-                if (!insideHouse)
-                {
-                    EnterHouse(); // Lógica para entrar a la casa
-                }
-                else
-                {
-                    ExitHouse(); // Lógica para salir de la casa
-                }
+                EnterHouse(); // Lógica para entrar a la casa
             }
-        }
-        else
-        {
-            interactText.gameObject.SetActive(false); // Ocultamos el texto si no está cerca
+            else
+            {
+                ExitHouse(); // Lógica para salir de la casa
+            }
         }
     }
 
@@ -61,7 +46,7 @@ public class HouseInteraction : MonoBehaviour
     {
         if (collision.gameObject == player)
         {
-            canInteract = true; // Permite que el jugador pueda interactuar
+            canInteract = true; // Permite que el jugador pueda entrar a la casa
         }
     }
 
