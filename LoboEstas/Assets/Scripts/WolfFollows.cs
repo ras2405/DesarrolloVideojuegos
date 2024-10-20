@@ -55,7 +55,7 @@ public class FollowPlayer : MonoBehaviour
             // lobo invisible
             spriteRenderer.enabled = false;
 
-            // mueve al lobo a una posicion random
+            // mueve al lobo a una posición random (para prox aparición)
             float randomX = Random.Range(-10f, 10f);
             float randomY = Random.Range(-10f, 10f);
 
