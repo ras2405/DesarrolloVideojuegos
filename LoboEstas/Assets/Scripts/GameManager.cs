@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+//using TMPro;
 
 public class GameManager : MonoBehaviour
 {
