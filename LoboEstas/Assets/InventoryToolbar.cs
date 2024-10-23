@@ -20,6 +20,51 @@ public class InventoryToolbar : MonoBehaviour
     private void Update()
     {
         Show();
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            inventory.SelectItem(0);
+            Clean();
+            slots[0].SetBorder();
+        }
+        
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            inventory.SelectItem(1);
+            Clean();
+            slots[1].SetBorder();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            inventory.SelectItem(2);
+            Clean();
+            slots[2].SetBorder();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            inventory.SelectItem(3);
+            Clean();
+            slots[3].SetBorder();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            inventory.SelectItem(4);
+            Clean();
+            slots[4].SetBorder();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            inventory.SelectItem(5);
+            Clean();
+            slots[5].SetBorder();
+        }
+    }
+
+    private void Clean()
+    {
+        foreach(var slot in slots)
+        {
+            slot.CleanBorder();
+        }
     }
    private void SetIndex()
    {

@@ -39,9 +39,9 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // Función que se ejecutará cuando se detecte el clic derecho
     public void OnRightClick()
     {
+        Debug.Log("Buy Carrot seed function");
         int count =1;
         if(moneyController.currentMoney >= 20)
         {

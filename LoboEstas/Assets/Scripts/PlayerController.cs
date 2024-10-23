@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
 
+    [SerializeField] ItemContainer inventory;
     public float moveSpeed = 1f;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
@@ -101,9 +102,10 @@ public class PlayerController : MonoBehaviour
             if (Mouse.current.leftButton.wasPressedThisFrame) // Clic izquierdo del mouse
             {
                 //CULTIVAR LA PLANTA
-                if (GameManager.instance.tileManager.IsInteractable(position))
+                if (GameManager.instance.tileManager.IsInteractable(position)&& SeedSelected())
                 {
                     GameManager.instance.tileManager.SetInteracted(position);
+                    inventory.RemoveSeed();
                 }
                 else
                 {
@@ -137,6 +139,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public bool SeedSelected()
+   {
+    Debug.Log(inventory.selectedItem);
+    if (inventory.selectedItem != null && inventory.selectedItem.tag == "seed")return true;
+    return false;
+   }
 
     private Vector3Int MapPlayerAndInteractableMapPosition()
     { 
