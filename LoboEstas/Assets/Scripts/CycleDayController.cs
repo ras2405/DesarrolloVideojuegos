@@ -282,4 +282,12 @@ public class CycleDayController : MonoBehaviour
         // Noche es entre 7 PM (1140 minutos) y 4:59 AM (299 minutos)
         return (totalMinutes >= 1140 || totalMinutes < 300);
     }
+
+    public bool IsAfter10PM()
+    {
+        int totalMinutes = Mathf.FloorToInt(gameTimeInMinutes) % 1440; // 1440 minutos en un día
+
+        // Verificamos si la hora es mayor o igual a 10 PM (22:00, que son 1320 minutos en el día)
+        return totalMinutes >= 1320;
+    }
 }

@@ -64,7 +64,7 @@ public class FollowPlayer : MonoBehaviour
     }
 }
 */
-
+/*
 using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
@@ -141,6 +141,208 @@ public class FollowPlayer : MonoBehaviour
             }
 
             // Mueve al lobo a una posición random (para próxima aparición)
+            float randomX = Random.Range(-10f, 10f);
+            float randomY = Random.Range(-10f, 10f);
+
+            transform.position = new Vector3(randomX, randomY, transform.position.z);
+        }
+    }
+}
+
+*/
+/*
+using UnityEngine;
+
+public class FollowPlayer : MonoBehaviour
+{
+    public Transform player;
+    public Vector3 offset;
+    public float followSpeed = 0.75f;
+
+    private SpriteRenderer spriteRenderer;
+    private Vector3 lastPosition;
+
+    private CycleDayController cycleDayController;
+
+    // Nueva referencia para el objeto "marco"
+    public GameObject marco; // Asigna "marco" desde el Inspector
+
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        lastPosition = transform.position;
+
+        // Busca controlador del ciclo del día en la escena
+        cycleDayController = FindObjectOfType<CycleDayController>();
+
+        // Asegúrate de que "marco" esté desactivado al iniciar
+        if (marco != null)
+        {
+            marco.SetActive(false);
+        }
+    }
+
+    void Update()
+    {
+        // Verificar si es noche y si no es después de las 10 PM
+        if (cycleDayController != null && cycleDayController.IsNight() && !cycleDayController.IsAfter10PM())
+        {
+            if (player != null)
+            {
+                // Hace visible al lobo
+                spriteRenderer.enabled = true;
+
+                // Activa "marco" cuando el lobo está persiguiendo
+                if (marco != null)
+                {
+                    marco.SetActive(true);
+                }
+
+                // Calcula nueva posición
+                Vector3 targetPosition = player.position + offset;
+
+                // Mueve al lobo
+                transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+
+                if (transform.position.x > lastPosition.x)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                else if (transform.position.x < lastPosition.x)
+                {
+                    spriteRenderer.flipX = true;
+                }
+
+                lastPosition = transform.position;
+
+                // Si el lobo alcanza al jugador
+                if (Vector3.Distance(transform.position, player.position) < 0.5f)
+                {
+                    // Desactiva el lobo
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            // Si es después de las 10 PM o no es de noche, desactiva al lobo
+            spriteRenderer.enabled = false;
+
+            // Desactiva "marco" cuando el lobo no está persiguiendo
+            if (marco != null)
+            {
+                marco.SetActive(false);
+            }
+
+            // Mueve al lobo a una posición random (para próxima aparición)
+            float randomX = Random.Range(-10f, 10f);
+            float randomY = Random.Range(-10f, 10f);
+
+            transform.position = new Vector3(randomX, randomY, transform.position.z);
+        }
+    }
+}*/
+
+
+using UnityEngine;
+
+public class FollowPlayer : MonoBehaviour
+{
+    public Transform player;
+    public Vector3 offset;
+    public float followSpeed = 0.75f;
+
+    private SpriteRenderer spriteRenderer;
+    private Vector3 lastPosition;
+
+    private CycleDayController cycleDayController;
+
+    // Referencia al objeto "marco"
+    public GameObject marco; // Asigna "marco" desde el Inspector
+
+    // Referencia al DeadPanel
+    public GameObject deadPanel; // Asigna el DeadPanel desde el Inspector
+
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        lastPosition = transform.position;
+
+        // Busca el controlador del ciclo del día en la escena
+        cycleDayController = FindObjectOfType<CycleDayController>();
+
+        // Asegúrate de que "marco" esté desactivado al iniciar
+        if (marco != null)
+        {
+            marco.SetActive(false);
+        }
+
+        // Asegúrate de que el DeadPanel esté desactivado al iniciar
+        if (deadPanel != null)
+        {
+            deadPanel.SetActive(false);
+        }
+    }
+
+    void Update()
+    {
+        // Verificar si es de noche y si no es después de las 10 PM
+        if (cycleDayController != null && cycleDayController.IsNight() && !cycleDayController.IsAfter10PM())
+        {
+            if (player != null)
+            {
+                // Hace visible al lobo
+                spriteRenderer.enabled = true;
+
+                // Activa "marco" cuando el lobo está persiguiendo
+                if (marco != null)
+                {
+                    marco.SetActive(true);
+                }
+
+                // Calcula la nueva posición
+                Vector3 targetPosition = player.position + offset;
+
+                // Mueve al lobo
+                transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+
+                if (transform.position.x > lastPosition.x)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                else if (transform.position.x < lastPosition.x)
+                {
+                    spriteRenderer.flipX = true;
+                }
+
+                lastPosition = transform.position;
+
+                // Si el lobo alcanza al jugador
+                if (Vector3.Distance(transform.position, player.position) < 0.5f)
+                {
+                    // Activa el DeadPanel cuando el lobo alcanza al jugador
+                    if (deadPanel != null)
+                    {
+                        deadPanel.SetActive(true);
+                    }
+
+                    // Desactiva el lobo
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            // Si es después de las 10 PM o no es de noche, desactiva al lobo
+            spriteRenderer.enabled = false;
+
+            // Desactiva "marco" cuando el lobo no está persiguiendo
+            if (marco != null)
+            {
+                marco.SetActive(false);
+            }
+
+            // Mueve al lobo a una posición random (para la próxima aparición)
             float randomX = Random.Range(-10f, 10f);
             float randomY = Random.Range(-10f, 10f);
 
