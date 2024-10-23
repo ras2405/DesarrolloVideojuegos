@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public ItemContainer inventoryContainer;
     public TileManager tileManager;
+    public SaveSystem saveSystem;
     private void Awake()
     {
         if (instance == null)
@@ -25,8 +26,8 @@ public class GameManager : MonoBehaviour
         tileManager = GetComponent<TileManager>(); 
     }
 }
-*/
 
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,4 +59,4 @@ public class GameManager : MonoBehaviour
         // Instancia del saveSystem
         saveSystem = gameObject.AddComponent<SaveSystem>();
     }
-}
+}*/

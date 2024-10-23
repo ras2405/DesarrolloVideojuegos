@@ -153,7 +153,7 @@ public class SaveSystem : MonoBehaviour
     public void NewGameButton()
     {
         // Borrar el archivo de guardado
-        if (File.Exists(savePath))
+        /*if (File.Exists(savePath))
         {
             File.Delete(savePath);
         }
@@ -165,7 +165,15 @@ public class SaveSystem : MonoBehaviour
         SaveGame(newData);
 
         // Iniciar el juego en la escena principal
-        StartCoroutine(LoadGameSceneAndRestoreData(newData));
+        StartCoroutine(LoadGameSceneAndRestoreData(newData));*/
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("CurrentDay", 1); // Día 1
+        PlayerPrefs.SetFloat("GameTimeInMinutes", 300f);
+        PlayerPrefs.Save();
+
+        //TODO: Limpiar inventario
+
+        SceneManager.LoadSceneAsync("Principal");
     }
 
     public void ContinueButton()
