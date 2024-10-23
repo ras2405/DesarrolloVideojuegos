@@ -73,6 +73,7 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
 
     public void SellCarrot()
     {
+        Debug.Log("le di a SellCarrot: ");
         int count =1;
         this.priceText = price.GetComponent<Text>();
         Debug.Log(priceText);
@@ -82,7 +83,6 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         {
          moneyController.Add(priceOfItem);
         }
-        
     }
 
     public void SellPotato()

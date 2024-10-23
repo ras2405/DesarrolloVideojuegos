@@ -127,14 +127,14 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("No se puede interactuar con este tile");
+                            //Debug.Log("No se puede interactuar con este tile");
                         }
                     }
                 }
             }
         }
         else {
-            Debug.Log("No se puede interactuar con este tile");
+            //Debug.Log("No se puede interactuar con este tile");
         }
     }
 

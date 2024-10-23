@@ -1472,6 +1472,7 @@ MonoBehaviour:
   textPanel: {fileID: 2071114361}
   dayText: {fileID: 1235770855}
   character: {fileID: 1623614718}
+  timeText: {fileID: 1728792969}
   bedPosition: {x: 0, y: 0}
 --- !u!1 &878690505
 GameObject:
@@ -4600,7 +4601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1655677096
 RectTransform:
   m_ObjectHideFlags: 0

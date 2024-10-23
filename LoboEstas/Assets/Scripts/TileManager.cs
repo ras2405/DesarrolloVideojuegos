@@ -15,8 +15,41 @@ public class TileManager : MonoBehaviour
     // Diccionario para rastrear si un tile ha sido plantado
     private Dictionary<Vector3Int, (bool isPlanted, int waterCount)> tileStates = new Dictionary<Vector3Int, (bool, int)>();
 
+    private void Awake()
+    {
+        // Asegúrate de que solo haya una instancia de TileManager
+        if (FindObjectsOfType<TileManager>().Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     void Start()
     {
+     /*   if (interactableMap == null)
+        {
+            interactableMap = GameObject.Find("InteractableMap").GetComponent<Tilemap>();
+        }
+
+        if (hiddenInteractableTile == null)
+        {
+            hiddenInteractableTile = GameObject.Find("Tierra_Seca").GetComponent<Tile>();
+        }
+
+        if (interactableTile == null)
+        {
+            interactableTile = GameObject.Find("Tierra_Preparada").GetComponent<Tile>();
+        }
+
+        if (cropGrowing == null)
+        {
+            cropGrowing = GameObject.Find("CropGrowing").GetComponent<GameObject>();
+        }*/
+
         //Posibilidad de cambiar los tiles que vemos en dev y cuando jugamos
         foreach (var position in interactableMap.cellBounds.allPositionsWithin) { // Mide en unidades de celda del tilemap no en pixeles
             TileBase tile = interactableMap.GetTile(position);
