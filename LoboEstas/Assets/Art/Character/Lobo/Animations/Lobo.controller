@@ -10,8 +10,8 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 8824116923932625816}
-    m_Position: {x: 280, y: 180, z: 0}
+    m_State: {fileID: 512636623505463007}
+    m_Position: {x: 358.2601, y: 184.20227, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -21,7 +21,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 130, y: 100, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 8824116923932625816}
+  m_DefaultState: {fileID: 512636623505463007}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -44,14 +44,14 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &8824116923932625816
+--- !u!1102 &512636623505463007
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: wolf_moving
+  m_Name: wolf_move2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -59,12 +59,12 @@ AnimatorState:
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
-  m_Mirror: 1
+  m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: da68bcfa3d776874d8099e5297fdb99a, type: 2}
+  m_Motion: {fileID: 7400000, guid: e6ce11ca87e628b4eb23c0dc2b0539a5, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

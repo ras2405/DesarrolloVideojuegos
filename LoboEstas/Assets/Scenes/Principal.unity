@@ -51968,6 +51968,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1102396500602585581, guid: ce398f34351683c4a9916e365d2658f4, type: 3}
   m_PrefabInstance: {fileID: 1752861317}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1759377247 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7302718983000893621, guid: 636d9fd5fb8f88f42a1608985688a3ef, type: 3}
+  m_PrefabInstance: {fileID: 7803208858821502568}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1775810979
 GameObject:
   m_ObjectHideFlags: 0
@@ -58559,9 +58564,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 24379498200972845, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: 1d704d7c1442c674ca7bdc351b009b73, type: 3}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: marco
       value: 
@@ -58574,6 +58579,10 @@ PrefabInstance:
       propertyPath: deadPanel
       value: 
       objectReference: {fileID: 1253645398}
+    - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
+      propertyPath: sceneAudioSource
+      value: 
+      objectReference: {fileID: 1759377247}
     - target: {fileID: 5793505607951488276, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: m_Name
       value: Lobo
@@ -58589,6 +58598,10 @@ PrefabInstance:
     - target: {fileID: 8826300561834909843, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.1552163
+      objectReference: {fileID: 0}
+    - target: {fileID: 8826300561834909843, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8826300561834909843, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: m_LocalPosition.x
