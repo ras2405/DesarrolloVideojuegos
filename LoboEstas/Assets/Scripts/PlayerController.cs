@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             HandleMovement();
+            DetectMouseClick();
             stepTimer += Time.fixedDeltaTime; 
         }
     }
@@ -128,14 +129,14 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("No se puede interactuar con este tile");
+                            //Debug.Log("No se puede interactuar con este tile");
                         }
                     }
                 }
             }
         }
         else {
-            Debug.Log("No se puede interactuar con este tile");
+            //Debug.Log("No se puede interactuar con este tile");
         }
     }
 
@@ -258,5 +259,33 @@ public class PlayerController : MonoBehaviour
                 SetPosition(data.playerPosition);
             }
         }
+    }
+
+    private void DetectMouseClick()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            // Convertir la posición del mouse a coordenadas del mundo
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Vector2 mousePosition2D = new Vector2(mousePosition.x, mousePosition.y);
+
+            // Hacer un raycast desde la posición del mouse
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition2D, Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                // El raycast ha chocado con algo que tiene un collider
+                Debug.Log("Hiciste clic en el objeto: " + hit.collider.name);
+
+                // Aquí puedes añadir cualquier lógica que quieras realizar al hacer clic en el objeto
+                InteractWithObject(hit.collider.gameObject);
+            }
+        }
+    }
+
+    private void InteractWithObject(GameObject clickedObject)
+    {
+        // Añade la lógica para interactuar con el objeto clickeado
+        Debug.Log("Interactuando con " + clickedObject.name);
     }
 }
