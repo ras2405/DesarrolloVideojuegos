@@ -15,4 +15,4 @@ MonoBehaviour:
   name: Potato Seed
   icon: {fileID: -554423216, guid: c92eac762857b2048a628b066d4aba7d, type: 3}
   stackable: 1
-  price: 0
+  tag: seed
