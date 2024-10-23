@@ -48,10 +48,28 @@ public class Crop : MonoBehaviour
         // print("Finish growing");
         isGrowing = false;
     }
-    private void DropCarrotPlant()
+    /*private void DropCarrotPlant()
     {
         Vector3 currentPosition = transform.position;
         Destroy(gameObject);
+        GameObject newCarrot = Instantiate(carrotPlantPrefab, currentPosition, Quaternion.identity);
+        Debug.Log("Crop replaced with carrot plant at position: " + currentPosition);
+    }*/
+
+    private void DropCarrotPlant()
+    {
+        Vector3 currentPosition = transform.position;
+
+        // Obtener la posición del tile en el Tilemap
+        Vector3Int tilePosition = GameManager.instance.tileManager.interactableMap.WorldToCell(currentPosition);
+
+        // Llamar al método del TileManager para restablecer el tile
+        GameManager.instance.tileManager.ResetTile(tilePosition);
+
+        // Destruir la planta actual (recolectada)
+        Destroy(gameObject);
+
+        // Crear el prefab de la planta recolectada (opcional si la quieres reemplazar)
         GameObject newCarrot = Instantiate(carrotPlantPrefab, currentPosition, Quaternion.identity);
         Debug.Log("Crop replaced with carrot plant at position: " + currentPosition);
     }
