@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
             if (Mouse.current.leftButton.wasPressedThisFrame) // Clic izquierdo del mouse
             {
                 //CULTIVAR LA PLANTA && SeedSelected()
-                if (GameManager.instance.tileManager.IsInteractable(position) )
+                if (GameManager.instance.tileManager.IsInteractable(position) && SeedSelected())
                 {
                     GameManager.instance.tileManager.SetInteracted(position);
                     inventory.RemoveSeed();
