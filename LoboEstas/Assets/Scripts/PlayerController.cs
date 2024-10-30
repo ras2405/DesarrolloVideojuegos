@@ -10,16 +10,22 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] ItemContainer inventory;
+
+    //MARCHA
+    //velocidad de caminar y correr
     public float moveSpeed = 1f;
+    public float runSpeed = 2f;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
 
-    public AudioClip footstepsSound; // Clip de sonido de pasos
+    //SONIDOS
+    //sonido de pasos
+    public AudioClip footstepsSound; 
     private float stepCooldown = 0.5f; // Tiempo entre pasos
     private float stepTimer;
 
-    public AudioSource audioSource; // Referencia al componente AudioSource
-    public AudioClip wateringSound; // Clip de sonido que se reproducirá
+    public AudioSource audioSource; 
+    public AudioClip wateringSound; 
 
     Vector2 movementInput; // 2 valores, X,Y (izq der, arriba abajo)
     SpriteRenderer spriteRenderer;
@@ -28,10 +34,10 @@ public class PlayerController : MonoBehaviour
 
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+
+    private bool isRunning = false;
     bool canMove = true;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         if (GameManager.instance == null)
@@ -41,13 +47,16 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>(); //En que direccion inciia el sprite
-
+        print(" isRunning" + isRunning);
         stepTimer = 0; // Inicializa el temporizador
     }
 
     void Update()
     {
+        isRunning = Keyboard.current.leftShiftKey.isPressed;
+
         HandleInteraction();
+
     }
 
     private void FixedUpdate()
@@ -62,6 +71,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
+        float currentSpeed = isRunning ? runSpeed : moveSpeed;
+
         if (movementInput != Vector2.zero)
         {
             bool success = TryMove(movementInput);
@@ -74,6 +85,7 @@ public class PlayerController : MonoBehaviour
                 success = TryMove(new Vector2(0, movementInput.y));
             }
             animator.SetBool("isMovingR", success);
+            animator.SetBool("isRunning", isRunning);
 
             // Reproducir sonido de pasos
             if (success && stepTimer >= stepCooldown)
@@ -88,6 +100,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("isMovingR", false);
+            animator.SetBool("isRunning", false);
             audioSource.Stop(); 
         }
     }
@@ -221,7 +234,6 @@ public class PlayerController : MonoBehaviour
         movementInput = movementValue.Get<Vector2>();
     }
 
-    
     void OnFire() {
         animator.SetTrigger("attack");
     }
