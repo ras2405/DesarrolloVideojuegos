@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>(); //En que direccion inciia el sprite
-        print(" isRunning" + isRunning);
+     
         stepTimer = 0; // Inicializa el temporizador
     }
 
@@ -115,9 +115,11 @@ public class PlayerController : MonoBehaviour
 
             if (Mouse.current.leftButton.wasPressedThisFrame) // Clic izquierdo del mouse
             {
-                //CULTIVAR LA PLANTA && SeedSelected()
+                //CULTIVAR LA PLANTA 
                 if (GameManager.instance.tileManager.IsInteractable(position) && SeedSelected())
                 {
+                    animator.SetTrigger("pigSow");
+                    print("pigSow");
                     GameManager.instance.tileManager.SetInteracted(position);
                     inventory.RemoveSeed();
                 }

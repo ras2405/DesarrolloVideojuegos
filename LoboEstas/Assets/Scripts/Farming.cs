@@ -12,6 +12,8 @@ public class Farming : MonoBehaviour
 
     private Inventario inventario;
 
+    Animator animator;
+
     private void Start()
     {
         inventario = FindObjectOfType<Inventario>();
@@ -19,6 +21,7 @@ public class Farming : MonoBehaviour
         {
             Debug.LogError("No hay una instancia de Inventario en la escena.");
         }
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -27,6 +30,7 @@ public class Farming : MonoBehaviour
       
         if (other.GetComponent<PlayerController>() != null)
         {
+            animator.SetTrigger("pigCollect");
             Destroy(gameObject);
             Instantiate(onCollectEffect, transform.position, transform.rotation);
 
