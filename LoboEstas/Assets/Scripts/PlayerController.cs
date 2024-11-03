@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
+    public Transform playerBase;
 
     //SONIDOS
     //sonido de pasos
@@ -54,10 +55,19 @@ public class PlayerController : MonoBehaviour
         stepTimer = 0; // Inicializa el temporizador
         contadorChocadas = tiempoEntreChocadas;
         currentSpeed = moveSpeed;
+
+        Tree[] trees = FindObjectsOfType<Tree>();
+        foreach (Tree tree in trees)
+        {
+            tree.playerBase = playerBase; // Asigna el objeto base
+        }
     }
 
     void Update()
     {
+        // Ajusta el sortingOrder del personaje según su posición Y
+        //spriteRenderer.sortingOrder = (int)(transform.position.y * -10); // Multiplicamos por -10 para tener valores enteros negativos
+
         isRunning = Keyboard.current.leftShiftKey.isPressed;
         HandleInteraction();
         // Verificar si el personaje está quieto
@@ -271,11 +281,11 @@ public class PlayerController : MonoBehaviour
 
     //Si no queremos que pueda caminar mientras ataque o riegue en nuestro caso
     public void LockMovement() {
-        print("Lock movement");
+       // print("Lock movement");
         canMove = false;
     }
     public void UnlockMovement() {
-        print("Unlock movement");
+        //print("Unlock movement");
         canMove = true;
     }
 
