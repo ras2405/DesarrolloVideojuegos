@@ -15,13 +15,14 @@ public class PlayerController : MonoBehaviour
     //velocidad de caminar y correr
     public float moveSpeed = 1f;
     public float runSpeed = 2f;
+    private float currentSpeed;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
 
     //SONIDOS
     //sonido de pasos
     public AudioClip footstepsSound; 
-    private float stepCooldown = 0.5f; // Tiempo entre pasos
+    private float stepCooldown = 0.9f; // Tiempo entre pasos
     private float stepTimer;
 
     public AudioSource audioSource; 
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     public Animator animator;
-    public float tiempoEntreChocadas = 2.0f;
+    public float tiempoEntreChocadas = 5.0f;
     private float contadorChocadas;
 
 
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
      
         stepTimer = 0; // Inicializa el temporizador
         contadorChocadas = tiempoEntreChocadas;
+        currentSpeed = moveSpeed;
     }
 
     void Update()
@@ -63,16 +65,22 @@ public class PlayerController : MonoBehaviour
         {
             contadorChocadas -= Time.deltaTime;
 
-            // Si el tiempo es suficiente, activa la animación de chocarse las manos
+            // Si el tiempo es suficiente, activa la animación de chocarse las patas
             if (contadorChocadas <= 0)
             {
                 animator.SetBool("isChocandoManos", true);
-                contadorChocadas = tiempoEntreChocadas; // Reinicia el contador
+                // Reinicia el contador
+                contadorChocadas = tiempoEntreChocadas;
+            }
+            else
+            {
+                // Asegúrate de que la animación de idle normal se reproduce cuando no está chocando
+                animator.SetBool("isChocandoManos", false);
             }
         }
         else
         {
-            // Si el personaje se mueve, asegúrate de que no esté chocando manos
+            // Si el personaje se mueve, asegúrate de que no esté chocando patas
             animator.SetBool("isChocandoManos", false);
             contadorChocadas = tiempoEntreChocadas; // Reinicia el contador
         }
@@ -90,7 +98,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
-        float currentSpeed = isRunning ? runSpeed : moveSpeed;
+        currentSpeed = isRunning ? runSpeed : moveSpeed; 
 
         if (movementInput != Vector2.zero)
         {
@@ -110,7 +118,7 @@ public class PlayerController : MonoBehaviour
             if (success && stepTimer >= stepCooldown)
             {
                 audioSource.PlayOneShot(footstepsSound);
-                stepTimer = 0; 
+                stepTimer = 0;
             }
 
             // Flip sprites
@@ -120,7 +128,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isMovingR", false);
             animator.SetBool("isRunning", false);
-            audioSource.Stop(); 
+            audioSource.Stop();
         }
     }
 
@@ -226,18 +234,19 @@ public class PlayerController : MonoBehaviour
         return new Vector3Int(((int)posx_f), ((int)posy_f), 0);
     }
 
-    private bool TryMove(Vector2 direction) {
+    private bool TryMove(Vector2 direction)
+    {
         if (direction != Vector2.zero)
         {
             int count = rb.Cast(
                 direction,
                 movementFilter,
                 castCollisions,
-                moveSpeed * Time.fixedDeltaTime + collisionOffset
+                currentSpeed * Time.fixedDeltaTime + collisionOffset // Cambiado aquí
             );
             if (count == 0)
             {
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + direction * currentSpeed * Time.fixedDeltaTime); // Cambiado aquí
                 return true;
             }
             else
@@ -245,7 +254,8 @@ public class PlayerController : MonoBehaviour
                 return false;
             }
         }
-        else {
+        else
+        {
             return false;
         }
     }
@@ -322,3 +332,64 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Interactuando con " + clickedObject.name);
     }
 }
+
+
+/*private bool TryMove(Vector2 direction) {
+    if (direction != Vector2.zero)
+    {
+        int count = rb.Cast(
+            direction,
+            movementFilter,
+            castCollisions,
+            moveSpeed * Time.fixedDeltaTime + collisionOffset
+        );
+        if (count == 0)
+        {
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+}*/
+
+/*private void HandleMovement()
+{
+    float currentSpeed = isRunning ? runSpeed : moveSpeed;
+
+    if (movementInput != Vector2.zero)
+    {
+        bool success = TryMove(movementInput);
+        if (!success)
+        {
+            success = TryMove(new Vector2(movementInput.x, 0));
+        }
+        if (!success)
+        {
+            success = TryMove(new Vector2(0, movementInput.y));
+        }
+        animator.SetBool("isMovingR", success);
+        animator.SetBool("isRunning", isRunning);
+
+        // Reproducir sonido de pasos
+        if (success && stepTimer >= stepCooldown)
+        {
+            audioSource.PlayOneShot(footstepsSound);
+            stepTimer = 0; 
+        }
+
+        // Flip sprites
+        spriteRenderer.flipX = movementInput.x < 0;
+    }
+    else
+    {
+        animator.SetBool("isMovingR", false);
+        animator.SetBool("isRunning", false);
+        audioSource.Stop(); 
+    }
+}*/
