@@ -63,6 +63,7 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
 
     public void BuyOnion()
     {
+        Debug.Log("comprar cebolla");
         int count =1;
         if(moneyController.currentMoney >= 60)
         {

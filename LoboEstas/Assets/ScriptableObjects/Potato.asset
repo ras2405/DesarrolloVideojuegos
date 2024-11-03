@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Potato
   m_EditorClassIdentifier: 
   name: Potato
-  icon: {fileID: 458459934, guid: eb9e24261a898bb42835d69401b605ed, type: 3}
+  icon: {fileID: 21300000, guid: e22cb107c9a69944689d26c747473668, type: 3}
   stackable: 1
+  tag: 

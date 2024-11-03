@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CarrotSeed
   m_EditorClassIdentifier: 
   name: CarrotSeed
-  icon: {fileID: 21300000, guid: 88e4c9ce32e10af4cb6ee75ab53239ae, type: 3}
+  icon: {fileID: 21300000, guid: 8b20e8a65d6a56e45a1b2a01781f6788, type: 3}
   stackable: 1
   tag: seed

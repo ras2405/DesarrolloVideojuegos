@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PotatoSeed
   m_EditorClassIdentifier: 
   name: Potato Seed
-  icon: {fileID: -554423216, guid: c92eac762857b2048a628b066d4aba7d, type: 3}
+  icon: {fileID: 21300000, guid: 2d97e7743f002aa4199b531f0f5c5e2b, type: 3}
   stackable: 1
   tag: seed

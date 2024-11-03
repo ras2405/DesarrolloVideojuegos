@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: OnionSeed
   m_EditorClassIdentifier: 
   name: OnionSeed
-  icon: {fileID: -883655677, guid: eb9e24261a898bb42835d69401b605ed, type: 3}
+  icon: {fileID: 21300000, guid: e3e0e10dcd722b6448fb76189e6a3e98, type: 3}
   stackable: 1
   tag: seed
