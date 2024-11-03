@@ -30,7 +30,9 @@ public class PlayerController : MonoBehaviour
     Vector2 movementInput; // 2 valores, X,Y (izq der, arriba abajo)
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
-    Animator animator;
+    public Animator animator;
+    public float tiempoEntreChocadas = 2.0f;
+    private float contadorChocadas;
 
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
@@ -49,14 +51,31 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); //En que direccion inciia el sprite
      
         stepTimer = 0; // Inicializa el temporizador
+        contadorChocadas = tiempoEntreChocadas;
     }
 
     void Update()
     {
         isRunning = Keyboard.current.leftShiftKey.isPressed;
-
         HandleInteraction();
+        // Verificar si el personaje está quieto
+        if (movementInput == Vector2.zero)
+        {
+            contadorChocadas -= Time.deltaTime;
 
+            // Si el tiempo es suficiente, activa la animación de chocarse las manos
+            if (contadorChocadas <= 0)
+            {
+                animator.SetBool("isChocandoManos", true);
+                contadorChocadas = tiempoEntreChocadas; // Reinicia el contador
+            }
+        }
+        else
+        {
+            // Si el personaje se mueve, asegúrate de que no esté chocando manos
+            animator.SetBool("isChocandoManos", false);
+            contadorChocadas = tiempoEntreChocadas; // Reinicia el contador
+        }
     }
 
     private void FixedUpdate()
