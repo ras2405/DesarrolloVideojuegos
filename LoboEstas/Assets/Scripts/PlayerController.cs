@@ -271,11 +271,11 @@ public class PlayerController : MonoBehaviour
 
     //Si no queremos que pueda caminar mientras ataque o riegue en nuestro caso
     public void LockMovement() {
-        //print("Lock movement");
+        print("Lock movement");
         canMove = false;
     }
     public void UnlockMovement() {
-        //print("Unlock movement");
+        print("Unlock movement");
         canMove = true;
     }
 
@@ -331,6 +331,19 @@ public class PlayerController : MonoBehaviour
         // Añade la lógica para interactuar con el objeto clickeado
         Debug.Log("Interactuando con " + clickedObject.name);
     }
+
+    public void StartAnimationCollect()
+    {
+        animator.SetBool("isMovingR", false);
+        animator.SetTrigger("pigCollect"); // Asegúrate de que este trigger esté definido en tu Animator
+        LockMovement(); // Bloquea el movimiento al iniciar la recolección
+    }
+
+    public void OnCollectAnimationComplete()
+    {
+        UnlockMovement(); // Desbloquea el movimiento al finalizar la animación
+    }
+
 }
 
 
