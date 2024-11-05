@@ -5,7 +5,7 @@ using UnityEngine;
 public class Crop : MonoBehaviour
 {
 
-    [Header("Animación")]
+    [Header("Animaciï¿½n")]
     private Animator animator;
 
     [Header("Prefab CarrotPlant")] //Esta es la planta que dropea zanahorias
@@ -18,13 +18,15 @@ public class Crop : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         StartGrowing();
+        animator.SetTrigger("sowPotato");
+        animator.SetTrigger("sowOnion");
     }
 
     void Update()
     {
         int harvestT = 0;
         if (harvestT < harvestTimes) {
-            // Comprobamos si la animación "harvested" está en reproducción
+            // Comprobamos si la animaciï¿½n "harvested" estï¿½ en reproducciï¿½n
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("harvested"))
             {
                 DropCarrotPlant();
@@ -34,7 +36,7 @@ public class Crop : MonoBehaviour
     }
 
     public void StartGrowing() {
-       // Debug.Log("Ejecuta la animación (sow)");
+       // Debug.Log("Ejecuta la animaciï¿½n (sow)");
         animator.SetTrigger("sow");
     }
 
@@ -60,10 +62,10 @@ public class Crop : MonoBehaviour
     {
         Vector3 currentPosition = transform.position;
 
-        // Obtener la posición del tile en el Tilemap
+        // Obtener la posiciï¿½n del tile en el Tilemap
         Vector3Int tilePosition = GameManager.instance.tileManager.interactableMap.WorldToCell(currentPosition);
 
-        // Llamar al método del TileManager para restablecer el tile
+        // Llamar al mï¿½todo del TileManager para restablecer el tile
         GameManager.instance.tileManager.ResetTile(tilePosition);
 
         // Destruir la planta actual (recolectada)

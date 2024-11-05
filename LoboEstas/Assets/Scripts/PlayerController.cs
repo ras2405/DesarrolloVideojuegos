@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
                 {
                     animator.SetTrigger("pigSow");
                     print("pigSow");
-                    GameManager.instance.tileManager.SetInteracted(position);
+                    GameManager.instance.tileManager.SetInteracted(position,inventory.selectedItem.name);
                     inventory.RemoveSeed();
                 }
                 else
@@ -213,6 +213,7 @@ public class PlayerController : MonoBehaviour
     if (inventory.selectedItem != null && inventory.selectedItem.tag == "seed")return true;
     return false;
    }
+
 
     private Vector3Int MapPlayerAndInteractableMapPosition()
     { 

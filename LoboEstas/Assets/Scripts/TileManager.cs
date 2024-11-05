@@ -12,6 +12,8 @@ public class TileManager : MonoBehaviour
 
     //[SerializeField] private GameObject cropGrowing;
     [SerializeField] private GameObject cropGrowingPrefab;
+    [SerializeField] private GameObject potatoGrowingPrefab;
+    [SerializeField] private GameObject onionGrowingPrefab;
 
     // Diccionario para rastrear si un tile ha sido plantado
     private Dictionary<Vector3Int, (bool isPlanted, int waterCount)> tileStates = new Dictionary<Vector3Int, (bool, int)>();
@@ -61,7 +63,7 @@ public class TileManager : MonoBehaviour
         {
             interactableMap.SetTile(position, interactableTile);
 
-            //Generar gameobject CropGrowing en la posición correspondiente
+            //Generar gameobject CropGrowing en la posiciï¿½n correspondiente
             Vector3 worldPosition = interactableMap.GetCellCenterWorld(position);
             Instantiate(cropGrowing, worldPosition, Quaternion.identity);
 
@@ -75,15 +77,27 @@ public class TileManager : MonoBehaviour
         }
     }*/
 
-    public void SetInteracted(Vector3Int position)
+    public void SetInteracted(Vector3Int position, string seed)
     {
         if (!IsPlanted(position)) // Solo planta si no hay nada ya
         {
             interactableMap.SetTile(position, interactableTile);
 
-            // Generar gameobject CropGrowing en la posición correspondiente
+            // Generar gameobject CropGrowing en la posiciï¿½n correspondiente
             Vector3 worldPosition = interactableMap.GetCellCenterWorld(position);
-            Instantiate(cropGrowingPrefab, worldPosition, Quaternion.identity); // Usar el prefab en lugar del objeto destruido
+            if(seed == "OnionSeed")
+            {
+                Instantiate(onionGrowingPrefab, worldPosition, Quaternion.identity);
+            }
+            if(seed == "Potato Seed")
+            {
+                Instantiate(potatoGrowingPrefab, worldPosition, Quaternion.identity);
+            }
+            if(seed == "CarrotSeed")
+            {
+                Instantiate(cropGrowingPrefab, worldPosition, Quaternion.identity); // Usar el prefab en lugar del objeto destruido
+            }
+            
 
             // Marcar el tile como plantado
             tileStates[position] = (true, 0);
@@ -119,13 +133,13 @@ public class TileManager : MonoBehaviour
     {
         if (IsPlanted(position))
         {
-            // Restablece el tile a "Tierra_Seca_interactable" (o cualquier tile que uses para el suelo vacío)
+            // Restablece el tile a "Tierra_Seca_interactable" (o cualquier tile que uses para el suelo vacï¿½o)
             interactableMap.SetTile(position, hiddenInteractableTile);
 
             // Restablece el estado del tile en el diccionario
             tileStates[position] = (false, 0);
 
-            Debug.Log($"El tile en {position} está ahora listo para ser plantado de nuevo.");
+            Debug.Log($"El tile en {position} estï¿½ ahora listo para ser plantado de nuevo.");
         }
     }
 
