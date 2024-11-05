@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // Necesario para trabajar con UI
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class HouseInteraction : MonoBehaviour
@@ -9,7 +9,7 @@ public class HouseInteraction : MonoBehaviour
     public GameObject player; // Referencia al jugador
     public bool insideHouse = false; // Para saber si está dentro de la casa
     public Vector2 housePos = new Vector2(-25f, -2);
-    public Vector2 forestPos = new Vector2(0f, 0f);
+    public Vector2 forestPos = new Vector2(1f, 1f);
     private bool canInteract = false; // Si el jugador puede interactuar con la casa
 
     void Update()
