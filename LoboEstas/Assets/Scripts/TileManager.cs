@@ -56,25 +56,6 @@ public class TileManager : MonoBehaviour
         return false;
     }
 
-    /*public void SetInteracted(Vector3Int position) {
-        if (!IsPlanted(position)) // Solo planta si no hay nada ya
-        {
-            interactableMap.SetTile(position, interactableTile);
-
-            //Generar gameobject CropGrowing en la posición correspondiente
-            Vector3 worldPosition = interactableMap.GetCellCenterWorld(position);
-            Instantiate(cropGrowing, worldPosition, Quaternion.identity);
-
-            // Marcar el tile como plantado
-            tileStates[position] = (true, 0);
-            Debug.Log("Planta sembrada en: " + position);
-        }
-        else
-        {
-            Debug.Log("Ya hay algo plantado en: " + position);
-        }
-    }*/
-
     public void SetInteracted(Vector3Int position)
     {
         if (!IsPlanted(position)) // Solo planta si no hay nada ya
@@ -82,20 +63,20 @@ public class TileManager : MonoBehaviour
             interactableMap.SetTile(position, interactableTile);
 
             // Generar gameobject CropGrowing en la posición correspondiente
-            Vector3 worldPosition = interactableMap.GetCellCenterWorld(position);
-            Instantiate(cropGrowingPrefab, worldPosition, Quaternion.identity); // Usar el prefab en lugar del objeto destruido
+            Vector3 worldPosition = interactableMap.GetCellCenterWorld(position); 
+            Instantiate(cropGrowingPrefab, worldPosition, Quaternion.identity); // cropGrowingPrefab - deberiamos hacer uno de estos para cada tipo de planta
 
             // Marcar el tile como plantado
             tileStates[position] = (true, 0);
-            Debug.Log("Planta sembrada en: " + position);
+            //Debug.Log("Planta sembrada en: " + position);
         }
         else
         {
-            Debug.Log("Ya hay algo plantado en: " + position);
+            //Debug.Log("Ya hay algo plantado en: " + position);
         }
     }
 
-    public void WaterPlant(Vector3Int position)
+    public void WaterPlant(Vector3Int position) //Esto hay que mejorarlo para hacer obligatorio el regado cada cierto tiempo para crecer!!!
     {
         if (IsPlanted(position))
         {
@@ -115,7 +96,7 @@ public class TileManager : MonoBehaviour
         return tileStates.TryGetValue(position, out var state) && state.isPlanted;
     }
 
-    public void ResetTile(Vector3Int position)
+    public void ResetTile(Vector3Int position) //Hace que el tile vuelva a ser "plantable"
     {
         if (IsPlanted(position))
         {

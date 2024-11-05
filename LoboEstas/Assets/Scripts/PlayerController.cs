@@ -165,10 +165,10 @@ public class PlayerController : MonoBehaviour
         if (GameManager.instance != null && GameManager.instance.tileManager != null)
         {
 
-            if (Mouse.current.leftButton.wasPressedThisFrame) // Clic izquierdo del mouse
+            if (Mouse.current.leftButton.wasPressedThisFrame) 
             {
                 //CULTIVAR LA PLANTA && SeedSelected()
-                if (GameManager.instance.tileManager.IsInteractable(position) && SeedSelected())
+                if (GameManager.instance.tileManager.IsInteractable(position) && SeedSelected()) //Aca tendriamos que poner que seed se selecciono de alguna manera
                 {
                     animator.SetTrigger("pigSow");
                     print("pigSow");
@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    //REGAR LA PLANTA
+                    //REGAR LA PLANTA (Hacerlo obligatorio)
                     if (GameManager.instance.tileManager.IsPlanted(position))
                     {
                         animator.SetTrigger("watering");

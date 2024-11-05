@@ -56,7 +56,7 @@ public class Crop : MonoBehaviour
         Debug.Log("Crop replaced with carrot plant at position: " + currentPosition);
     }*/
 
-    private void DropCarrotPlant()
+    private void DropCarrotPlant() // Deberiamos tener la opcion de dropear dependiendo de la planta cultivada
     {
         Vector3 currentPosition = transform.position;
 
@@ -69,8 +69,8 @@ public class Crop : MonoBehaviour
         // Destruir la planta actual (recolectada)
         Destroy(gameObject);
 
-        // Crear el prefab de la planta recolectada (opcional si la quieres reemplazar)
+        // Crear el prefab de la planta recolectada // ACA CREAMOS LA PLANTA QUE NECESITEMOS!!
         GameObject newCarrot = Instantiate(carrotPlantPrefab, currentPosition, Quaternion.identity);
-        Debug.Log("Crop replaced with carrot plant at position: " + currentPosition);
+        //Debug.Log("Crop replaced with carrot plant at position: " + currentPosition);
     }
 }
