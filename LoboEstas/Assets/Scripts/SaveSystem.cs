@@ -1,98 +1,3 @@
-/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
-using UnityEngine.SceneManagement;
-
-public class saveSystem : MonoBehaviour
-{
-    // Queremos guardar la posicion del Player
-    PlayerController playerController;
-
-    string savePath;
-    saveData data;
-
-    private void Awake()
-    {
-        playerController = FindObjectOfType<PlayerController>();
-
-        savePath = Application.persistentDataPath + "/save.dat";
-        if (!File.Exists(savePath)) { 
-            saveData newData = new saveData();
-            newData.playerPosition = Vector3.zero;
-            SaveGame(newData);
-        }
-        data = LoadGame();
-    }
-
-    void SaveGame(saveData sataToSave) { 
-        string JsonData = JsonUtility.ToJson( sataToSave );
-        File.WriteAllText( savePath, JsonData );
-    }
-
-    saveData LoadGame() { 
-        string loadedData = File.ReadAllText( savePath );
-        saveData dataToReturn = JsonUtility.FromJson<saveData>( loadedData );   
-        return dataToReturn;
-    
-    }
-
-    public void SaveGameButton() { 
-        Vector3 playerPos = playerController.GetPosition();
-
-        data.playerPosition = playerPos;
-        SaveGame(data);
-    }
-
-    public void PlayGame()
-    {
-        SceneManager.LoadSceneAsync("Principal");
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
-    public void LoadGameButton()
-    {
-        // Cargar los datos guardados desde el archivo
-        data = LoadGame();
-
-        // Cargar la escena del juego de manera asíncrona y restaurar los datos después
-        StartCoroutine(LoadGameSceneAndRestoreData());
-    }
-
-    private IEnumerator LoadGameSceneAndRestoreData()
-    {
-        // Cargar la escena del juego de manera asíncrona
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Principal");
-
-        // Esperar a que la escena se haya cargado completamente
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-
-        // Esperar a que el PlayerController esté disponible
-        while (playerController == null)
-        {
-            playerController = FindObjectOfType<PlayerController>();
-            yield return null;
-        }
-
-        // Restaurar la posición del jugador
-        playerController.SetPosition(data.playerPosition);
-    }
-
-}
-
-public class saveData {
-    public Vector3 playerPosition;
-}
-
-*/
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -173,7 +78,7 @@ public class SaveSystem : MonoBehaviour
 
         //TODO: Limpiar inventario
 
-        SceneManager.LoadSceneAsync("Principal");
+        SceneManager.LoadSceneAsync("Main");
     }
 
     public void ContinueButton()
@@ -185,7 +90,7 @@ public class SaveSystem : MonoBehaviour
     private IEnumerator LoadGameSceneAndRestoreData(saveData dataToRestore)
     {
         // Cargar la escena del juego de manera asíncrona
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Principal");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main");
 
         // Esperar a que la escena se haya cargado completamente
         while (!asyncLoad.isDone)
@@ -197,7 +102,7 @@ public class SaveSystem : MonoBehaviour
         while (playerController == null)
         {
             playerController = FindObjectOfType<PlayerController>();
-            yield return null; // Esperar hasta el siguiente frame
+            yield return null; 
         }
 
         // Restaurar la posición del jugador
