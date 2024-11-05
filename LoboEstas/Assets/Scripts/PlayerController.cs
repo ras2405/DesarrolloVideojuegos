@@ -11,8 +11,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] ItemContainer inventory;
     public float moveSpeed = 1f;
+    public float runSpeed = 2f;
+    public float currentSpeed;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
+    public Transform playerBase;
 
     public AudioClip footstepsSound; // Clip de sonido de pasos
     private float stepCooldown = 0.5f; // Tiempo entre pasos
@@ -22,17 +25,19 @@ public class PlayerController : MonoBehaviour
     public AudioClip wateringSound; // Clip de sonido que se reproducirá
 
     public GameObject lightNoLamp;
-
     public GameObject lightWithLamp;
 
     Vector2 movementInput; // 2 valores, X,Y (izq der, arriba abajo)
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
-    Animator animator;
-
+    public Animator animator;
+    public float tiempoEntreChocadas = 5.0f;
+    private float contadorChocadas;
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    private bool isRunning = false;
     bool canMove = true;
+    
 
 
     // Start is called before the first frame update
@@ -47,12 +52,47 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); //En que direccion inciia el sprite
 
         stepTimer = 0; // Inicializa el temporizador
+        contadorChocadas = tiempoEntreChocadas;
+        currentSpeed = moveSpeed;
+
+        // Tree[] trees = FindObjectsOfType<Tree>();
+        // foreach (Tree tree in trees)
+        //{
+        //     tree.playerBase = playerBase; // Asigna el objeto base
+        // }
     }
 
     void Update()
     {
+        isRunning = Keyboard.current.leftShiftKey.isPressed;
+
         HandleInteraction();
-        if(HasLamp())
+
+        if (movementInput == Vector2.zero)
+        {
+            contadorChocadas -= Time.deltaTime;
+
+            // Si el tiempo es suficiente, activa la animación de chocarse las patas
+            if (contadorChocadas <= 0)
+            {
+                animator.SetBool("isChocandoManos", true);
+                // Reinicia el contador
+                contadorChocadas = tiempoEntreChocadas;
+            }
+            else
+            {
+                // Asegúrate de que la animación de idle normal se reproduce cuando no está chocando
+                animator.SetBool("isChocandoManos", false);
+            }
+        }
+        else
+        {
+            // Si el personaje se mueve, asegúrate de que no esté chocando patas
+            animator.SetBool("isChocandoManos", false);
+            contadorChocadas = tiempoEntreChocadas; // Reinicia el contador
+        }
+
+        if (HasLamp())
         {
             lightNoLamp.gameObject.SetActive(false);
             lightWithLamp.gameObject.SetActive(true);
@@ -83,6 +123,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
+        currentSpeed = isRunning ? runSpeed : moveSpeed;
+
         if (movementInput != Vector2.zero)
         {
             bool success = TryMove(movementInput);
@@ -95,6 +137,7 @@ public class PlayerController : MonoBehaviour
                 success = TryMove(new Vector2(0, movementInput.y));
             }
             animator.SetBool("isMovingR", success);
+            animator.SetBool("isRunning", isRunning);
 
             // Reproducir sonido de pasos
             if (success && stepTimer >= stepCooldown)
@@ -109,6 +152,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("isMovingR", false);
+            animator.SetBool("isRunning", false);
             audioSource.Stop(); 
         }
     }
@@ -126,6 +170,8 @@ public class PlayerController : MonoBehaviour
                 //CULTIVAR LA PLANTA && SeedSelected()
                 if (GameManager.instance.tileManager.IsInteractable(position) && SeedSelected())
                 {
+                    animator.SetTrigger("pigSow");
+                    print("pigSow");
                     GameManager.instance.tileManager.SetInteracted(position);
                     inventory.RemoveSeed();
                 }
@@ -170,7 +216,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector3Int MapPlayerAndInteractableMapPosition()
     { 
-    
         return MapPositionInteractiveTilemap();
     }
 
@@ -213,7 +258,7 @@ public class PlayerController : MonoBehaviour
         return new Vector3Int(((int)posx_f), ((int)posy_f), 0);
     }
 
-    private bool TryMove(Vector2 direction) {
+    /*private bool TryMove(Vector2 direction) {
         if (direction != Vector2.zero)
         {
             int count = rb.Cast(
@@ -233,6 +278,32 @@ public class PlayerController : MonoBehaviour
             }
         }
         else {
+            return false;
+        }
+    }*/
+
+    private bool TryMove(Vector2 direction)
+    {
+        if (direction != Vector2.zero)
+        {
+            int count = rb.Cast(
+                direction,
+                movementFilter,
+                castCollisions,
+                currentSpeed * Time.fixedDeltaTime + collisionOffset // Cambiado aquí
+            );
+            if (count == 0)
+            {
+                rb.MovePosition(rb.position + direction * currentSpeed * Time.fixedDeltaTime); // Cambiado aquí
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
             return false;
         }
     }
@@ -308,5 +379,20 @@ public class PlayerController : MonoBehaviour
     {
         // Añade la lógica para interactuar con el objeto clickeado
         Debug.Log("Interactuando con " + clickedObject.name);
+    }
+
+    public void StartAnimationCollect()
+    {
+        if (!isRunning)
+        {
+            animator.SetBool("isMovingR", false);
+            animator.SetTrigger("pigCollect");
+            LockMovement();
+        }
+    }
+
+    public void OnCollectAnimationComplete()
+    {
+        UnlockMovement(); 
     }
 }
