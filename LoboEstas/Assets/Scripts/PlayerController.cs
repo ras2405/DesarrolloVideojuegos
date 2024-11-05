@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour
     public AudioSource audioSource; // Referencia al componente AudioSource
     public AudioClip wateringSound; // Clip de sonido que se reproducirá
 
+    public GameObject lightNoLamp;
+
+    public GameObject lightWithLamp;
+
     Vector2 movementInput; // 2 valores, X,Y (izq der, arriba abajo)
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
@@ -48,6 +52,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleInteraction();
+        if(HasLamp())
+        {
+            lightNoLamp.gameObject.SetActive(false);
+            lightWithLamp.gameObject.SetActive(true);
+        }
     }
 
     private void FixedUpdate()
@@ -58,6 +67,18 @@ public class PlayerController : MonoBehaviour
             DetectMouseClick();
             stepTimer += Time.fixedDeltaTime; 
         }
+    }
+
+    private bool HasLamp()
+    {
+        foreach(ItemSlot slot in inventory.slots)
+        {
+            if (slot.item != null && slot.item.name == "LampWithLight")
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void HandleMovement()

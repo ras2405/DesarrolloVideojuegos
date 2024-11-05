@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 8584435712937560901}
   - component: {fileID: 3671576990353148036}
   - component: {fileID: 354740169095963062}
+  - component: {fileID: 5744058483606732516}
   m_Layer: 0
   m_Name: Firefly
   m_TagString: Untagged
@@ -203,3 +204,17 @@ CircleCollider2D:
   m_Offset: {x: 0.00000047683716, y: 0}
   serializedVersion: 2
   m_Radius: 0.12302923
+--- !u!114 &5744058483606732516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594251317940755216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bdc9f13a6351a947a4a3726a9bec8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lamp: {fileID: 11400000, guid: 0180697d82fdcc746ba475aed78e5189, type: 2}
+  lampWithFly: {fileID: 11400000, guid: 70e16d6ca60fe8543af3f19d08687bec, type: 2}
