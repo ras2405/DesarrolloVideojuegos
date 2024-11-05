@@ -22,16 +22,16 @@ public class Tree : MonoBehaviour
 
             // Verificamos si el jugador está por encima o por debajo del árbol
             bool isPlayerAbove = playerBase.position.y < treeBase.position.y;
-            print("isPlayerAbove: " + isPlayerAbove);
-            print("posicion y del arbol: " + treeBase.position.y
-               + " posicion y del jugador: " + playerBase.position.y);
+           // print("isPlayerAbove: " + isPlayerAbove);
+           // print("posicion y del arbol: " + treeBase.position.y
+            //   + " posicion y del jugador: " + playerBase.position.y);
 
-            print("order arbol: "+ spriteRenderer.sortingOrder
-                + " order jugador: " + playerSortingOrder);
+          //  print("order arbol: "+ spriteRenderer.sortingOrder
+           //     + " order jugador: " + playerSortingOrder);
             // Modificamos el sortingOrder según las condiciones dadas
             if (isPlayerAbove)
             {
-                print("El árbol está detrás del jugador");
+              //  print("El árbol está detrás del jugador");
                 // El árbol está detrás del jugador
                 spriteRenderer.sortingOrder = playerSortingOrder - 1;
                 //if (spriteRenderer.sortingOrder < playerSortingOrder)
@@ -41,7 +41,7 @@ public class Tree : MonoBehaviour
             }
             else
             {
-                print("El árbol está delante del jugador");
+               // print("El árbol está delante del jugador");
                 spriteRenderer.sortingOrder = playerSortingOrder + 1;
                 // El árbol está delante del jugador
                 // if (spriteRenderer.sortingOrder >= playerSortingOrder)

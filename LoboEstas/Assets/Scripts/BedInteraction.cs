@@ -230,9 +230,9 @@ public class BedInteraction : MonoBehaviour
             // Incrementa el día actual
             currentDay++;
             // Actualiza el día en CycleDayController
-            CycleDayHouseController.currentDay = currentDay;
+            CycleDayController.currentDay = currentDay; // CycleDayHouseController
             // Reinicia el tiempo del juego
-            CycleDayHouseController.gameTimeInMinutes = 300f;
+            CycleDayController.gameTimeInMinutes = 300f;
 
             // Guarda el día actual en PlayerPrefs (opcional)
             PlayerPrefs.SetInt("CurrentDay", currentDay);
