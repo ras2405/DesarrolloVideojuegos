@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource audioSource; // Referencia al componente AudioSource
     public AudioClip wateringSound; // Clip de sonido que se reproducirá
+    public AudioClip graveSound;
 
     public GameObject lightNoLamp;
     public GameObject lightWithLamp;
@@ -160,6 +161,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInteraction()
     {
+        DetectMouseClick();
+
         Vector3Int position = MapPositionInteractiveTilemap();
 
         if (GameManager.instance != null && GameManager.instance.tileManager != null)
@@ -205,6 +208,8 @@ public class PlayerController : MonoBehaviour
         else {
             //Debug.Log("No se puede interactuar con este tile");
         }
+   
+
     }
 
     public bool SeedSelected()
@@ -368,7 +373,7 @@ public class PlayerController : MonoBehaviour
             if (hit.collider != null)
             {
                 // El raycast ha chocado con algo que tiene un collider
-                Debug.Log("Hiciste clic en el objeto: " + hit.collider.name);
+                //Debug.Log("Hiciste clic en el objeto: " + hit.collider.name);
 
                 // Aquí puedes añadir cualquier lógica que quieras realizar al hacer clic en el objeto
                 InteractWithObject(hit.collider.gameObject);
@@ -379,7 +384,20 @@ public class PlayerController : MonoBehaviour
     private void InteractWithObject(GameObject clickedObject)
     {
         // Añade la lógica para interactuar con el objeto clickeado
-        Debug.Log("Interactuando con " + clickedObject.name);
+        //Debug.Log("Interactuando con " + clickedObject.name);
+        if (clickedObject.CompareTag("Grave"))
+        {
+            // Aquí reproducimos el sonido que deseas (por ejemplo, "tombSound")
+            if (audioSource != null && graveSound != null)
+            {
+                audioSource.PlayOneShot(graveSound);  
+                Debug.Log("Se hizo clic en una tumba y se reprodujo el sonido.");
+            }
+        }
+        else
+        {
+            Debug.Log("Interacción con otro objeto: " + clickedObject.name);
+        }
     }
 
     public void StartAnimationCollect()
