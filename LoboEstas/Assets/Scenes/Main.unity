@@ -48364,7 +48364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1271822863}
   audioSource: {fileID: 1215699571}
-  activationRadius: 50
+  activationRadius: 20
 --- !u!82 &1215699571
 AudioSource:
   m_ObjectHideFlags: 0
@@ -63084,6 +63084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Source
       objectReference: {fileID: 0}
+    - target: {fileID: 7031436726476337327, guid: 636d9fd5fb8f88f42a1608985688a3ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7302718983000893621, guid: 636d9fd5fb8f88f42a1608985688a3ef, type: 3}
       propertyPath: Loop
       value: 1
@@ -63172,7 +63176,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 24379498200972845, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: m_SortingOrder
-      value: 100
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1367248203033136164, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: m_Enabled
