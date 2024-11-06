@@ -55,6 +55,7 @@ public class Shop : MonoBehaviour
             sellPotatoTemplate.gameObject.SetActive(false);
             buyOnionTemplate.gameObject.SetActive(false);
             sellOnionTemplate.gameObject.SetActive(false);
+            textPanel.SetActive(false);
             Debug.Log("Jugador ha salido de la zona.");
         }
     }

@@ -95,7 +95,7 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         int priceOfItem = Int32.Parse(priceString);
         if(GameManager.instance.inventoryContainer.Remove(potato))
         {
-         moneyController.Add(priceOfItem);
+         moneyController.Add(80);
         } 
     }
 
@@ -108,7 +108,7 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         int priceOfItem = Int32.Parse(priceString);
         if(GameManager.instance.inventoryContainer.Remove(onion))
         {
-         moneyController.Add(priceOfItem);
+         moneyController.Add(120);
         } 
     }
 }

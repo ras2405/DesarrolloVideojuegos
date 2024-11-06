@@ -24,46 +24,50 @@ public class Farming : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController player = other.GetComponent<PlayerController>();
-        if (player.currentSpeed != player.runSpeed)
+        if(!GameManager.instance.inventoryContainer.IsFull(item))
         {
-
-            if (player != null && item != null && (item.name != "Firefly"))
-                //item.name == "Stone" || item.name == "Wood" || item.name == "Carrot") || item.name == "CarrotSeed")//|| item.name == "Firefly" (DEBEN AGREGARCE AL TARRO)
+            if (player.currentSpeed != player.runSpeed)
             {
-                player.StartAnimationCollect(); // Inicia la animación y bloquea el movimiento
 
-                // Obtiene la duración de la animación
-                float animationDuration = player.animator.GetCurrentAnimatorStateInfo(0).length;
+                if (player != null && item != null && (item.name != "Firefly"))
+                 //item.name == "Stone" || item.name == "Wood" || item.name == "Carrot") || item.name == "CarrotSeed")//|| item.name == "Firefly" (DEBEN AGREGARCE AL TARRO)
+                {
+                    player.StartAnimationCollect(); // Inicia la animación y bloquea el movimiento
+
+                    // Obtiene la duración de la animación
+                    float animationDuration = player.animator.GetCurrentAnimatorStateInfo(0).length;
 
                 // Inicia la coroutine para esperar la duración de la animación
-                StartCoroutine(WaitForAnimation(player, animationDuration));
-            }
-            else
-            {
-                Destroy(gameObject); 
-                Instantiate(onCollectEffect, transform.position, transform.rotation);
-            }
+                    StartCoroutine(WaitForAnimation(player, animationDuration));
+                }
+                else
+                {
+                    Destroy(gameObject); 
+                    Instantiate(onCollectEffect, transform.position, transform.rotation);
+                }
 
             // Agregar lógica para el inventario y efectos visuales si es necesario
-            if (GameManager.instance.inventoryContainer != null)
-            {
-                GameManager.instance.inventoryContainer.Add(item, count);
-            }
-            else
-            {
-                Debug.LogWarning("No inventory container attached to the game manager");
-            }
+                if (GameManager.instance.inventoryContainer != null)
+                {
+                    GameManager.instance.inventoryContainer.Add(item, count);
+                }
+                else
+                {
+                    Debug.LogWarning("No inventory container attached to the game manager");
+                }
 
-            if (inventario == null)
-            {
-                Debug.LogError("El inventario no está asignado!");
-            }
-            else
-            {
-                inventario.HarvestCarrot(count);
-                inventario.UpdateCollectibleDisplay();
+                if (inventario == null)
+                {
+                    Debug.LogError("El inventario no está asignado!");
+                }
+                else
+                {
+                    inventario.HarvestCarrot(count);
+                    inventario.UpdateCollectibleDisplay();
+                }
             }
         }
+        
     }
 
     private IEnumerator WaitForAnimation(PlayerController player, float animationDuration)

@@ -43,6 +43,34 @@ public class ItemContainer : ScriptableObject
         }
     }
    }
+
+    public bool IsFull(Item item)
+    {
+        if(item.stackable == true)
+        {
+            foreach(ItemSlot slot in slots)
+        {
+            if(slot.item == item || EmptySlot()) return false;
+        }
+        }
+        else{
+            foreach(ItemSlot slot in slots)
+            {
+                if(slot.item == null) return false;
+            }
+        }
+        return true;
+    }
+
+    public bool EmptySlot()
+    {
+        foreach (ItemSlot slot in slots)
+        {
+            if(slot.item == null)return true;
+        }
+        return false;
+    }
+
    public bool Remove(Item item)
    {
     ItemSlot slot = slots.Find(x => x.item == item);
