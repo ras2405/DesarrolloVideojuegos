@@ -55,7 +55,6 @@ public class BedInteraction : MonoBehaviour
 
     private void Dormir()
     {
-        MoveCharacterToBed();
         // Incrementa el día actual
         currentDay++;
         // Actualiza el día en CycleDayController
