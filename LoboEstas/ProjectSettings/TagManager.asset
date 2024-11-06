@@ -9,6 +9,7 @@ TagManager:
   - Money
   - BuyContainer
   - BuyTemplate
+  - Grave
   layers:
   - Default
   - TransparentFX
