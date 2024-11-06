@@ -1,11 +1,11 @@
-using UnityEngine;
+ï»¿/*using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
     public Transform player;
     public Vector3 offset;
     public float followSpeed = 0.75f;
-    public float captureDistance = 0.5f; // Distancia mínima para atrapar al jugador
+    public float captureDistance = 0.5f; // Distancia mÃ­nima para atrapar al jugador
 
     private SpriteRenderer spriteRenderer;
     private Vector3 lastPosition;
@@ -19,7 +19,7 @@ public class FollowPlayer : MonoBehaviour
     public GameObject deadPanel; // Asigna el DeadPanel desde el Inspector
 
     // Referencias de audio
-    public AudioSource sceneAudioSource; // música escena
+    public AudioSource sceneAudioSource; // mÃºsica escena
     public AudioSource wolfAudioSource;  // musica lobo
 
     private bool isWolfActive = false;
@@ -29,22 +29,22 @@ public class FollowPlayer : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         lastPosition = transform.position;
 
-        // Busca el controlador del ciclo del día en la escena
+        // Busca el controlador del ciclo del dÃ­a en la escena
         cycleDayController = FindObjectOfType<CycleDayController>();
 
-        // "marco" esté desactivado al iniciar
+        // "marco" estÃ© desactivado al iniciar
         if (marco != null)
         {
             marco.SetActive(false);
         }
 
-        // DeadPanel esté desactivado al iniciar
+        // DeadPanel estÃ© desactivado al iniciar
         if (deadPanel != null)
         {
             deadPanel.SetActive(false);
         }
 
-        // el sonido del lobo esté apagado al inicio
+        // el sonido del lobo estÃ© apagado al inicio
         if (wolfAudioSource != null && wolfAudioSource.isPlaying)
         {
             wolfAudioSource.Pause();
@@ -53,12 +53,12 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
-        // Verificar si es de noche y si no es después de las 10 PM
+        // Verificar si es de noche y si no es despuÃ©s de las 10 PM
         if (cycleDayController != null && cycleDayController.IsNight() && !cycleDayController.IsAfter10PM())
         {
             if (player != null)
             {
-                // Verificar si el jugador está dentro del área de -11f y 11f en X e Y
+                // Verificar si el jugador estÃ¡ dentro del Ã¡rea de -11f y 11f en X e Y
                 if (player.position.x >= -11f && player.position.x <= 11f &&
                     player.position.y >= -11f && player.position.y <= 11f)
                 {
@@ -66,13 +66,13 @@ public class FollowPlayer : MonoBehaviour
                     spriteRenderer.enabled = true;
                     isWolfActive = true;
 
-                    // Activa "marco" cuando el lobo está persiguiendo
+                    // Activa "marco" cuando el lobo estÃ¡ persiguiendo
                     if (marco != null)
                     {
                         marco.SetActive(true);
                     }
 
-                    // Pausar música de la escena y reproducir sonido del lobo
+                    // Pausar mÃºsica de la escena y reproducir sonido del lobo
                     if (sceneAudioSource != null && sceneAudioSource.isPlaying)
                     {
                         sceneAudioSource.Pause();
@@ -83,13 +83,13 @@ public class FollowPlayer : MonoBehaviour
                         wolfAudioSource.UnPause();
                     }
 
-                    // Calcula la nueva posición hacia el jugador
+                    // Calcula la nueva posiciÃ³n hacia el jugador
                     Vector3 targetPosition = player.position + offset;
 
                     // Usamos MoveTowards para asegurarnos de que el lobo se acerque hasta el jugador
                     transform.position = Vector3.MoveTowards(transform.position, targetPosition, followSpeed * Time.deltaTime);
 
-                    // Actualiza la dirección del sprite del lobo según su movimiento
+                    // Actualiza la direcciÃ³n del sprite del lobo segÃºn su movimiento
                     if (transform.position.x > lastPosition.x)
                     {
                         spriteRenderer.flipX = false;
@@ -122,7 +122,7 @@ public class FollowPlayer : MonoBehaviour
                 }
                 else
                 {
-                    // si el jugador está fuera del area
+                    // si el jugador estÃ¡ fuera del area
                     DisableWolf();
                 }
             }
@@ -135,17 +135,17 @@ public class FollowPlayer : MonoBehaviour
 
     void DisableWolf()
     {
-        // Si es después de las 10 PM o no es de noche, desactiva al lobo
+        // Si es despuÃ©s de las 10 PM o no es de noche, desactiva al lobo
         spriteRenderer.enabled = false;
         isWolfActive = false;
 
-        // Desactiva "marco" cuando el lobo no está persiguiendo
+        // Desactiva "marco" cuando el lobo no estÃ¡ persiguiendo
         if (marco != null)
         {
             marco.SetActive(false);
         }
 
-        // Reactivar la música de la escena y detener el sonido del lobo
+        // Reactivar la mÃºsica de la escena y detener el sonido del lobo
         if (sceneAudioSource != null)
         {
             sceneAudioSource.UnPause();
@@ -156,27 +156,28 @@ public class FollowPlayer : MonoBehaviour
             wolfAudioSource.Pause();
         }
 
-        // Mueve al lobo a una posición random (para la próxima aparición)
+        // Mueve al lobo a una posiciÃ³n random (para la prÃ³xima apariciÃ³n)
         float randomX = Random.Range(-10f, 10f);
         float randomY = Random.Range(-10f, 10f);
 
         transform.position = new Vector3(randomX, randomY, transform.position.z);
     }
 }
-
-/*
-
+*/
 using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
     public Transform player;
     public Vector3 offset;
-    public float followSpeed = 0.75f;
-    public float captureDistance = 0.5f; // Distancia mínima para atrapar al jugador
+    public float followSpeed = 0.75f;  // Velocidad normal del lobo
+    public float captureDistance = 0.5f; // Distancia mï¿½nima para atrapar al jugador
+    public float transitionDistance = 2.0f; // Distancia para cambiar entre caminata1 y caminata2
+    public float reducedSpeed = 0.4f; // Velocidad reducida cuando el lobo estï¿½ cerca del jugador
 
     private SpriteRenderer spriteRenderer;
-    private Vector3 lastPosition;
+    private Animator animator;
+    private AudioSource wolfAudioSource;
 
     private CycleDayController cycleDayController;
 
@@ -186,92 +187,118 @@ public class FollowPlayer : MonoBehaviour
     // Referencia al DeadPanel
     public GameObject deadPanel; // Asigna el DeadPanel desde el Inspector
 
-    // Referencias de audio
-    public AudioSource sceneAudioSource; // música escena
-    public AudioSource wolfAudioSource;  // música lobo
-    public AudioClip wolfSound;          // Clip de sonido del lobo
-
     private bool isWolfActive = false;
+    private bool isWolfReady = false; // Nuevo indicador para saber si el lobo estï¿½ listo para aparecer
+    private Vector3 lastPosition;
+
+    // Variables para la histeresis
+    private float lastDistance = Mathf.Infinity; // Distancia anterior para comparar
+
+    // Agregamos las referencias para los sonidos de la rama y el aullido
+    public AudioSource branchBreakSound;  // Sonido de rama quebrï¿½ndose
+                                          // Sonido de aullido
+
+    // Para controlar el momento de la activaciï¿½n de la rama
+    private bool hasBranchSoundPlayed = false;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>(); // Obtener el componente Animator
+        wolfAudioSource = GetComponent<AudioSource>(); // Obtener el componente de audio del lobo
+
+        // Desactivar todo lo relacionado con el lobo al inicio
+        DeactivateWolf();
+
+        // Guarda la posiciï¿½n inicial
         lastPosition = transform.position;
 
-        // Busca el controlador del ciclo del día en la escena
+        // Busca el controlador del ciclo del dï¿½a en la escena
         cycleDayController = FindObjectOfType<CycleDayController>();
 
-        // "marco" esté desactivado al iniciar
+        // "marco" estï¿½ desactivado al iniciar
         if (marco != null)
         {
             marco.SetActive(false);
         }
 
-        // DeadPanel esté desactivado al iniciar
+        // DeadPanel estï¿½ desactivado al iniciar
         if (deadPanel != null)
         {
             deadPanel.SetActive(false);
-        }
-
-        // El sonido del lobo esté apagado al inicio
-        if (wolfAudioSource != null && wolfAudioSource.isPlaying)
-        {
-            wolfAudioSource.Pause();
         }
     }
 
     void Update()
     {
-        // Verificar si es de noche y si no es después de las 10 PM
+        // Verificar si es de noche y si no es despuï¿½s de las 10 PM
         if (cycleDayController != null && cycleDayController.IsNight() && !cycleDayController.IsAfter10PM())
         {
-            if (player != null)
+            // Si el lobo no estï¿½ activo y es de noche, activarlo
+            if (!isWolfActive && !isWolfReady)
             {
-                // Verificar si el jugador está dentro del área de -11f y 11f en X e Y
+                // Hacer que el lobo estï¿½ listo para aparecer
+                isWolfReady = true;
+
+                // Reproducir el sonido de la rama quebrï¿½ndose solo una vez antes de la activaciï¿½n
+                if (branchBreakSound != null && !hasBranchSoundPlayed)
+                {
+                    branchBreakSound.Play();
+                    hasBranchSoundPlayed = true;  // Aseguramos que solo se reproduzca una vez
+                }
+
+                // Activar al lobo
+                ActivateWolf();
+            }
+
+            if (isWolfActive && player != null)
+            {
+                // Verificar si el jugador estï¿½ dentro del ï¿½rea de -11f y 11f en X e Y
                 if (player.position.x >= -11f && player.position.x <= 11f &&
                     player.position.y >= -11f && player.position.y <= 11f)
                 {
-                    // Hace visible al lobo
-                    spriteRenderer.enabled = true;
-                    isWolfActive = true;
-
-                    // Activa "marco" cuando el lobo está persiguiendo
-                    if (marco != null)
-                    {
-                        marco.SetActive(true);
-                    }
-
-                    // Pausar música de la escena y reproducir sonido del lobo
-                    if (sceneAudioSource != null && sceneAudioSource.isPlaying)
-                    {
-                        sceneAudioSource.Pause();
-                    }
-
-                    if (wolfAudioSource != null && !wolfAudioSource.isPlaying)
-                    {
-                        // Reproducir sonido del lobo solo si no se está reproduciendo
-                        wolfAudioSource.clip = wolfSound; // Asignar el clip de sonido
-                        wolfAudioSource.loop = true; // Hacer que el sonido se repita
-                        wolfAudioSource.Play(); // Reproducir el sonido
-                    }
-
-                    // Calcula la nueva posición hacia el jugador
+                    // Calcula la nueva posiciï¿½n hacia el jugador
                     Vector3 targetPosition = player.position + offset;
 
-                    // Usamos MoveTowards para asegurarnos de que el lobo se acerque hasta el jugador
-                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, followSpeed * Time.deltaTime);
+                    // Calcula la distancia entre el lobo y el jugador
+                    float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-                    // Actualiza la dirección del sprite del lobo según su movimiento
+                    // Reduce la velocidad si el lobo estï¿½ cerca del jugador (en la animaciï¿½n caminata2)
+                    float currentSpeed = followSpeed;
+                    if (distanceToPlayer < transitionDistance)
+                    {
+                        currentSpeed = reducedSpeed;
+                        if (lastDistance >= transitionDistance) // Histeresis: solo cambia si estamos fuera de la zona
+                        {
+                            animator.SetBool("isNear", true); // Cambia la animaciï¿½n cuando estï¿½ cerca
+                        }
+                    }
+                    else
+                    {
+                        if (lastDistance < transitionDistance) // Histeresis: solo cambia si estamos dentro de la zona
+                        {
+                            animator.SetBool("isNear", false); // Vuelve a la animaciï¿½n caminata1
+                        }
+                    }
+
+                    // Usamos MoveTowards para asegurarnos de que el lobo se acerque hasta el jugador
+                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, currentSpeed * Time.deltaTime);
+
+                    // Actualiza la direcciï¿½n del sprite del lobo segï¿½n su movimiento
                     if (transform.position.x > lastPosition.x)
                     {
-                        spriteRenderer.flipX = false;
+                        spriteRenderer.flipX = false;  // El lobo se mueve hacia la derecha
                     }
                     else if (transform.position.x < lastPosition.x)
                     {
-                        spriteRenderer.flipX = true;
+                        spriteRenderer.flipX = true;   // El lobo se mueve hacia la izquierda
                     }
 
+                    // Guarda la posiciï¿½n actual para la prï¿½xima comparaciï¿½n
                     lastPosition = transform.position;
+
+                    // Actualiza la distancia anterior
+                    lastDistance = distanceToPlayer;
 
                     // Verificar si la distancia entre el lobo y el jugador es menor a la distancia de captura
                     if (Vector3.Distance(transform.position, player.position) < captureDistance)
@@ -283,55 +310,69 @@ public class FollowPlayer : MonoBehaviour
                         }
 
                         // Desactiva el lobo
-                        gameObject.SetActive(false);
-                        isWolfActive = false;
-
-                        if (wolfAudioSource != null)
-                        {
-                            wolfAudioSource.Stop(); // Detener el sonido del lobo cuando termina la persecución
-                        }
+                        DeactivateWolf();
                     }
                 }
                 else
                 {
-                    // Si el jugador está fuera del área
-                    DisableWolf();
+                    // Si el jugador estï¿½ fuera del ï¿½rea
+                    DeactivateWolf();
                 }
             }
         }
         else
         {
-            DisableWolf();
+            DeactivateWolf();
         }
     }
 
-    void DisableWolf()
+    void DeactivateWolf()
     {
-        // Si es después de las 10 PM o no es de noche, desactiva al lobo
+        // Desactivar completamente al lobo: Desactivar su SpriteRenderer, Animator, y AudioSource
         spriteRenderer.enabled = false;
+        animator.enabled = false;
+        wolfAudioSource.enabled = false;
+
         isWolfActive = false;
 
-        // Desactiva "marco" cuando el lobo no está persiguiendo
+        // Desactiva "marco" cuando el lobo no estï¿½ persiguiendo
         if (marco != null)
         {
             marco.SetActive(false);
         }
 
-        // Reactivar la música de la escena y detener el sonido del lobo
-        if (sceneAudioSource != null)
-        {
-            sceneAudioSource.UnPause();
-        }
-
-        if (wolfAudioSource != null)
-        {
-            wolfAudioSource.Pause();
-        }
-
-        // Mueve al lobo a una posición random (para la próxima aparición)
+        // Mueve al lobo a una posiciï¿½n random (para la prï¿½xima apariciï¿½n)
         float randomX = Random.Range(-10f, 10f);
         float randomY = Random.Range(-10f, 10f);
 
         transform.position = new Vector3(randomX, randomY, transform.position.z);
+
+
     }
-}*/
+
+    void ActivateWolf()
+    {
+        // Cuando el lobo estï¿½ listo para aparecer, activar todo lo necesario
+        // Activamos el SpriteRenderer, Animator y AudioSource solo cuando el lobo estï¿½ por aparecer
+        spriteRenderer.enabled = true;
+        animator.enabled = true;
+        wolfAudioSource.enabled = true;
+
+        // Marca al lobo como activo
+        isWolfActive = true;
+
+        // Si es de noche y el lobo debe aparecer, activa el "marco"
+        if (marco != null)
+        {
+            marco.SetActive(true);
+        }
+
+        // Reproducir mï¿½sica de lobo
+        if (wolfAudioSource != null && !wolfAudioSource.isPlaying)
+        {
+            wolfAudioSource.Play();
+        }
+    }
+}
+
+
