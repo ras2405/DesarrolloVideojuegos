@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1102396500602585581}
   - component: {fileID: 409522799997979016}
   - component: {fileID: 8013459696699581516}
-  - component: {fileID: 7657603880150460984}
   - component: {fileID: 2718085273556606727}
+  - component: {fileID: 791822960582712716}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -99,8 +99,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7657603880150460984
-CircleCollider2D:
+--- !u!114 &2718085273556606727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5574576217385482091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b528121a3e2f1ea45b31f28edf528161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCollectEffect: {fileID: 9163842254569548763, guid: a64312fe794124baa923bcca22ea4631, type: 3}
+  carrotPrefab: {fileID: 0}
+  item: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
+  count: 1
+--- !u!60 &791822960582712716
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -131,22 +147,48 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0054258257, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.1320192
---- !u!114 &2718085273556606727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5574576217385482091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b528121a3e2f1ea45b31f28edf528161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onCollectEffect: {fileID: 9163842254569548763, guid: a64312fe794124baa923bcca22ea4631, type: 3}
-  carrotPrefab: {fileID: 0}
-  item: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
-  count: 1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.34, y: 0.34}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.22999999, y: -0.12}
+      - {x: 0.25874022, y: -0.051954344}
+      - {x: 0.26038817, y: 0.033602294}
+      - {x: 0.21789551, y: 0.1078186}
+      - {x: 0.20891356, y: 0.20678589}
+      - {x: 0.16601562, y: 0.2331543}
+      - {x: 0.06623046, y: 0.2402246}
+      - {x: -0.0115356445, y: 0.21469116}
+      - {x: -0.09352051, y: 0.124746084}
+      - {x: -0.1560669, y: 0.096832275}
+      - {x: -0.20404053, y: 0.00033569336}
+      - {x: -0.25506592, y: -0.009979248}
+      - {x: -0.29521972, y: -0.066397704}
+      - {x: -0.26556396, y: -0.11709595}
+      - {x: -0.17352295, y: -0.13412476}
+      - {x: -0.22503662, y: -0.18640137}
+      - {x: -0.22600585, y: -0.21835205}
+      - {x: -0.2108374, y: -0.2368164}
+      - {x: -0.16823974, y: -0.24206665}
+      - {x: -0.13164794, y: -0.20918944}
+      - {x: -0.12017822, y: -0.1739502}
+      - {x: -0.05834961, y: -0.16653442}
+      - {x: 0.01940918, y: -0.1690979}
+      - {x: 0.028198242, y: -0.21792603}
+      - {x: 0.02960205, y: -0.25125122}
+      - {x: 0.07409668, y: -0.28393555}
+      - {x: 0.1381836, y: -0.29052734}
+      - {x: 0.19999999, y: -0.29}
+      - {x: 0.27857664, y: -0.24008179}
+      - {x: 0.2752197, y: -0.17494385}
+      - {x: 0.24, y: -0.13}
+      - {x: 0.21, y: -0.12}
+  m_UseDelaunayMesh: 0
