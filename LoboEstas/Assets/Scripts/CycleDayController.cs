@@ -254,7 +254,8 @@ public class CycleDayController : MonoBehaviour
         displayHour = displayHour == 0 ? 12 : displayHour; // Asegurarse de que 0 sea 12
 
         // Mostrar el tiempo y el día actual
-        timeText.text = $"Día {currentDay}, {displayHour:D2}:{displayMinute:D2} {period}";
+        //timeText.text = $"Día {currentDay}, {displayHour:D2}:{displayMinute:D2} {period}";
+        timeText.text = $"Día {currentDay}";
     }
 
     // Método para guardar el día actual en PlayerPrefs
