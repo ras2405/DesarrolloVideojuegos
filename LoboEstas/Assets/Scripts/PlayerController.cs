@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void HandleInteraction()
+    /*private void HandleInteraction()
     {
         DetectMouseClick();
 
@@ -210,6 +210,58 @@ public class PlayerController : MonoBehaviour
         }
    
 
+    }*/
+
+    private void HandleInteraction()
+    {
+        // Detectar si la tecla 'E' es presionada
+        if (Keyboard.current.eKey.wasPressedThisFrame) // Se utiliza 'E' en lugar de clic del ratón
+        {
+            Vector3Int position = MapPositionInteractiveTilemap();
+
+            if (GameManager.instance != null && GameManager.instance.tileManager != null)
+            {
+                // Cultivar la planta si se selecciona una semilla
+                if (GameManager.instance.tileManager.IsInteractable(position) && SeedSelected())
+                {
+                    animator.SetTrigger("pigSow");
+                    print("pigSow");
+                    GameManager.instance.tileManager.SetInteracted(position, inventory.selectedItem.name);
+                    inventory.RemoveSeed();
+                }
+                else
+                {
+                    // Regar la planta si ya está plantada
+                    if (GameManager.instance.tileManager.IsPlanted(position))
+                    {
+                        animator.SetTrigger("watering");
+                        GameManager.instance.tileManager.WaterPlant(position);
+
+                        if (audioSource != null && wateringSound != null)
+                        {
+                            audioSource.PlayOneShot(wateringSound);
+                        }
+                    }
+                    else
+                    {
+                        if (GameManager.instance.tileManager.IsInteractable(position))
+                        {
+                            Debug.Log("Ese tile no fue plantado");
+                        }
+                        else
+                        {
+                            // Si no se puede interactuar
+                            // Debug.Log("No se puede interactuar con este tile");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // Si no se puede interactuar
+                // Debug.Log("No se puede interactuar con este tile");
+            }
+        }
     }
 
     public bool SeedSelected()
@@ -263,30 +315,6 @@ public class PlayerController : MonoBehaviour
 
         return new Vector3Int(((int)posx_f), ((int)posy_f), 0);
     }
-
-    /*private bool TryMove(Vector2 direction) {
-        if (direction != Vector2.zero)
-        {
-            int count = rb.Cast(
-                direction,
-                movementFilter,
-                castCollisions,
-                moveSpeed * Time.fixedDeltaTime + collisionOffset
-            );
-            if (count == 0)
-            {
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
-    }*/
 
     private bool TryMove(Vector2 direction)
     {
