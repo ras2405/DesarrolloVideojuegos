@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] ItemContainer inventory;
     public float moveSpeed = 1f;
-    public float runSpeed = 2f;
+    public float runSpeed = 1.4f;
     public float currentSpeed;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
@@ -38,6 +39,10 @@ public class PlayerController : MonoBehaviour
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     private bool isRunning = false;
     bool canMove = true;
+
+    public Image staminaBar;
+    public float stamina, maxStamina;
+    public float runCost;
     
 
 
@@ -65,7 +70,21 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        isRunning = Keyboard.current.leftShiftKey.isPressed;
+        EatCarrot();
+        if(Keyboard.current.leftShiftKey.isPressed && stamina > 0)
+        {
+            isRunning = true;
+        }
+        else{
+            isRunning = false;
+        }
+
+        if(isRunning && TryMove(movementInput))
+        {
+            stamina -= runCost * Time.deltaTime;
+            if(stamina < 0)stamina = 0;
+            staminaBar.fillAmount = stamina / maxStamina;
+        }
 
         HandleInteraction();
 
@@ -269,6 +288,22 @@ public class PlayerController : MonoBehaviour
     Debug.Log(inventory.selectedItem);
     if (inventory.selectedItem != null && inventory.selectedItem.tag == "seed")return true;
     return false;
+   }
+
+   public void EatCarrot()
+   {
+    if(inventory.selectedItem != null)
+    {
+         if(inventory.selectedItem.tag == "Carrot" && Input.GetMouseButtonDown(1))
+         {
+            inventory.Remove(inventory.selectedItem);
+            if(stamina > 60)stamina = 100;
+            else{
+                stamina += 40;
+            }
+            staminaBar.fillAmount = stamina / maxStamina;
+        }
+    }
    }
 
 

@@ -15,4 +15,4 @@ MonoBehaviour:
   name: Carrot
   icon: {fileID: 21300000, guid: 8ae9c86c82aae0940ac9e28a26ebd87a, type: 3}
   stackable: 1
-  tag: 
+  tag: Carrot

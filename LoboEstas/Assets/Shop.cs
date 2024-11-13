@@ -15,7 +15,7 @@ public class Shop : MonoBehaviour
     public GameObject textPanel; 
     public TextMeshProUGUI raulText; 
 
-    
+    private Animator animator;
     
 
     private bool playerInZone = false; // Variable para saber si el jugador está en la zona
@@ -24,7 +24,9 @@ public class Shop : MonoBehaviour
     
     public void Start()
     {
+        animator = GetComponent<Animator>();
         textPanel.SetActive(false);
+        Idle();
     }
 
     
@@ -89,6 +91,17 @@ public class Shop : MonoBehaviour
     private void HideRaulText()
     {
         textPanel.gameObject.SetActive(false);
+    }
+
+    private void Idle()
+    {
+        while(true)
+        {
+             new WaitForSeconds(5f);
+             animator.SetTrigger("doAnimation");
+             new WaitForSeconds(2f);
+             animator.SetTrigger("stopAnimation");
+        }
     }
 }
 
