@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] ItemContainer inventory;
     public float moveSpeed = 1f;
-    public float runSpeed = 1.4f;
+    public float runSpeed = 1.3f;
     public float currentSpeed;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;

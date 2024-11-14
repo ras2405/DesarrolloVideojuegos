@@ -7,14 +7,20 @@ using UnityEngine.SceneManagement;
 public class HouseInteraction : MonoBehaviour
 {
     public GameObject player; // Referencia al jugador
-    public bool insideHouse = false; // Para saber si está dentro de la casa
+    public bool insideHouse = false; // Para saber si estï¿½ dentro de la casa
     public Vector2 housePos = new Vector2(-25f, -2);
     public Vector2 forestPos = new Vector2(1f, 1f);
+    
+    public GameObject brokenWindow;
+    private bool breakWindow = true;
     private bool canInteract = false; // Si el jugador puede interactuar con la casa
+
+
+ 
 
     void Update()
     {
-        // Si el jugador está cerca y puede interactuar
+        // Si el jugador estï¿½ cerca y puede interactuar
         if (canInteract)
         {
             if (!insideHouse)
@@ -26,6 +32,19 @@ public class HouseInteraction : MonoBehaviour
                 StartCoroutine(TeleportPlayer(forestPos));
             }
         }
+        if(CycleDayController.currentDay == 2)
+        {
+            BreakWindow();
+        }
+    }
+
+    private void BreakWindow()
+    {
+        while(breakWindow)
+        {
+            brokenWindow.gameObject.SetActive(true);
+            breakWindow = false;
+        } 
     }
 
     void EnterHouse()
@@ -47,17 +66,17 @@ public class HouseInteraction : MonoBehaviour
     IEnumerator TeleportPlayer(Vector2 targetPosition)
     {
         Cinemachine.CinemachineVirtualCamera virtualCamera = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
-        virtualCamera.enabled = false; // Desactiva la cámara momentáneamente
+        virtualCamera.enabled = false; // Desactiva la cï¿½mara momentï¿½neamente
 
         yield return new WaitForEndOfFrame(); // Espera un frame
 
         player.transform.position = targetPosition; // Teletransporta al jugador
 
-        virtualCamera.enabled = true; // Reactiva la cámara
+        virtualCamera.enabled = true; // Reactiva la cï¿½mara
     }
 
 
-    // Detecta si el jugador entra en el área de la puerta
+    // Detecta si el jugador entra en el ï¿½rea de la puerta
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject == player)
@@ -66,12 +85,12 @@ public class HouseInteraction : MonoBehaviour
         }
     }
 
-    // Detecta si el jugador sale del área de la puerta
+    // Detecta si el jugador sale del ï¿½rea de la puerta
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject == player)
         {
-            canInteract = false; // Impide que el jugador interactúe
+            canInteract = false; // Impide que el jugador interactï¿½e
         }
     }
 }
