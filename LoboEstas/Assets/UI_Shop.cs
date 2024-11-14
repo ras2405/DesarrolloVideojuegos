@@ -12,6 +12,8 @@ public class UI_Shop : MonoBehaviour
     private Transform sellPotatoTemplate;
     private Transform sellOnionTemplate;
 
+    public GameObject repairWindowButton;
+
     private void Awake()
     {
         container = transform.Find("Container");
@@ -29,5 +31,7 @@ public class UI_Shop : MonoBehaviour
         sellPotatoTemplate.gameObject.SetActive(false);
         sellOnionTemplate = container.transform.Find("SellOnionTemplate");
         sellOnionTemplate.gameObject.SetActive(false);
+
+        repairWindowButton.gameObject.SetActive(false);
     }
 }

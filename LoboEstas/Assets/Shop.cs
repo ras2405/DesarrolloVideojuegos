@@ -15,6 +15,8 @@ public class Shop : MonoBehaviour
     public GameObject textPanel; 
     public TextMeshProUGUI raulText; 
 
+    public GameObject repairWindowButton;
+
     private Animator animator;
     
 
@@ -57,6 +59,7 @@ public class Shop : MonoBehaviour
             sellPotatoTemplate.gameObject.SetActive(false);
             buyOnionTemplate.gameObject.SetActive(false);
             sellOnionTemplate.gameObject.SetActive(false);
+            repairWindowButton.gameObject.SetActive(false);
             textPanel.SetActive(false);
             Debug.Log("Jugador ha salido de la zona.");
         }
@@ -81,6 +84,7 @@ public class Shop : MonoBehaviour
         sellPotatoTemplate.gameObject.SetActive(true);
         buyOnionTemplate.gameObject.SetActive(true);
         sellOnionTemplate.gameObject.SetActive(true);
+        repairWindowButton.gameObject.SetActive(true);
     }
 
     private void ShowRaulText()

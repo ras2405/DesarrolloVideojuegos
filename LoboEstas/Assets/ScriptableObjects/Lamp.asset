@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Lamp
   m_EditorClassIdentifier: 
   name: Lamp
-  icon: {fileID: 21300000, guid: 40aebb222bbae45428592c338c07f4ad, type: 3}
+  icon: {fileID: 21300000, guid: 622d4d1dc2dc76a4aa4aa594226f11a7, type: 3}
   stackable: 1
   tag: 

@@ -22,40 +22,28 @@ public class InventoryToolbar : MonoBehaviour
         Show();
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            inventory.SelectItem(0);
-            Clean();
-            slots[0].SetBorder();
+          SelectItem1();
         }
         
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            inventory.SelectItem(1);
-            Clean();
-            slots[1].SetBorder();
+            SelectItem2();
         }
         if(Input.GetKeyDown(KeyCode.Alpha3))
         {
-            inventory.SelectItem(2);
-            Clean();
-            slots[2].SetBorder();
+            SelectItem3();
         }
         if(Input.GetKeyDown(KeyCode.Alpha4))
         {
-            inventory.SelectItem(3);
-            Clean();
-            slots[3].SetBorder();
+            SelectItem4();
         }
         if(Input.GetKeyDown(KeyCode.Alpha5))
         {
-            inventory.SelectItem(4);
-            Clean();
-            slots[4].SetBorder();
+            SelectItem5();
         }
         if(Input.GetKeyDown(KeyCode.Alpha6))
         {
-            inventory.SelectItem(5);
-            Clean();
-            slots[5].SetBorder();
+            SelectItem6();
         }
     }
 
@@ -89,10 +77,10 @@ public class InventoryToolbar : MonoBehaviour
 
     public void ResetInventory()
     {
-        // Limpiar los ítems del contenedor del inventario
+        // Limpiar los ï¿½tems del contenedor del inventario
         foreach (var slot in inventory.slots)
         {
-            slot.item = null; // Eliminar el ítem de cada slot
+            slot.item = null; // Eliminar el ï¿½tem de cada slot
         }
 
         // Limpiar la interfaz de la barra de herramientas
@@ -101,6 +89,48 @@ public class InventoryToolbar : MonoBehaviour
             toolbarSlot.Clean(); // Limpiar visualmente los slots de la toolbar
         }
 
-        // Si necesitas realizar más acciones de reinicio, puedes hacerlo aquí
+        // Si necesitas realizar mï¿½s acciones de reinicio, puedes hacerlo aquï¿½
+    }
+
+    public void SelectItem1()
+    {
+        inventory.SelectItem(0);
+        Clean();
+        slots[0].SetBorder();
+    }
+
+    public void SelectItem2()
+    {
+        inventory.SelectItem(1);
+        Clean();
+        slots[1].SetBorder();
+    }
+
+    public void SelectItem3()
+    {
+        inventory.SelectItem(2);
+        Clean();
+        slots[2].SetBorder();
+    }
+
+    public void SelectItem4()
+    {
+        inventory.SelectItem(3);
+        Clean();
+        slots[3].SetBorder();
+    }
+
+    public void SelectItem5()
+    {
+        inventory.SelectItem(4);
+        Clean();
+        slots[4].SetBorder();
+    }
+
+    public void SelectItem6()
+    {
+        inventory.SelectItem(5);
+        Clean();
+        slots[5].SetBorder();
     }
 }

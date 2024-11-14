@@ -18,6 +18,8 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
     [SerializeField] Item onion;
 
     [SerializeField] public  GameObject price;
+    public GameObject brokenWindow;
+
     private MoneyController moneyController;
 
     Text priceText;
@@ -110,5 +112,10 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         {
          moneyController.Add(120);
         } 
+    }
+
+    public void RepairWindow()
+    {
+        brokenWindow.gameObject.SetActive(false);
     }
 }
