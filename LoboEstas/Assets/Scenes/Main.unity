@@ -2192,6 +2192,7 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   price: {fileID: 178625098}
+  brokenWindow: {fileID: 0}
 --- !u!114 &178625104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2211,6 +2212,7 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   price: {fileID: 178625100}
+  brokenWindow: {fileID: 0}
 --- !u!1 &183346631 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6818352059302379671, guid: 0e8df36eea04d10418e9b69b8d757b0d, type: 3}
@@ -36873,7 +36875,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!224 &407003747
 RectTransform:
@@ -38305,6 +38307,7 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   price: {fileID: 178625102}
+  brokenWindow: {fileID: 0}
 --- !u!114 &507474128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38317,6 +38320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd505f984b398cb46a9d803eb18e6b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  repairWindowButton: {fileID: 0}
 --- !u!1001 &512029411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42772,7 +42776,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14048457, y: -1.1436808}
+  m_Offset: {x: 0.13329774, y: -1.108658}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -42783,7 +42787,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6940597, y: 0.5438614}
+  m_Size: {x: 0.8809124, y: 0.47381634}
   m_EdgeRadius: 0
 --- !u!114 &769690650
 MonoBehaviour:
@@ -43227,7 +43231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0140b3099deaa94bbc2c0ed135c1f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingOrder: 100
+  startingOrder: 16
 --- !u!4 &816951335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4494705525898334934, guid: 8d5ddc4e0f6d3664c8d907b8962c2545, type: 3}
@@ -53879,6 +53883,7 @@ MonoBehaviour:
   sellOnionTemplate: {fileID: 1000319078}
   textPanel: {fileID: 1363706614}
   raulText: {fileID: 39376286}
+  repairWindowButton: {fileID: 0}
 --- !u!61 &1406658756
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -59055,7 +59060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0140b3099deaa94bbc2c0ed135c1f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingOrder: 100
+  startingOrder: 16
 --- !u!1001 &1802914630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60025,6 +60030,7 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   price: {fileID: 1316602838}
+  brokenWindow: {fileID: 0}
 --- !u!114 &1858427323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60444,6 +60450,7 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   price: {fileID: 1751798329}
+  brokenWindow: {fileID: 0}
 --- !u!114 &1880602005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62473,6 +62480,7 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   price: {fileID: 712195115}
+  brokenWindow: {fileID: 0}
 --- !u!114 &2002421334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63986,7 +63994,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!224 &2107656039
 RectTransform:
@@ -66224,7 +66232,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 24379498200972845, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1367248203033136164, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: m_Volume
@@ -66260,7 +66268,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 294c25d21fc1f9541be1114d0f3c3a35, type: 3}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: followSpeed
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: reducedSpeed
