@@ -22,7 +22,9 @@ public class FollowPlayer : MonoBehaviour
     public GameObject deadPanel; // Asigna el DeadPanel desde el Inspector
 
     private bool isWolfActive = false;
-    private bool isPlayerDead = false;
+    private bool isNight = false;
+    private bool isDead = false;
+    //private bool isPlayerDead = false;
     private Vector3 lastPosition;
 
     // Variables para la histeresis
@@ -65,93 +67,100 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
-        // Verificar si es de noche
-        if (cycleDayController != null && cycleDayController.IsNight())
+        if (!isDead)
         {
-            // Si el lobo no est� activo y es de noche, activarlo
-            if (!isWolfActive && !isPlayerDead)
+            isNight = cycleDayController.IsNight();
+            // Verificar si es de noche
+            if (cycleDayController != null && isNight)
             {
-                // Reproducir el sonido de la rama quebr�ndose solo una vez antes de la activaci�n
-                if (branchBreakSound != null && !hasBranchSoundPlayed)
+                // Si el lobo no est� activo y es de noche, activarlo
+                if (!isWolfActive) // && !isPlayerDead
                 {
-                    branchBreakSound.Play();
-                    hasBranchSoundPlayed = true;  // Aseguramos que solo se reproduzca una vez
+                    // Reproducir el sonido de la rama quebr�ndose solo una vez antes de la activaci�n
+                    if (branchBreakSound != null && !hasBranchSoundPlayed)
+                    {
+                        branchBreakSound.Play();
+                        hasBranchSoundPlayed = true;  // Aseguramos que solo se reproduzca una vez
+                    }
+
+                    // Activar al lobo
+                    ActivateWolf();
                 }
 
-                // Activar al lobo
-                ActivateWolf();
-            }
-
-            if (isWolfActive && player != null && !isPlayerDead)
-            {
-                // Verificar si el jugador est� dentro del �rea de -11f y 11f en X e Y
-                if (player.position.x >= -11f && player.position.x <= 11f &&
-                    player.position.y >= -11f && player.position.y <= 11f)
+                if (isWolfActive && player != null)
                 {
-                    // Calcula la nueva posici�n hacia el jugador
-                    Vector3 targetPosition = player.position + offset;
-
-                    // Calcula la distancia entre el lobo y el jugador
-                    float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-                    // Reduce la velocidad si el lobo est� cerca del jugador (en la animaci�n caminata2)
-                    float currentSpeed = followSpeed;
-                    if (distanceToPlayer < transitionDistance)
+                    // Verificar si el jugador est� dentro del �rea de -11f y 11f en X e Y
+                    if (player.position.x >= -11f && player.position.x <= 11f &&
+                        player.position.y >= -11f && player.position.y <= 11f)
                     {
-                        currentSpeed = reducedSpeed;
-                        if (lastDistance >= transitionDistance) // Histeresis: solo cambia si estamos fuera de la zona
+                        // Calcula la nueva posici�n hacia el jugador
+                        Vector3 targetPosition = player.position + offset;
+
+                        // Calcula la distancia entre el lobo y el jugador
+                        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+                        // Reduce la velocidad si el lobo est� cerca del jugador (en la animaci�n caminata2)
+                        float currentSpeed = followSpeed;
+                        if (distanceToPlayer < transitionDistance)
                         {
-                            animator.SetBool("isNear", true); // Cambia la animaci�n cuando est� cerca
+                            currentSpeed = reducedSpeed;
+                            if (lastDistance >= transitionDistance) // Histeresis: solo cambia si estamos fuera de la zona
+                            {
+                                animator.SetBool("isNear", true); // Cambia la animaci�n cuando est� cerca
+                            }
+                        }
+                        else
+                        {
+                            if (lastDistance < transitionDistance) // Histeresis: solo cambia si estamos dentro de la zona
+                            {
+                                animator.SetBool("isNear", false); // Vuelve a la animaci�n caminata1
+                            }
+                        }
+
+                        // Usamos MoveTowards para asegurarnos de que el lobo se acerque hasta el jugador
+                        transform.position = Vector3.MoveTowards(transform.position, targetPosition, currentSpeed * Time.deltaTime);
+
+                        // Actualiza la direcci�n del sprite del lobo seg�n su movimiento
+                        if (transform.position.x > lastPosition.x)
+                        {
+                            spriteRenderer.flipX = false;  // El lobo se mueve hacia la derecha
+                        }
+                        else if (transform.position.x < lastPosition.x)
+                        {
+                            spriteRenderer.flipX = true;   // El lobo se mueve hacia la izquierda
+                        }
+
+                        // Guarda la posici�n actual para la pr�xima comparaci�n
+                        lastPosition = transform.position;
+
+                        // Actualiza la distancia anterior
+                        lastDistance = distanceToPlayer;
+
+                        // Verificar si la distancia entre el lobo y el jugador es menor a la distancia de captura
+                        if (Vector3.Distance(transform.position, player.position) < captureDistance)
+                        {
+                            // Activa el DeadPanel cuando el lobo alcanza al jugador
+                            if (deadPanel != null)
+                            {
+                                deadPanel.SetActive(true);
+                            }
+                            // Desactiva el lobo
+                            DeactivateWolf();
+                            isDead = true;
                         }
                     }
                     else
                     {
-                        if (lastDistance < transitionDistance) // Histeresis: solo cambia si estamos dentro de la zona
-                        {
-                            animator.SetBool("isNear", false); // Vuelve a la animaci�n caminata1
-                        }
-                    }
-
-                    // Usamos MoveTowards para asegurarnos de que el lobo se acerque hasta el jugador
-                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, currentSpeed * Time.deltaTime);
-
-                    // Actualiza la direcci�n del sprite del lobo seg�n su movimiento
-                    if (transform.position.x > lastPosition.x)
-                    {
-                        spriteRenderer.flipX = false;  // El lobo se mueve hacia la derecha
-                    }
-                    else if (transform.position.x < lastPosition.x)
-                    {
-                        spriteRenderer.flipX = true;   // El lobo se mueve hacia la izquierda
-                    }
-
-                    // Guarda la posici�n actual para la pr�xima comparaci�n
-                    lastPosition = transform.position;
-
-                    // Actualiza la distancia anterior
-                    lastDistance = distanceToPlayer;
-
-                    // Verificar si la distancia entre el lobo y el jugador es menor a la distancia de captura
-                    if (Vector3.Distance(transform.position, player.position) < captureDistance)
-                    {
-                        // Activa el DeadPanel cuando el lobo alcanza al jugador
-                        if (deadPanel != null)
-                        {
-                            deadPanel.SetActive(true);
-                        }
-                        isPlayerDead = true;
-                        // Desactiva el lobo
+                        // Si el jugador est� fuera del �rea
                         DeactivateWolf();
                     }
                 }
-                else
-                {
-                    // Si el jugador est� fuera del �rea
-                    DeactivateWolf();
-                }
             }
-        }
-        else
+            else
+            {
+                DeactivateWolf();
+            }
+        } else
         {
             DeactivateWolf();
         }
