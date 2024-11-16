@@ -22,7 +22,7 @@ public class FollowPlayer : MonoBehaviour
     public GameObject deadPanel; // Asigna el DeadPanel desde el Inspector
 
     private bool isWolfActive = false;
-    private bool isWolfReady = false; // Nuevo indicador para saber si el lobo est� listo para aparecer
+    private bool isPlayerDead = false;
     private Vector3 lastPosition;
 
     // Variables para la histeresis
@@ -65,15 +65,12 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
-        // Verificar si es de noche y si no es despu�s de las 10 PM
+        // Verificar si es de noche
         if (cycleDayController != null && cycleDayController.IsNight())
         {
             // Si el lobo no est� activo y es de noche, activarlo
-            if (!isWolfActive && !isWolfReady)
+            if (!isWolfActive && !isPlayerDead)
             {
-                // Hacer que el lobo est� listo para aparecer
-                isWolfReady = true;
-
                 // Reproducir el sonido de la rama quebr�ndose solo una vez antes de la activaci�n
                 if (branchBreakSound != null && !hasBranchSoundPlayed)
                 {
@@ -85,7 +82,7 @@ public class FollowPlayer : MonoBehaviour
                 ActivateWolf();
             }
 
-            if (isWolfActive && player != null)
+            if (isWolfActive && player != null && !isPlayerDead)
             {
                 // Verificar si el jugador est� dentro del �rea de -11f y 11f en X e Y
                 if (player.position.x >= -11f && player.position.x <= 11f &&
@@ -142,7 +139,7 @@ public class FollowPlayer : MonoBehaviour
                         {
                             deadPanel.SetActive(true);
                         }
-
+                        isPlayerDead = true;
                         // Desactiva el lobo
                         DeactivateWolf();
                     }
@@ -151,7 +148,6 @@ public class FollowPlayer : MonoBehaviour
                 {
                     // Si el jugador est� fuera del �rea
                     DeactivateWolf();
-                    isWolfActive = true;
                 }
             }
         }
