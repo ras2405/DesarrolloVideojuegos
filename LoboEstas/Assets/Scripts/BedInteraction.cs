@@ -5,7 +5,12 @@ public class BedInteraction : MonoBehaviour
 {
     public GameObject textPanel; // El panel que recubre el texto, que contiene tanto el texto como el fondo.
     public TextMeshProUGUI dayText; // El texto en la UI para mostrar el día.
+
     public TextMeshProUGUI interactionText;
+    public TextMeshProUGUI notNightText;
+
+    private CycleDayController cycleDayController;
+
     public KeyCode interactionKey = KeyCode.E;
     public GameObject character; // El objeto del personaje que se va a mover.
     private int currentDay = 1; // Suponiendo que el día actual esté almacenado aquí.
@@ -13,6 +18,7 @@ public class BedInteraction : MonoBehaviour
     // Define la posición de la casilla a la que se moverá el personaje al tocar la cama.
     public Vector2 bedPosition = new Vector2(-25, -1);
 
+    private bool isNight = false;
     private bool isNearBed = false;
 
     private void Start()
@@ -21,26 +27,36 @@ public class BedInteraction : MonoBehaviour
         LoadCurrentDay();
         Debug.Log("Se cargó el día desde CycleDayController: " + currentDay);
 
+        cycleDayController = FindObjectOfType<CycleDayController>();
+
         // Asegúrate de que el panel (y el texto) esté completamente desactivado al iniciar.
         textPanel.SetActive(false);
         interactionText.gameObject.SetActive(false);
+        notNightText.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        if (isNearBed)
+        isNight = cycleDayController.IsNight();
+        if (isNearBed && cycleDayController.IsNight())
         {
+            notNightText.gameObject.SetActive(false);
             interactionText.gameObject.SetActive(true); // Mostramos el texto
             if (Input.GetKeyDown(interactionKey)) // Si el jugador presiona la tecla de interacción
             {
                 Dormir();
             }
         }
+        else if (isNearBed) 
+        {
+            notNightText.gameObject.SetActive(true);
+            interactionText.gameObject.SetActive(false);
+        }
         else
         {
+            notNightText.gameObject.SetActive(false);
             interactionText.gameObject.SetActive(false); // Ocultamos el texto si no está cerca
         }
-        // No es necesario actualizar `CycleDayController.currentDay` en cada frame
     }
 
     // Este método se ejecuta cuando el personaje entra en contacto con la cama (usando Trigger).
