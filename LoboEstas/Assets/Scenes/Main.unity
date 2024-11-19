@@ -77965,6 +77965,7 @@ MonoBehaviour:
   shopTemplate2: {fileID: 1635261522}
   sellPotatoTemplate: {fileID: 955575476}
   sellOnionTemplate: {fileID: 1000319078}
+  character: {fileID: 387344902}
   textPanel: {fileID: 1363706614}
   raulText: {fileID: 39376286}
   repairWindowButton: {fileID: 0}
@@ -78000,7 +78001,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.1624966, y: -7.105007}
+  m_Offset: {x: -3.0020332, y: -6.367303}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -78011,7 +78012,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20.941238, y: 25.01001}
+  m_Size: {x: 35.379436, y: 35.12729}
   m_EdgeRadius: 0
 --- !u!212 &1406658757
 SpriteRenderer:

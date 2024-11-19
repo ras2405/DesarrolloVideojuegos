@@ -53,6 +53,7 @@ public class Shop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInZone = false;
+            HideRaulText();
             buyCarrotTemplate.gameObject.SetActive(false);
             shopTemplate2.gameObject.SetActive(false);
             buyPotatoTemplate.gameObject.SetActive(false);
