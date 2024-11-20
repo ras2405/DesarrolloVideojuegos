@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: harvested
+  m_Name: potatoGrowth1
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 4f7d249bdc446874187115e8b1ea8cd9, type: 3}
+      value: {fileID: 1312924261, guid: 9c78da40a8585704ab22979db2aed88c, type: 3}
+    - time: 5
+      value: {fileID: -1795160539, guid: 2a1594f69545aba4abe6fee9242da182, type: 3}
+    - time: 10
+      value: {fileID: -18901930, guid: 552f0aebf2c577c49a87e32d0c15c946, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,13 +48,15 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 4f7d249bdc446874187115e8b1ea8cd9, type: 3}
+    - {fileID: 1312924261, guid: 9c78da40a8585704ab22979db2aed88c, type: 3}
+    - {fileID: -1795160539, guid: 2a1594f69545aba4abe6fee9242da182, type: 3}
+    - {fileID: -18901930, guid: 552f0aebf2c577c49a87e32d0c15c946, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 11
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -69,4 +75,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: StartGrow1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 10
+    functionName: EndGrow1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
