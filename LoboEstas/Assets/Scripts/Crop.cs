@@ -55,10 +55,10 @@ public class Crop : MonoBehaviour
     {
         Vector3 currentPosition = transform.position;
 
-        // Obtener la posici�n del tile en el Tilemap
+        // Obtener la posicion del tile en el Tilemap
         Vector3Int tilePosition = GameManager.instance.tileManager.interactableMap.WorldToCell(currentPosition);
 
-        // Llamar al m�todo del TileManager para restablecer el tile
+        // Llamar al metodo del TileManager para restablecer el tile
         GameManager.instance.tileManager.ResetTile(tilePosition);
 
         // Destruir la planta actual (recolectada)
@@ -100,7 +100,6 @@ public class Crop : MonoBehaviour
         int harvestT = 0;
         if (harvestT < harvestTimes)
         {
-            // Comprobamos si la animaci�n "harvested" est� en reproducci�n
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("harvested") ||
                 animator.GetCurrentAnimatorStateInfo(0).IsName("potatoHarvested") ||
                 animator.GetCurrentAnimatorStateInfo(0).IsName("onionHarvested"))
@@ -159,7 +158,7 @@ public class Crop : MonoBehaviour
         if (!isWatered)
         {
             isWatered = true;
-            animator.SetTrigger("watered"); // Activa el trigger en el Animator.
+            animator.SetTrigger("watered"); 
             Debug.Log("La planta ha sido regada. Se ejecuto trigger de watered y growthPhase: " + growthPhase);
         }
         else
@@ -173,16 +172,12 @@ public class Crop : MonoBehaviour
     {
         Vector3 currentPosition = transform.position;
 
-        // Obtener la posici�n del tile en el Tilemap
         Vector3Int tilePosition = GameManager.instance.tileManager.interactableMap.WorldToCell(currentPosition);
 
-        // Llamar al m�todo del TileManager para restablecer el tile
         GameManager.instance.tileManager.ResetTile(tilePosition);
 
-        // Destruir la planta actual (recolectada)
         Destroy(gameObject);
 
-        // Crear el prefab de la planta recolectada (opcional si la quieres reemplazar)
         GameObject newCarrot = Instantiate(plantPrefab, currentPosition, Quaternion.identity);
         Debug.Log("DropVegetable: Crop replaced with vegetable at position: " + currentPosition);
     }
