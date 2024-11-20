@@ -18,18 +18,18 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
     public Transform playerBase;
 
-    public AudioClip footstepsSound; // Clip de sonido de pasos
-    private float stepCooldown = 0.5f; // Tiempo entre pasos
+    public AudioClip footstepsSound;
+    private float stepCooldown = 0.5f; 
     private float stepTimer;
 
-    public AudioSource audioSource; // Referencia al componente AudioSource
-    public AudioClip wateringSound; // Clip de sonido que se reproducirá
+    public AudioSource audioSource; 
+    public AudioClip wateringSound; 
     public AudioClip graveSound;
 
     public GameObject lightNoLamp;
     public GameObject lightWithLamp;
 
-    Vector2 movementInput; // 2 valores, X,Y (izq der, arriba abajo)
+    Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
     public Animator animator;
@@ -61,9 +61,9 @@ public class PlayerController : MonoBehaviour
         }
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>(); //En que direccion inciia el sprite
+        spriteRenderer = GetComponent<SpriteRenderer>(); 
 
-        stepTimer = 0; // Inicializa el temporizador
+        stepTimer = 0; 
         contadorChocadas = tiempoEntreChocadas;
         currentSpeed = moveSpeed;
 
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         {
             contadorChocadas -= Time.deltaTime;
 
-            // Si el tiempo es suficiente, activa la animación de chocarse las patas
+        
             if (contadorChocadas <= 0)
             {
                 animator.SetBool("isChocandoManos", true);
@@ -103,13 +103,11 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                // Asegúrate de que la animación de idle normal se reproduce cuando no está chocando
                 animator.SetBool("isChocandoManos", false);
             }
         }
         else
         {
-            // Si el personaje se mueve, asegúrate de que no esté chocando patas
             animator.SetBool("isChocandoManos", false);
             contadorChocadas = tiempoEntreChocadas; // Reinicia el contador
         }
@@ -178,59 +176,6 @@ public class PlayerController : MonoBehaviour
             audioSource.Stop(); 
         }
     }
-
-    /*private void HandleInteraction()
-    {
-        // Detectar si la tecla 'E' es presionada
-        if (Keyboard.current.eKey.wasPressedThisFrame) // Se utiliza 'E' en lugar de clic del ratón
-        {
-            Vector3Int position = MapPositionInteractiveTilemap();
-
-            if (GameManager.instance != null && GameManager.instance.tileManager != null)
-            {
-                // Cultivar la planta si se selecciona una semilla
-                if (GameManager.instance.tileManager.IsInteractable(position) && SeedSelected())
-                {
-                    animator.SetTrigger("pigSow");
-                    print("pigSow");
-                    GameManager.instance.tileManager.SetInteracted(position, inventory.selectedItem.name);
-                    inventory.RemoveSeed();
-                }
-                else
-                {
-                    // Regar la planta si ya está plantada
-                    if (GameManager.instance.tileManager.IsPlanted(position))
-                    {
-                        animator.SetTrigger("watering");
-                        GameManager.instance.tileManager.WaterPlant(position);
-
-                        if (audioSource != null && wateringSound != null)
-                        {
-                            audioSource.PlayOneShot(wateringSound);
-                        }
-                    }
-                    else
-                    {
-                        if (GameManager.instance.tileManager.IsInteractable(position))
-                        {
-                            Debug.Log("Ese tile no fue plantado");
-                        }
-                        else
-                        {
-                            // Si no se puede interactuar
-                            // Debug.Log("No se puede interactuar con este tile");
-                        }
-                    }
-                }
-            }
-            else
-            {
-                // Si no se puede interactuar
-                // Debug.Log("No se puede interactuar con este tile");
-            }
-        }
-    }
-    */
 
     private void HandleInteraction()
     {
@@ -346,10 +291,10 @@ public class PlayerController : MonoBehaviour
             // Debug opcional
             Debug.Log("Agua actual: " + water);
 
-            yield return new WaitForSeconds(0.1f); // Ajusta el tiempo entre incrementos
+            yield return new WaitForSeconds(0.1f); 
         }
 
-        waterFillingCoroutine = null; // Finaliza la referencia cuando se llena el agua
+        waterFillingCoroutine = null; 
         Debug.Log("Barra de agua completamente rellenada.");
     }
 
@@ -359,12 +304,11 @@ public class PlayerController : MonoBehaviour
     }
 
     private Vector3Int MapPositionInteractiveTilemap() {
-          //TODO: Por ahora solo mapea a los tiles de cultivo fijos, generalizar
           double posx = transform.position.x;
           double posy = transform.position.y;
           double posx_f = 0;
           double posy_f = 0;
-          double posx_i = -2.554902; //Medida reportada por el player, esquina inferior 
+          double posx_i = -2.554902; 
           double posy_i = -2.858896;
           double tileLength = 0.64; 
 
@@ -405,11 +349,11 @@ public class PlayerController : MonoBehaviour
                 direction,
                 movementFilter,
                 castCollisions,
-                currentSpeed * Time.fixedDeltaTime + collisionOffset // Cambiado aquí
+                currentSpeed * Time.fixedDeltaTime + collisionOffset 
             );
             if (count == 0)
             {
-                rb.MovePosition(rb.position + direction * currentSpeed * Time.fixedDeltaTime); // Cambiado aquí
+                rb.MovePosition(rb.position + direction * currentSpeed * Time.fixedDeltaTime); 
                 return true;
             }
             else
@@ -465,13 +409,10 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("attack");
     }
 
-    //Si no queremos que pueda caminar mientras ataque o riegue en nuestro caso
     public void LockMovement() {
-        //print("Lock movement");
         canMove = false;
     }
     public void UnlockMovement() {
-        //print("Unlock movement");
         canMove = true;
     }
 
@@ -504,19 +445,13 @@ public class PlayerController : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            // Convertir la posición del mouse a coordenadas del mundo
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             Vector2 mousePosition2D = new Vector2(mousePosition.x, mousePosition.y);
 
-            // Hacer un raycast desde la posición del mouse
             RaycastHit2D hit = Physics2D.Raycast(mousePosition2D, Vector2.zero);
 
             if (hit.collider != null)
             {
-                // El raycast ha chocado con algo que tiene un collider
-                //Debug.Log("Hiciste clic en el objeto: " + hit.collider.name);
-
-                // Aquí puedes añadir cualquier lógica que quieras realizar al hacer clic en el objeto
                 InteractWithObject(hit.collider.gameObject);
             }
         }
@@ -524,11 +459,8 @@ public class PlayerController : MonoBehaviour
 
     private void InteractWithObject(GameObject clickedObject)
     {
-        // Añade la lógica para interactuar con el objeto clickeado
-        //Debug.Log("Interactuando con " + clickedObject.name);
         if (clickedObject.CompareTag("Grave"))
         {
-            // Aquí reproducimos el sonido que deseas (por ejemplo, "tombSound")
             if (audioSource != null && graveSound != null)
             {
                 audioSource.PlayOneShot(graveSound);  

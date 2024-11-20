@@ -8460,7 +8460,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1406658754}
   - {fileID: 8644497876879432921}
   - {fileID: 964239108}
   - {fileID: 324697629}
@@ -56954,6 +56953,7 @@ Transform:
   m_LocalScale: {x: 1.329, y: 1.329, z: 1.329}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1406658754}
   - {fileID: 712747864}
   m_Father: {fileID: 1210395919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80670,6 +80670,7 @@ GameObject:
   - component: {fileID: 1406658757}
   - component: {fileID: 1406658756}
   - component: {fileID: 1406658755}
+  - component: {fileID: 1406658758}
   m_Layer: 0
   m_Name: Raul
   m_TagString: Untagged
@@ -80686,11 +80687,11 @@ Transform:
   m_GameObject: {fileID: 1406658753}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.039, y: 9.168, z: 0.05206299}
-  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
+  m_LocalPosition: {x: 0.32731372, y: 0.018058818, z: 0.03917456}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 210189038}
+  m_Father: {fileID: 1077464982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1406658755
 MonoBehaviour:
@@ -80743,7 +80744,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 19.2, y: 10.8}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 19.2, y: 10.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -80793,7 +80794,7 @@ SpriteRenderer:
   m_SortingLayerID: 1432924239
   m_SortingLayer: 1
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 99679f00b38639a439ab89a201cd5cfc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6750dff8e2f56af44a19a64fd6ceb276, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -80804,6 +80805,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1406658758
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406658753}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc4ad8176378428428f79c97e0e0c4d1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1411631899
 PrefabInstance:
   m_ObjectHideFlags: 0
