@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: harvested
+  m_Name: onionGrowth1
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 4f7d249bdc446874187115e8b1ea8cd9, type: 3}
+      value: {fileID: 1192176981, guid: 04b0f1f4589181c479c3d4bcd8f6b464, type: 3}
+    - time: 5
+      value: {fileID: -98522942, guid: 17dd189faf68d99408ab4a42a80eae30, type: 3}
+    - time: 10
+      value: {fileID: -552839723, guid: 12a369c57c83c2444ae333b8c8c1c065, type: 3}
+    - time: 15
+      value: {fileID: -279721893, guid: c19c219d186d68147a26e6d364a817d0, type: 3}
+    - time: 20
+      value: {fileID: -279721893, guid: c19c219d186d68147a26e6d364a817d0, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,13 +52,17 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 4f7d249bdc446874187115e8b1ea8cd9, type: 3}
+    - {fileID: 1192176981, guid: 04b0f1f4589181c479c3d4bcd8f6b464, type: 3}
+    - {fileID: -98522942, guid: 17dd189faf68d99408ab4a42a80eae30, type: 3}
+    - {fileID: -552839723, guid: 12a369c57c83c2444ae333b8c8c1c065, type: 3}
+    - {fileID: -279721893, guid: c19c219d186d68147a26e6d364a817d0, type: 3}
+    - {fileID: -279721893, guid: c19c219d186d68147a26e6d364a817d0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 21
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -69,4 +81,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: StartGrow1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 20
+    functionName: EndGrow1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

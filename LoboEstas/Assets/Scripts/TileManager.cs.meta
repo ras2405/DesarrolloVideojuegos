@@ -3,7 +3,13 @@ guid: 07746d21c28cb894fb92549b3adbbd90
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - interactableMap: {instanceID: 0}
+  - hiddenInteractableTile: {instanceID: 0}
+  - interactableTile: {instanceID: 0}
+  - cropGrowingPrefab: {fileID: 8374933888973637223, guid: 9cebbecfa240a3b40b61c21fdd67966f, type: 3}
+  - potatoGrowingPrefab: {fileID: 3552862188797963964, guid: 4d363141a9ae6374d87a63f88eb2e4c9, type: 3}
+  - onionGrowingPrefab: {fileID: 6777079773935194465, guid: 127e36346197a68478c859d9a53a77cf, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
