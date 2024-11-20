@@ -5,18 +5,9 @@ using TMPro;
 
 public class Shop : MonoBehaviour
 {
-    public GameObject buyCarrotTemplate;
-    public GameObject buyPotatoTemplate;
-    public GameObject buyOnionTemplate;
-    public GameObject shopTemplate2;
-    public GameObject sellPotatoTemplate;
-    public GameObject sellOnionTemplate;
-
     public GameObject textPanel; 
     public TextMeshProUGUI raulText; 
-
-    public GameObject repairWindowButton;
-
+    public GameObject newShopTemplate;
     private Animator animator;
     
 
@@ -28,7 +19,7 @@ public class Shop : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         textPanel.SetActive(false);
-        Idle();
+        
     }
 
     
@@ -54,14 +45,8 @@ public class Shop : MonoBehaviour
         {
             playerInZone = false;
             HideRaulText();
-            buyCarrotTemplate.gameObject.SetActive(false);
-            shopTemplate2.gameObject.SetActive(false);
-            buyPotatoTemplate.gameObject.SetActive(false);
-            sellPotatoTemplate.gameObject.SetActive(false);
-            buyOnionTemplate.gameObject.SetActive(false);
-            sellOnionTemplate.gameObject.SetActive(false);
-            repairWindowButton.gameObject.SetActive(false);
             textPanel.SetActive(false);
+            newShopTemplate.gameObject.SetActive(false);
             Debug.Log("Jugador ha salido de la zona.");
         }
     }
@@ -79,13 +64,7 @@ public class Shop : MonoBehaviour
     // Función que se ejecutará al presionar 'E' en la zona
     private void ExecuteAction()
     {
-        buyCarrotTemplate.gameObject.SetActive(true);
-        shopTemplate2.gameObject.SetActive(true);
-        buyPotatoTemplate.gameObject.SetActive(true);
-        sellPotatoTemplate.gameObject.SetActive(true);
-        buyOnionTemplate.gameObject.SetActive(true);
-        sellOnionTemplate.gameObject.SetActive(true);
-        repairWindowButton.gameObject.SetActive(true);
+        newShopTemplate.gameObject.SetActive(true);
     }
 
     private void ShowRaulText()

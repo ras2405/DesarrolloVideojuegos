@@ -17,8 +17,12 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
     [SerializeField] Item potato;
     [SerializeField] Item onion;
 
-    [SerializeField] public  GameObject price;
-    public GameObject brokenWindow;
+    [SerializeField] Item rock;
+    [SerializeField] Item stick;
+
+    public GameObject reinforcedWindow;
+
+    public GameObject reinforcedDoor;
 
     private MoneyController moneyController;
 
@@ -45,9 +49,9 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log("Buy Carrot seed function");
         int count =1;
-        if(moneyController.currentMoney >= 20)
+        if(moneyController.currentMoney >= 10)
         {
-         moneyController.Sub(20);
+         moneyController.Sub(10);
          GameManager.instance.inventoryContainer.Add(carrotSeed,count);
         }
        
@@ -56,9 +60,9 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
     public void BuyPotato()
     {
         int count = 1;
-        if(moneyController.currentMoney >= 40)
+        if(moneyController.currentMoney >= 50)
         {
-         moneyController.Sub(40);
+         moneyController.Sub(50);
          GameManager.instance.inventoryContainer.Add(potatoSeed,count);
         }
     }
@@ -67,34 +71,24 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log("comprar cebolla");
         int count =1;
-        if(moneyController.currentMoney >= 60)
+        if(moneyController.currentMoney >= 100)
         {
-         moneyController.Sub(60);
+         moneyController.Sub(100);
          GameManager.instance.inventoryContainer.Add(onionSeed,count);
         } 
     }
 
     public void SellCarrot()
     {
-        int count =1;
-        this.priceText = price.GetComponent<Text>();
-        Debug.Log(priceText);
-        string priceString = priceText.text.ToString();
-        int priceOfItem = Int32.Parse(priceString);
         if(GameManager.instance.inventoryContainer.Remove(carrot))
         {
-         moneyController.Add(priceOfItem);
+         moneyController.Add(20);
         }
         
     }
 
     public void SellPotato()
     {
-       int count =1;
-        this.priceText = price.GetComponent<Text>();
-        Debug.Log(priceText);
-        string priceString = priceText.text.ToString();
-        int priceOfItem = Int32.Parse(priceString);
         if(GameManager.instance.inventoryContainer.Remove(potato))
         {
          moneyController.Add(80);
@@ -103,19 +97,44 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
 
     public void SellOnion()
     {
-        int count =1;
-        this.priceText = price.GetComponent<Text>();
-        Debug.Log(priceText);
-        string priceString = priceText.text.ToString();
-        int priceOfItem = Int32.Parse(priceString);
         if(GameManager.instance.inventoryContainer.Remove(onion))
         {
-         moneyController.Add(120);
+         moneyController.Add(250);
         } 
     }
 
-    public void RepairWindow()
+    public void SellStone()
     {
-        brokenWindow.gameObject.SetActive(false);
+        if(GameManager.instance.inventoryContainer.Remove(rock))
+        {
+         moneyController.Add(10);
+        } 
     }
+
+    public void SellStick()
+    {
+        if(GameManager.instance.inventoryContainer.Remove(stick))
+        {
+         moneyController.Add(10);
+        } 
+    }
+
+    public void BuyWindowDefense()
+    {
+        if(moneyController.currentMoney >= 250)
+        {
+         moneyController.Sub(250);
+         reinforcedWindow.gameObject.SetActive(true);
+        } 
+    }
+
+    public void BuyDoorDefense()
+    {
+        if(moneyController.currentMoney >= 300)
+        {
+         moneyController.Sub(300);
+         reinforcedDoor.gameObject.SetActive(true);
+        } 
+    }
+
 }

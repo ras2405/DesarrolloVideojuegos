@@ -20,7 +20,7 @@ public class Tree : MonoBehaviour
         {
             int playerSortingOrder = playerTransform.GetComponent<SpriteRenderer>().sortingOrder;
 
-            // Verificamos si el jugador está por encima o por debajo del árbol
+            // Verificamos si el jugador estï¿½ por encima o por debajo del ï¿½rbol
             bool isPlayerAbove = playerBase.position.y < treeBase.position.y;
            // print("isPlayerAbove: " + isPlayerAbove);
            // print("posicion y del arbol: " + treeBase.position.y
@@ -28,25 +28,25 @@ public class Tree : MonoBehaviour
 
           //  print("order arbol: "+ spriteRenderer.sortingOrder
            //     + " order jugador: " + playerSortingOrder);
-            // Modificamos el sortingOrder según las condiciones dadas
+            // Modificamos el sortingOrder segï¿½n las condiciones dadas
             if (isPlayerAbove)
             {
-              //  print("El árbol está detrás del jugador");
-                // El árbol está detrás del jugador
+              //  print("El ï¿½rbol estï¿½ detrï¿½s del jugador");
+                // El ï¿½rbol estï¿½ detrï¿½s del jugador
                 spriteRenderer.sortingOrder = playerSortingOrder - 1;
                 //if (spriteRenderer.sortingOrder < playerSortingOrder)
               //  {
-              //      spriteRenderer.sortingOrder = playerSortingOrder - 1; // Colocamos el árbol detrás
+              //      spriteRenderer.sortingOrder = playerSortingOrder - 1; // Colocamos el ï¿½rbol detrï¿½s
                // }
             }
             else
             {
-               // print("El árbol está delante del jugador");
+               // print("El ï¿½rbol estï¿½ delante del jugador");
                 spriteRenderer.sortingOrder = playerSortingOrder + 1;
-                // El árbol está delante del jugador
+                // El ï¿½rbol estï¿½ delante del jugador
                 // if (spriteRenderer.sortingOrder >= playerSortingOrder)
                 //  {
-                //spriteRenderer.sortingOrder = playerSortingOrder + 1; // Colocamos el árbol delante
+                //spriteRenderer.sortingOrder = playerSortingOrder + 1; // Colocamos el ï¿½rbol delante
                // }
             }
         }
