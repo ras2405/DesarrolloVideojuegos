@@ -18,6 +18,10 @@ public class CycleDayController : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetInt("CurrentDay", currentDay);
+        PlayerPrefs.SetFloat("GameTimeInMinutes", gameTimeInMinutes);
+        PlayerPrefs.Save();
+
         // Cargar el día desde PlayerPrefs
         LoadCurrentDay();
 

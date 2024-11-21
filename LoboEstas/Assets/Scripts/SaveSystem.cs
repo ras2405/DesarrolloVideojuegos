@@ -71,10 +71,14 @@ public class SaveSystem : MonoBehaviour
 
         // Iniciar el juego en la escena principal
         StartCoroutine(LoadGameSceneAndRestoreData(newData));*/
+
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("CurrentDay", 1); // Día 1
         PlayerPrefs.SetFloat("GameTimeInMinutes", 300f);
         PlayerPrefs.Save();
+
+        CycleDayController.currentDay = 1;
+        CycleDayController.gameTimeInMinutes = 300f;
 
         //TODO: Limpiar inventario
 
