@@ -9,8 +9,9 @@ public class InventoryToolbar : MonoBehaviour
 
    private void Start()
    {
-    SetIndex();
-    Show();
+        ResetInventory();
+        SetIndex();
+        Show();
    }
     private void OnEnable()
     {
@@ -81,6 +82,7 @@ public class InventoryToolbar : MonoBehaviour
         foreach (var slot in inventory.slots)
         {
             slot.item = null; // Eliminar el �tem de cada slot
+            slot.count = 0;
         }
 
         // Limpiar la interfaz de la barra de herramientas
