@@ -59,19 +59,16 @@ public class SaveSystem : MonoBehaviour
     public void NewGameButton()
     {
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("CurrentDay", 1); // Día 1
+        PlayerPrefs.SetInt("CurrentDay", 1);
         PlayerPrefs.SetFloat("GameTimeInMinutes", 300f);
         PlayerPrefs.Save();
 
         CycleDayController.currentDay = 1;
         CycleDayController.gameTimeInMinutes = 300f;
 
-        //TODO: Limpiar inventario
-        //InventoryToolbar inventoryToolbar = FindObjectOfType<InventoryToolbar>(); // Buscar el script de inventario en la escena
         if (inventory != null)
         {
-            Debug.Log("HOLA");
-            inventory.ResetInventory(); // Llamar al método que limpia el inventario
+            inventory.ResetInventory();
         }
 
         SceneManager.LoadSceneAsync("Main");
