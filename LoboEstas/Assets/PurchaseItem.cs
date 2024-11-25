@@ -22,7 +22,11 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
 
     public GameObject reinforcedWindow;
 
+    public GameObject brokenWindow;
+
     public GameObject reinforcedDoor;
+
+    public GameObject brokenDoor;
 
     private MoneyController moneyController;
 
@@ -125,6 +129,7 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         {
          moneyController.Sub(250);
          reinforcedWindow.gameObject.SetActive(true);
+         brokenWindow.gameObject.SetActive(false);
         } 
     }
 
@@ -134,7 +139,9 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         {
          moneyController.Sub(300);
          reinforcedDoor.gameObject.SetActive(true);
+         brokenDoor.gameObject.SetActive(false);
         } 
     }
+
 
 }

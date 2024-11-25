@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class UI_Shop : MonoBehaviour
 {
-    private Transform container;
-
-    public Transform newShop;
+    
 
     public GameObject newSellShop;
 
     public GameObject newBuyShop;
 
+    public GameObject newShopTemplate;
+
     private void Awake()
     {
-        container = transform.Find("Container");
-        newShop = container.transform.Find("NewShopTemplate");
-        newShop.gameObject.SetActive(false);
+        newShopTemplate.gameObject.SetActive(false);
     }
 
     public void SwitchToSell()
