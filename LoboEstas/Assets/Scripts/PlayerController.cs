@@ -245,23 +245,27 @@ public class PlayerController : MonoBehaviour
     return false;
    }
 
-   public void EatCarrot()
-   {
-    if(inventory.selectedItem != null)
+    public void EatCarrot()
     {
-         if(inventory.selectedItem.tag == "Carrot" && Input.GetMouseButtonDown(1))
-         {
-                eating = true;
-                animator.SetBool("eating", eating); 
-                inventory.Remove(inventory.selectedItem);
-                if(stamina > 60)stamina = 100;
-                else{
-                    stamina += 40;
+        if (!isRunning)
+        {
+            if (inventory.selectedItem != null)
+            {
+                if (inventory.selectedItem.tag == "Carrot" && Input.GetMouseButtonDown(1))
+                {
+                    eating = true;
+                    animator.SetBool("eating", eating);
+                    inventory.Remove(inventory.selectedItem);
+                    if (stamina > 60) stamina = 100;
+                    else
+                    {
+                        stamina += 40;
+                    }
+                    staminaBar.fillAmount = stamina / maxStamina;
                 }
-                staminaBar.fillAmount = stamina / maxStamina;
+            }
         }
     }
-   }
 
     /*public void FillWater()
     {
@@ -397,7 +401,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("WaterZone"))
         {
@@ -408,8 +412,21 @@ public class PlayerController : MonoBehaviour
             UpdateWaterZoneStatus();
             Debug.Log("Entraste en una zona de agua.");
         }
-    }
+    }*/
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("WaterZone"))
+        {
+            if (!waterZones.Contains(other))
+            {
+                waterZones.Add(other); // Agrega la zona si no está
+            }
+            UpdateWaterZoneStatus(); // Actualiza el estado global
+            Debug.Log($"Entraste en una zona de agua. Total de zonas activas: {waterZones.Count}");
+        }
+    }
+    /*
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("WaterZone"))
@@ -421,13 +438,33 @@ public class PlayerController : MonoBehaviour
             UpdateWaterZoneStatus();
             Debug.Log("Saliste de la zona de agua.");
         }
+    }*/
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("WaterZone"))
+        {
+            if (waterZones.Contains(other))
+            {
+                waterZones.Remove(other); // Elimina la zona si está presente
+            }
+            UpdateWaterZoneStatus(); // Actualiza el estado global
+            Debug.Log($"Saliste de una zona de agua. Total de zonas activas: {waterZones.Count}");
+        }
     }
 
-    private void UpdateWaterZoneStatus()
+
+    /*private void UpdateWaterZoneStatus()
     {
         isInWaterZone = waterZones.Count > 0;
     }
+    */
 
+    private void UpdateWaterZoneStatus()
+    {
+        isInWaterZone = waterZones.Count > 0; // Si hay al menos una zona, está en agua
+        Debug.Log($"Estado actual de agua: {isInWaterZone}");
+    }
 
     void OnMove(InputValue movementValue)
     {
