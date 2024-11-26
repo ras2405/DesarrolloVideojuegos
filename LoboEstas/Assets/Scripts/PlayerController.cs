@@ -49,7 +49,9 @@ public class PlayerController : MonoBehaviour
     private bool isInWaterZone = false;
     public Image waterBar;
     public float water, maxWater;
-    public float waterCost;
+    public float waterCost; 
+    private bool collectingWater = false;
+    private bool eating = false;
 
 
     // Start is called before the first frame update
@@ -71,6 +73,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        eating = false;
+        animator.SetBool("eating", eating);
         EatCarrot();
         if(Keyboard.current.leftShiftKey.isPressed && stamina > 0)
         {
@@ -247,20 +251,23 @@ public class PlayerController : MonoBehaviour
     {
          if(inventory.selectedItem.tag == "Carrot" && Input.GetMouseButtonDown(1))
          {
-            inventory.Remove(inventory.selectedItem);
-            if(stamina > 60)stamina = 100;
-            else{
-                stamina += 40;
-            }
-            staminaBar.fillAmount = stamina / maxStamina;
+                eating = true;
+                animator.SetBool("eating", eating); 
+                inventory.Remove(inventory.selectedItem);
+                if(stamina > 60)stamina = 100;
+                else{
+                    stamina += 40;
+                }
+                staminaBar.fillAmount = stamina / maxStamina;
         }
     }
    }
 
-    public void FillWater()
+    /*public void FillWater()
     {
         if (isInWaterZone && Keyboard.current.eKey.isPressed) // Presionar E en la zona
         {
+            animator.SetTrigger("collectingWater");
             if (waterFillingCoroutine == null) // Evitar iniciar múltiples corrutinas
             {
                 waterFillingCoroutine = StartCoroutine(FillWaterGradually());
@@ -274,7 +281,31 @@ public class PlayerController : MonoBehaviour
                 waterFillingCoroutine = null;
             }
         }
+    }*/
+
+    public void FillWater()
+    {
+        if (isInWaterZone && Keyboard.current.eKey.isPressed) // Presionar E en la zona
+        {
+            collectingWater = true; // Comienza a recoger agua
+            animator.SetBool("collectingWater", collectingWater);
+            if (waterFillingCoroutine == null) // Evitar iniciar múltiples corrutinas
+            {
+                waterFillingCoroutine = StartCoroutine(FillWaterGradually());
+            }
+        }
+        else if (Keyboard.current.eKey.wasReleasedThisFrame) // Soltar la tecla E
+        {
+            if (waterFillingCoroutine != null)
+            {
+                StopCoroutine(waterFillingCoroutine);
+                waterFillingCoroutine = null;
+            }
+            collectingWater = false; // Detiene la acción de recoger agua
+            animator.SetBool("collectingWater", collectingWater);
+        }
     }
+
 
     private IEnumerator FillWaterGradually()
     {
@@ -287,7 +318,6 @@ public class PlayerController : MonoBehaviour
             }
 
             waterBar.fillAmount = water / maxWater; // Actualiza el gráfico de la barra
-
             // Debug opcional
             Debug.Log("Agua actual: " + water);
 
