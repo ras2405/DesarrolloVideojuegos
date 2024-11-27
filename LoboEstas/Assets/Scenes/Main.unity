@@ -46985,10 +46985,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableMap: {fileID: 1834535053}
   hiddenInteractableTile: {fileID: 11400000, guid: 2336dd68d6e622e4fa7c280507101773, type: 2}
+  wateredInteractableTile: {fileID: 11400000, guid: 28fa4cf66af9caa43bc7788e8e141f3b, type: 2}
   interactableTile: {fileID: 11400000, guid: 9cdf7fe1554be8b4aa08e70db681cedf, type: 2}
   carrotGrowingPrefab: {fileID: 8374933888973637223, guid: 9cebbecfa240a3b40b61c21fdd67966f, type: 3}
   potatoGrowingPrefab: {fileID: 3552862188797963964, guid: 4d363141a9ae6374d87a63f88eb2e4c9, type: 3}
   onionGrowingPrefab: {fileID: 6777079773935194465, guid: 127e36346197a68478c859d9a53a77cf, type: 3}
+  wateredTileDuration: 5
 --- !u!1 &530186321
 GameObject:
   m_ObjectHideFlags: 0
