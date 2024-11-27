@@ -15,8 +15,9 @@ public class HouseInteraction : MonoBehaviour
     private bool breakWindow = true;
     private bool canInteract = false; // Si el jugador puede interactuar con la casa
 
+    public AudioSource audioSource;
+    public AudioClip doorSound;
 
- 
 
     void Update()
     {
@@ -30,6 +31,10 @@ public class HouseInteraction : MonoBehaviour
             else
             {
                 StartCoroutine(TeleportPlayer(forestPos));
+            }
+            if (audioSource != null && doorSound != null)
+            {
+                audioSource.PlayOneShot(doorSound);
             }
         }
         if(CycleDayController.currentDay == 2)
@@ -49,6 +54,10 @@ public class HouseInteraction : MonoBehaviour
 
     void EnterHouse()
     {
+        if (audioSource != null && doorSound != null)
+        {
+            audioSource.PlayOneShot(doorSound);
+        }
         insideHouse = true;
         TeleportPlayer(housePos);
 
@@ -57,6 +66,10 @@ public class HouseInteraction : MonoBehaviour
 
     void ExitHouse()
     {
+        if (audioSource != null && doorSound != null)
+        {
+            audioSource.PlayOneShot(doorSound);
+        }
         insideHouse = false;
 
         TeleportPlayer(forestPos);

@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource audioSource; 
     public AudioClip wateringSound; 
     public AudioClip graveSound;
+    public AudioClip collectingSound;
+    public AudioClip sowSound;
 
     public GameObject lightNoLamp;
     public GameObject lightWithLamp;
@@ -210,6 +212,10 @@ public class PlayerController : MonoBehaviour
                 else if (GameManager.instance.tileManager.IsInteractable(position) && SeedSelected())
                 {
                     Debug.Log("Se intenta plantar inventory.selectedItem.name " + inventory.selectedItem.name);
+                    if (audioSource != null && sowSound != null)
+                    {
+                        audioSource.PlayOneShot(sowSound);
+                    }
                     animator.SetTrigger("pigSow");
                     GameManager.instance.tileManager.SetInteracted(position, inventory.selectedItem.name);
                     inventory.RemoveSeed();
@@ -478,6 +484,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!isRunning)
         {
+            if (audioSource != null && collectingSound != null)
+            {
+                audioSource.PlayOneShot(collectingSound);
+            }
             animator.SetBool("isMovingR", false);
             animator.SetTrigger("pigCollect");
             LockMovement();
