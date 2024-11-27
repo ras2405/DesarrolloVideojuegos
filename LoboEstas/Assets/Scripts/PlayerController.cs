@@ -289,24 +289,28 @@ public class PlayerController : MonoBehaviour
 
     public void FillWater()
     {
-        if (isInWaterZone && Keyboard.current.eKey.isPressed) // Presionar E en la zona
+        if (isInWaterZone)
         {
-            collectingWater = true; // Comienza a recoger agua
-            animator.SetBool("collectingWater", collectingWater);
-            if (waterFillingCoroutine == null) // Evitar iniciar múltiples corrutinas
+            if (Keyboard.current.eKey.isPressed) // Presionar E en la zona
             {
-                waterFillingCoroutine = StartCoroutine(FillWaterGradually());
+                collectingWater = true; // Comienza a recoger agua
+                animator.SetBool("collectingWater", collectingWater);
+                if (waterFillingCoroutine == null) // Evitar iniciar múltiples corrutinas
+                {
+                    waterFillingCoroutine = StartCoroutine(FillWaterGradually());
+                }
             }
-        }
-        else if (Keyboard.current.eKey.wasReleasedThisFrame) // Soltar la tecla E
-        {
-            if (waterFillingCoroutine != null)
+            else if (Keyboard.current.eKey.wasReleasedThisFrame) // Soltar la tecla E
             {
-                StopCoroutine(waterFillingCoroutine);
-                waterFillingCoroutine = null;
+                if (waterFillingCoroutine != null)
+                {
+                    StopCoroutine(waterFillingCoroutine);
+                    waterFillingCoroutine = null;
+                }
+                collectingWater = false; // Detiene la acción de recoger agua
+                animator.SetBool("collectingWater", collectingWater);
+                UnlockMovement();
             }
-            collectingWater = false; // Detiene la acción de recoger agua
-            animator.SetBool("collectingWater", collectingWater);
         }
     }
 
