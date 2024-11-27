@@ -7,13 +7,13 @@ public class bhuoSound : MonoBehaviour
     public float triggerDistance = 5f; // Distancia a la que se puede activar el sonido
     public float cooldownTime = 120f; // Tiempo de espera en segundos (2 minutos)
     public float fadeDistance = 10f; // Distancia máxima a la que el volumen será 0
-    private Transform player; // Referencia al jugador
+    public Transform player; // Referencia al jugador
     private AudioSource audioSource; // AudioSource del árbol
     private float lastPlayTime = -Mathf.Infinity; // Tiempo de la última reproducción
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player").transform; // Encuentra al jugador por su tag
+        //player = GameObject.FindWithTag("Player").transform; // Encuentra al jugador por su tag
         audioSource = GetComponent<AudioSource>(); // Obtén el AudioSource del árbol
         audioSource.loop = false; // Asegúrate de que no sea en loop
     }

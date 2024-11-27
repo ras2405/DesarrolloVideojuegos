@@ -47870,7 +47870,7 @@ GameObject:
   - component: {fileID: 566937586}
   - component: {fileID: 566937585}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: BhuoSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47999,9 +47999,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3c66caabca8ac4aa275359a8a59466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerDistance: 5
+  triggerDistance: 3
   cooldownTime: 120
   fadeDistance: 10
+  player: {fileID: 1271822863}
 --- !u!1001 &568062674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52809,9 +52810,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e5e2d7e7254e743a02cf6177221935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerDistance: 1
+  triggerDistance: 0.8
   cooldownTime: 120
   fadeDistance: 10
+  player: {fileID: 1271822863}
 --- !u!4 &832810160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4494705525898334934, guid: 8d5ddc4e0f6d3664c8d907b8962c2545, type: 3}
@@ -92608,6 +92610,7 @@ MonoBehaviour:
   triggerDistance: 3
   cooldownTime: 120
   fadeDistance: 10
+  player: {fileID: 1271822863}
 --- !u!164 &2032592712
 AudioReverbFilter:
   m_ObjectHideFlags: 0
