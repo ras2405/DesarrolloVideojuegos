@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b528121a3e2f1ea45b31f28edf528161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onCollectEffect: {fileID: 9163842254569548763, guid: a64312fe794124baa923bcca22ea4631, type: 3}
+  onCollectEffect: {fileID: 9163842254569548763, guid: 0e62c4d669c52425fa7ad6a0a297dd84, type: 3}
   carrotPrefab: {fileID: 0}
   item: {fileID: 11400000, guid: ae603e1aff8916042aee5657ff1fedbc, type: 2}
   count: 1
@@ -94961,6 +94961,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 7018555420945116562, guid: dfba726e200965546906397020dfbaf7, type: 3}
+      propertyPath: onCollectEffect
+      value: 
+      objectReference: {fileID: 9163842254569548763, guid: a64312fe794124baa923bcca22ea4631, type: 3}
     - target: {fileID: 7110948541851282258, guid: dfba726e200965546906397020dfbaf7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.759051
