@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b528121a3e2f1ea45b31f28edf528161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onCollectEffect: {fileID: 9163842254569548763, guid: 0e62c4d669c52425fa7ad6a0a297dd84, type: 3}
+  onCollectEffect: {fileID: 9163842254569548763, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
   carrotPrefab: {fileID: 0}
   item: {fileID: 11400000, guid: ae603e1aff8916042aee5657ff1fedbc, type: 2}
   count: 1
@@ -1779,6 +1779,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1202833073}
+  - {fileID: 1700773944}
   m_Father: {fileID: 1271822863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &154368217
@@ -45302,6 +45303,67 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &434972970
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 147495506}
+    m_Modifications:
+    - target: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.57400006
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569548763, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_Name
+      value: VFX_Splatter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163842254569548763, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
 --- !u!1 &436321206
 GameObject:
   m_ObjectHideFlags: 0
@@ -85492,6 +85554,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1700773944 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9163842254569249885, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
+  m_PrefabInstance: {fileID: 434972970}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1707718364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5649458971951176112, guid: 2de8ae35a99cf244f90d09cad2590dd4, type: 3}
@@ -87524,7 +87591,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.38
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000004fb06855

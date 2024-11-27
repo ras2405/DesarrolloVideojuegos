@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b528121a3e2f1ea45b31f28edf528161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onCollectEffect: {fileID: 9163842254569548763, guid: 0e62c4d669c52425fa7ad6a0a297dd84, type: 3}
+  onCollectEffect: {fileID: 9163842254569548763, guid: 919783951ffab4c9ea8860c54de9543c, type: 3}
   carrotPrefab: {fileID: 0}
   item: {fileID: 11400000, guid: ae603e1aff8916042aee5657ff1fedbc, type: 2}
   count: 1
