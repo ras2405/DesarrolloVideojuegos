@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-//using UnityEngine.UIElements;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -53,8 +52,6 @@ public class PlayerController : MonoBehaviour
     private bool collectingWater = false;
     private bool eating = false;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         if (GameManager.instance == null)
@@ -102,7 +99,6 @@ public class PlayerController : MonoBehaviour
             if (contadorChocadas <= 0)
             {
                 animator.SetBool("isChocandoManos", true);
-                // Reinicia el contador
                 contadorChocadas = tiempoEntreChocadas;
             }
             else
@@ -113,7 +109,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("isChocandoManos", false);
-            contadorChocadas = tiempoEntreChocadas; // Reinicia el contador
+            contadorChocadas = tiempoEntreChocadas;
         }
 
         if (HasLamp())
@@ -163,14 +159,12 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isMovingR", success);
             animator.SetBool("isRunning", isRunning);
 
-            // Reproducir sonido de pasos
             if (success && stepTimer >= stepCooldown)
             {
                 audioSource.PlayOneShot(footstepsSound);
                 stepTimer = 0; 
             }
 
-            // Flip sprites
             spriteRenderer.flipX = movementInput.x < 0;
         }
         else
@@ -192,17 +186,15 @@ public class PlayerController : MonoBehaviour
                 if (GameManager.instance.tileManager.IsPlanted(position))
                 {
 
-                    if (water > waterCost) // Asegúrate de que haya suficiente agua
+                    if (water > waterCost) 
                     {
                         animator.SetTrigger("watering");
                         GameManager.instance.tileManager.WaterPlant(position);
 
-                        // Disminuir el agua
                         water -= waterCost;
-                        if (water < 0) water = 0; // Evita valores negativos
+                        if (water < 0) water = 0; 
                         waterBar.fillAmount = water / maxWater;
 
-                        // Sonido de regar
                         if (audioSource != null && wateringSound != null)
                         {
                             audioSource.PlayOneShot(wateringSound);
@@ -219,13 +211,6 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.Log("Se intenta plantar inventory.selectedItem.name " + inventory.selectedItem.name);
                     animator.SetTrigger("pigSow");
-                    /*  if (inventory.selectedItem.name == "OnionSeed") {
-                          animator.SetTrigger("pigSow");
-                      } else if (inventory.selectedItem.name == "CarrotSeed") {
-                          animator.SetTrigger("pigSow");
-                      } else if (inventory.selectedItem.name == "PotatoSeed") {
-                          animator.SetTrigger("pigSow");
-                      }*/
                     GameManager.instance.tileManager.SetInteracted(position, inventory.selectedItem.name);
                     inventory.RemoveSeed();
                     Debug.Log("Se planta la planta xD " + inventory.selectedItem.name);
@@ -267,47 +252,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*public void FillWater()
-    {
-        if (isInWaterZone && Keyboard.current.eKey.isPressed) // Presionar E en la zona
-        {
-            animator.SetTrigger("collectingWater");
-            if (waterFillingCoroutine == null) // Evitar iniciar múltiples corrutinas
-            {
-                waterFillingCoroutine = StartCoroutine(FillWaterGradually());
-            }
-        }
-        else if (Keyboard.current.eKey.wasReleasedThisFrame) // Soltar la tecla E
-        {
-            if (waterFillingCoroutine != null)
-            {
-                StopCoroutine(waterFillingCoroutine);
-                waterFillingCoroutine = null;
-            }
-        }
-    }*/
-
     public void FillWater()
     {
         if (isInWaterZone)
         {
-            if (Keyboard.current.eKey.isPressed) // Presionar E en la zona
+            if (Keyboard.current.eKey.isPressed) 
             {
-                collectingWater = true; // Comienza a recoger agua
+                collectingWater = true; 
                 animator.SetBool("collectingWater", collectingWater);
-                if (waterFillingCoroutine == null) // Evitar iniciar múltiples corrutinas
+                if (waterFillingCoroutine == null)
                 {
                     waterFillingCoroutine = StartCoroutine(FillWaterGradually());
                 }
             }
-            else if (Keyboard.current.eKey.wasReleasedThisFrame) // Soltar la tecla E
+            else if (Keyboard.current.eKey.wasReleasedThisFrame) 
             {
                 if (waterFillingCoroutine != null)
                 {
                     StopCoroutine(waterFillingCoroutine);
                     waterFillingCoroutine = null;
                 }
-                collectingWater = false; // Detiene la acción de recoger agua
+                collectingWater = false;
                 animator.SetBool("collectingWater", collectingWater);
                 UnlockMovement();
             }
@@ -319,13 +284,13 @@ public class PlayerController : MonoBehaviour
     {
         while (water < maxWater)
         {
-            water += maxWater * 0.02f; // Incremento de agua, ajusta este valor según la velocidad deseada
+            water += maxWater * 0.02f; 
             if (water > maxWater)
             {
-                water = maxWater; // Asegurar que no exceda el máximo
+                water = maxWater;
             }
 
-            waterBar.fillAmount = water / maxWater; // Actualiza el gráfico de la barra
+            waterBar.fillAmount = water / maxWater; 
             // Debug opcional
             Debug.Log("Agua actual: " + water);
 
@@ -405,44 +370,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("WaterZone"))
-        {
-            if (!waterZones.Contains(other))
-            {
-                waterZones.Add(other);
-            }
-            UpdateWaterZoneStatus();
-            Debug.Log("Entraste en una zona de agua.");
-        }
-    }*/
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("WaterZone"))
         {
             if (!waterZones.Contains(other))
             {
-                waterZones.Add(other); // Agrega la zona si no está
+                waterZones.Add(other); 
             }
-            UpdateWaterZoneStatus(); // Actualiza el estado global
+            UpdateWaterZoneStatus(); 
             Debug.Log($"Entraste en una zona de agua. Total de zonas activas: {waterZones.Count}");
         }
     }
-    /*
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("WaterZone"))
-        {
-            if (waterZones.Contains(other))
-            {
-                waterZones.Remove(other);
-            }
-            UpdateWaterZoneStatus();
-            Debug.Log("Saliste de la zona de agua.");
-        }
-    }*/
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -450,23 +389,16 @@ public class PlayerController : MonoBehaviour
         {
             if (waterZones.Contains(other))
             {
-                waterZones.Remove(other); // Elimina la zona si está presente
+                waterZones.Remove(other); 
             }
-            UpdateWaterZoneStatus(); // Actualiza el estado global
+            UpdateWaterZoneStatus(); 
             Debug.Log($"Saliste de una zona de agua. Total de zonas activas: {waterZones.Count}");
         }
     }
 
-
-    /*private void UpdateWaterZoneStatus()
-    {
-        isInWaterZone = waterZones.Count > 0;
-    }
-    */
-
     private void UpdateWaterZoneStatus()
     {
-        isInWaterZone = waterZones.Count > 0; // Si hay al menos una zona, está en agua
+        isInWaterZone = waterZones.Count > 0; 
         Debug.Log($"Estado actual de agua: {isInWaterZone}");
     }
 
@@ -490,7 +422,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 GetPosition()
     {
         print("GetPosition: " + transform.position);
-        return transform.position;//rb.position;
+        return transform.position;
     }
 
     public void SetPosition(Vector2 position)
@@ -500,10 +432,8 @@ public class PlayerController : MonoBehaviour
 
     private void InitializePosition()
     {
-        // Este m�todo se llama al inicio del juego
         if (GameManager.instance != null && GameManager.instance.saveSystem != null)
         {
-            // Cargar los datos guardados
             saveData data = GameManager.instance.saveSystem.LoadGame();
             if (data != null)
             {
