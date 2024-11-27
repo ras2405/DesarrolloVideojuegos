@@ -16,6 +16,9 @@ public class TileManager : MonoBehaviour
     [SerializeField] private GameObject potatoGrowingPrefab;
     [SerializeField] private GameObject onionGrowingPrefab;
 
+    [SerializeField] private float wateredTileDuration = 5f;
+
+
     // Diccionario para rastrear si un tile ha sido plantado
     private Dictionary<Vector3Int, Crop> cropsOnTiles = new Dictionary<Vector3Int, Crop>(); //NEW
     private Dictionary<Vector3Int, (bool isPlanted, int waterCount)> tileStates = new Dictionary<Vector3Int, (bool, int)>();
@@ -105,6 +108,22 @@ public class TileManager : MonoBehaviour
     }
 
 
+    /* public void WaterPlant(Vector3Int position)
+     {
+         if (IsPlanted(position))
+         {
+             var (isPlanted, waterCount) = tileStates[position];
+             waterCount++;
+             tileStates[position] = (isPlanted, waterCount);
+             cropsOnTiles[position].WaterPlant();
+             // Debug.Log($"Planta regada en {position}. Total de riegos: {waterCount}");
+         }
+         else
+         {
+             // Debug.Log("No hay planta en este tile.");
+         }
+     }*/
+
     public void WaterPlant(Vector3Int position)
     {
         if (IsPlanted(position))
@@ -113,11 +132,15 @@ public class TileManager : MonoBehaviour
             waterCount++;
             tileStates[position] = (isPlanted, waterCount);
             cropsOnTiles[position].WaterPlant();
-            // Debug.Log($"Planta regada en {position}. Total de riegos: {waterCount}");
+
+            // Iniciar la corrutina para cambiar temporalmente el tile
+            StartCoroutine(TemporarilyChangeToWateredTile(position, 5f)); // Cambia 5f al tiempo deseado en segundos
+
+            Debug.Log($"Planta regada en {position}. Total de riegos: {waterCount}");
         }
         else
         {
-            // Debug.Log("No hay planta en este tile.");
+            Debug.Log("No hay planta en este tile.");
         }
     }
 
@@ -139,5 +162,17 @@ public class TileManager : MonoBehaviour
             //Debug.Log($"El tile en {position} esta ahora listo para ser plantado de nuevo.");
         }
     }
+    /// //////////////////////////////////////////////////////////////
 
+    private IEnumerator TemporarilyChangeToWateredTile(Vector3Int position, float duration)
+    {
+        // Cambiar a tierra húmeda
+        interactableMap.SetTile(position, wateredInteractableTile);
+
+        // Esperar el tiempo indicado
+        yield return new WaitForSeconds(duration);
+
+        // Restaurar a tierra seca
+        interactableMap.SetTile(position, hiddenInteractableTile);
+    }
 }
