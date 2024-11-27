@@ -42740,6 +42740,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: potatoGrowing
       objectReference: {fileID: 0}
+    - target: {fileID: 3552862188797963964, guid: 4d363141a9ae6374d87a63f88eb2e4c9, type: 3}
+      propertyPath: m_TagString
+      value: Crop
+      objectReference: {fileID: 0}
     - target: {fileID: 6921684983993546303, guid: 4d363141a9ae6374d87a63f88eb2e4c9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.354
@@ -47587,6 +47591,10 @@ PrefabInstance:
     - target: {fileID: 6777079773935194465, guid: 127e36346197a68478c859d9a53a77cf, type: 3}
       propertyPath: m_Name
       value: onionGrowing
+      objectReference: {fileID: 0}
+    - target: {fileID: 6777079773935194465, guid: 127e36346197a68478c859d9a53a77cf, type: 3}
+      propertyPath: m_TagString
+      value: Crop
       objectReference: {fileID: 0}
     - target: {fileID: 7661178237711276596, guid: 127e36346197a68478c859d9a53a77cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78610,7 +78618,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 27a6a652464921b479bd81e6c684f037, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.16
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -95131,6 +95139,10 @@ PrefabInstance:
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
+      propertyPath: sowSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 35a81e27f42ea0648a1864badaa48a64, type: 3}
+    - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: waterBar
       value: 
       objectReference: {fileID: 1442900571}
@@ -95182,6 +95194,10 @@ PrefabInstance:
       propertyPath: footstepsSound
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
+      propertyPath: collectingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: eb28f0e68942bf04689e33281836ca24, type: 3}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: collisionOffset
       value: 0.02

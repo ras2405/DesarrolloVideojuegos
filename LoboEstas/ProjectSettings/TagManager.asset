@@ -12,6 +12,7 @@ TagManager:
   - Grave
   - WaterZone
   - aguja
+  - Crop
   layers:
   - Default
   - TransparentFX
