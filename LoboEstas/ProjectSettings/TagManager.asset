@@ -13,6 +13,7 @@ TagManager:
   - WaterZone
   - aguja
   - Crop
+  - HouseSound
   layers:
   - Default
   - TransparentFX
