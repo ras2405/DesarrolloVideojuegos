@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class UI_Shop : MonoBehaviour
 {
-    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip selectionSound;
 
     public GameObject newSellShop;
 
@@ -19,13 +20,23 @@ public class UI_Shop : MonoBehaviour
 
     public void SwitchToSell()
     {
+        PlaySelectionSound();
         newBuyShop.gameObject.SetActive(false);
         newSellShop.gameObject.SetActive(true);
     }
 
     public void SwitchToBuy()
     {
+        PlaySelectionSound();
         newSellShop.gameObject.SetActive(false);
         newBuyShop.gameObject.SetActive(true);
+    }
+
+    private void PlaySelectionSound()
+    {
+        if (audioSource != null && selectionSound != null)
+        {
+            audioSource.PlayOneShot(selectionSound);
+        }
     }
 }
