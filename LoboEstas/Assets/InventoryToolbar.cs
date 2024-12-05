@@ -7,7 +7,10 @@ public class InventoryToolbar : MonoBehaviour
    [SerializeField] ItemContainer inventory;
    [SerializeField] List<ToolbarSlot> slots;
 
-   private void Start()
+   [SerializeField] private AudioSource audioSource; 
+   [SerializeField] private AudioClip selectionSound;
+
+    private void Start()
    {
     SetIndex();
     Show();
@@ -88,8 +91,6 @@ public class InventoryToolbar : MonoBehaviour
         {
             toolbarSlot.Clean(); // Limpiar visualmente los slots de la toolbar
         }
-
-        // Si necesitas realizar m�s acciones de reinicio, puedes hacerlo aqu�
     }
 
     public void SelectItem1()
@@ -97,6 +98,7 @@ public class InventoryToolbar : MonoBehaviour
         inventory.SelectItem(0);
         Clean();
         slots[0].SetBorder();
+        PlaySelectionSound();
     }
 
     public void SelectItem2()
@@ -104,6 +106,7 @@ public class InventoryToolbar : MonoBehaviour
         inventory.SelectItem(1);
         Clean();
         slots[1].SetBorder();
+        PlaySelectionSound();
     }
 
     public void SelectItem3()
@@ -111,6 +114,7 @@ public class InventoryToolbar : MonoBehaviour
         inventory.SelectItem(2);
         Clean();
         slots[2].SetBorder();
+        PlaySelectionSound();
     }
 
     public void SelectItem4()
@@ -118,6 +122,7 @@ public class InventoryToolbar : MonoBehaviour
         inventory.SelectItem(3);
         Clean();
         slots[3].SetBorder();
+        PlaySelectionSound();
     }
 
     public void SelectItem5()
@@ -125,6 +130,7 @@ public class InventoryToolbar : MonoBehaviour
         inventory.SelectItem(4);
         Clean();
         slots[4].SetBorder();
+        PlaySelectionSound();
     }
 
     public void SelectItem6()
@@ -132,5 +138,14 @@ public class InventoryToolbar : MonoBehaviour
         inventory.SelectItem(5);
         Clean();
         slots[5].SetBorder();
+        PlaySelectionSound();
+    }
+
+    private void PlaySelectionSound()
+    {
+        if (audioSource != null && selectionSound != null)
+        {
+            audioSource.PlayOneShot(selectionSound);
+        }
     }
 }
