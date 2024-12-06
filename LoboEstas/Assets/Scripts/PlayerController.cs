@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip graveSound;
     public AudioClip collectingSound;
     public AudioClip sowSound;
+    public AudioClip fillCanSound;
+    public AudioClip eatingSound;
 
     public GameObject lightNoLamp;
     public GameObject lightWithLamp;
@@ -244,6 +246,10 @@ public class PlayerController : MonoBehaviour
             {
                 if (inventory.selectedItem.tag == "Carrot" && Input.GetMouseButtonDown(1))
                 {
+                    if (audioSource != null && eatingSound != null)
+                    {
+                        audioSource.PlayOneShot(eatingSound);
+                    }
                     eating = true;
                     animator.SetBool("eating", eating);
                     inventory.Remove(inventory.selectedItem);
@@ -290,14 +296,18 @@ public class PlayerController : MonoBehaviour
     {
         while (water < maxWater)
         {
-            water += maxWater * 0.02f; 
+            water += maxWater * 0.05f;
+            if (audioSource != null && fillCanSound != null)
+            {
+                audioSource.PlayOneShot(fillCanSound);
+            }
             if (water > maxWater)
             {
                 water = maxWater;
             }
 
             waterBar.fillAmount = water / maxWater; 
-            // Debug opcional
+
             Debug.Log("Agua actual: " + water);
 
             yield return new WaitForSeconds(0.1f); 
