@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
-    
+
 
 public class PurchaseItem : MonoBehaviour, IPointerClickHandler
 {
@@ -30,6 +30,10 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
 
     private MoneyController moneyController;
 
+    public AudioSource audioSource;
+    public AudioClip buySellSound;
+    public AudioClip selectObjectSound;
+
     Text priceText;
 
     void Start()
@@ -52,95 +56,161 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
     public void OnRightClick()
     {
         Debug.Log("Buy Carrot seed function");
-        int count =1;
-        if(moneyController.currentMoney >= 10)
+        int count = 1;
+        if (moneyController.currentMoney >= 10)
         {
-         moneyController.Sub(10);
-         GameManager.instance.inventoryContainer.Add(carrotSeed,count);
+            ExecuteBuySound();
+            moneyController.Sub(10);
+            GameManager.instance.inventoryContainer.Add(carrotSeed, count);
         }
-       
+        else {
+            ExecuteSelectObjectSound();
+        }
+
     }
 
     public void BuyPotato()
     {
         int count = 1;
-        if(moneyController.currentMoney >= 50)
+        if (moneyController.currentMoney >= 50)
         {
-         moneyController.Sub(50);
-         GameManager.instance.inventoryContainer.Add(potatoSeed,count);
+            ExecuteBuySound();
+            moneyController.Sub(50);
+            GameManager.instance.inventoryContainer.Add(potatoSeed, count);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
         }
     }
 
     public void BuyOnion()
     {
         Debug.Log("comprar cebolla");
-        int count =1;
-        if(moneyController.currentMoney >= 100)
+        int count = 1;
+        if (moneyController.currentMoney >= 100)
         {
-         moneyController.Sub(100);
-         GameManager.instance.inventoryContainer.Add(onionSeed,count);
-        } 
+            ExecuteBuySound();
+            moneyController.Sub(100);
+            GameManager.instance.inventoryContainer.Add(onionSeed, count);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
     }
 
     public void SellCarrot()
     {
-        if(GameManager.instance.inventoryContainer.Remove(carrot))
+        if (GameManager.instance.inventoryContainer.Remove(carrot))
         {
-         moneyController.Add(20);
+            ExecuteBuySound();
+            moneyController.Add(20);
         }
-        
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
+
     }
 
     public void SellPotato()
     {
-        if(GameManager.instance.inventoryContainer.Remove(potato))
+        if (GameManager.instance.inventoryContainer.Remove(potato))
         {
-         moneyController.Add(80);
-        } 
+            ExecuteBuySound();
+            moneyController.Add(80);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
     }
 
     public void SellOnion()
     {
-        if(GameManager.instance.inventoryContainer.Remove(onion))
+        if (GameManager.instance.inventoryContainer.Remove(onion))
         {
-         moneyController.Add(250);
-        } 
+            ExecuteBuySound();
+            moneyController.Add(250);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
     }
 
     public void SellStone()
     {
-        if(GameManager.instance.inventoryContainer.Remove(rock))
+        if (GameManager.instance.inventoryContainer.Remove(rock))
         {
-         moneyController.Add(10);
-        } 
+            ExecuteBuySound();
+            moneyController.Add(10);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
     }
 
     public void SellStick()
     {
-        if(GameManager.instance.inventoryContainer.Remove(stick))
+        if (GameManager.instance.inventoryContainer.Remove(stick))
         {
-         moneyController.Add(10);
-        } 
+            ExecuteBuySound();
+            moneyController.Add(10);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
     }
 
     public void BuyWindowDefense()
     {
-        if(moneyController.currentMoney >= 250)
+        if (moneyController.currentMoney >= 250)
         {
-         moneyController.Sub(250);
-         reinforcedWindow.gameObject.SetActive(true);
-         brokenWindow.gameObject.SetActive(false);
-        } 
+            ExecuteBuySound();
+            moneyController.Sub(250);
+            reinforcedWindow.gameObject.SetActive(true);
+            brokenWindow.gameObject.SetActive(false);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
     }
 
     public void BuyDoorDefense()
     {
-        if(moneyController.currentMoney >= 300)
+        if (moneyController.currentMoney >= 300)
         {
-         moneyController.Sub(300);
-         reinforcedDoor.gameObject.SetActive(true);
-         brokenDoor.gameObject.SetActive(false);
-        } 
+            ExecuteBuySound();
+            moneyController.Sub(300);
+            reinforcedDoor.gameObject.SetActive(true);
+            brokenDoor.gameObject.SetActive(false);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
+    }
+
+    public void ExecuteBuySound() {
+
+        if (audioSource != null && buySellSound != null)
+        {
+            audioSource.PlayOneShot(buySellSound);
+        }
+    }
+
+    public void ExecuteSelectObjectSound()
+    {
+
+        if (audioSource != null && selectObjectSound != null)
+        {
+            audioSource.PlayOneShot(selectObjectSound);
+        }
     }
 
 
