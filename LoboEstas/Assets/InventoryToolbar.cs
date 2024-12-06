@@ -11,10 +11,11 @@ public class InventoryToolbar : MonoBehaviour
    [SerializeField] private AudioClip selectionSound;
 
     private void Start()
-   {
-    SetIndex();
-    Show();
-   }
+    {
+        ResetInventory();
+        SetIndex();
+        Show();
+    }
     private void OnEnable()
     {
         Show();
@@ -59,24 +60,23 @@ public class InventoryToolbar : MonoBehaviour
     }
    private void SetIndex()
    {
-    for(int i = 0; i < inventory.slots.Count; i++)
-    {
-        slots[i].SetIndex(i);
-    }
+        for(int i = 0; i < inventory.slots.Count; i++)
+        {
+            slots[i].SetIndex(i);
+        }
    }
    private void Show()
-   {
-     for(int i =0; i < inventory.slots.Count;i++)
-     {
-        if(inventory.slots[i].item == null)
-        {
-            slots[i].Clean();
+    {
+        for(int i =0; i < inventory.slots.Count;i++){
+            if(inventory.slots[i].item == null)
+            {
+                slots[i].Clean();
+            }
+            else{
+                slots[i].Set(inventory.slots[i]);
+            }
         }
-        else{
-            slots[i].Set(inventory.slots[i]);
-        }
-     }
-   }
+    }
 
     public void ResetInventory()
     {
@@ -84,6 +84,7 @@ public class InventoryToolbar : MonoBehaviour
         foreach (var slot in inventory.slots)
         {
             slot.item = null; // Eliminar el �tem de cada slot
+            slot.count = 0;
         }
 
         // Limpiar la interfaz de la barra de herramientas
