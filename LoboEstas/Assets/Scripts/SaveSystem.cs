@@ -8,6 +8,7 @@ public class SaveSystem : MonoBehaviour
 {
     // Queremos guardar la posición del Player
     PlayerController playerController;
+    [SerializeField] InventoryToolbar inventory;
 
     string savePath;
     saveData data;
@@ -57,26 +58,18 @@ public class SaveSystem : MonoBehaviour
 
     public void NewGameButton()
     {
-        // Borrar el archivo de guardado
-        /*if (File.Exists(savePath))
-        {
-            File.Delete(savePath);
-        }
-
-        // Crear una nueva partida
-        saveData newData = new saveData();
-        newData.playerPosition = Vector3.zero; // Reiniciar la posición
-        print("NewGameButton playerPos: " + newData.playerPosition);
-        SaveGame(newData);
-
-        // Iniciar el juego en la escena principal
-        StartCoroutine(LoadGameSceneAndRestoreData(newData));*/
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("CurrentDay", 1); // Día 1
+        PlayerPrefs.SetInt("CurrentDay", 1);
         PlayerPrefs.SetFloat("GameTimeInMinutes", 300f);
         PlayerPrefs.Save();
 
-        //TODO: Limpiar inventario
+        CycleDayController.currentDay = 1;
+        CycleDayController.gameTimeInMinutes = 300f;
+
+        if (inventory != null)
+        {
+            inventory.ResetInventory();
+        }
 
         SceneManager.LoadSceneAsync("Main");
     }
