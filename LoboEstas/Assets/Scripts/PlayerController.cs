@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject lightNoLamp;
     public GameObject lightWithLamp;
+    public GameObject carrotIcon;
+    public float carrotIconDuration = 3f; // Tiempo que el ícono estará visible
+    private bool isCarrotIconShown = false;
 
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
@@ -120,6 +123,10 @@ public class PlayerController : MonoBehaviour
         {
             lightNoLamp.gameObject.SetActive(false);
             lightWithLamp.gameObject.SetActive(true);
+        }
+        if (stamina == 0 && !isCarrotIconShown)
+        {
+            ShowCarrotIcon();
         }
     }
 
@@ -259,9 +266,27 @@ public class PlayerController : MonoBehaviour
                         stamina += 40;
                     }
                     staminaBar.fillAmount = stamina / maxStamina;
+                    if (stamina > 0 && isCarrotIconShown)
+                    {
+                        isCarrotIconShown= false;
+                    }
                 }
             }
         }
+    }
+
+    private void ShowCarrotIcon()
+    {
+        carrotIcon.SetActive(true); // Activa el ícono de zanahoria
+        isCarrotIconShown = true; // Marca que ya se activó
+        Debug.Log("Ícono de zanahoria activado porque la stamina llegó a 0.");
+        Invoke(nameof(HideCarrotIcon), carrotIconDuration); // Oculta el ícono después de unos segundos
+    }
+
+    private void HideCarrotIcon()
+    {
+        carrotIcon.SetActive(false); // Desactiva el ícono de zanahoria
+        Debug.Log("Ícono de zanahoria ocultado después de la duración establecida.");
     }
 
     public void FillWater()
