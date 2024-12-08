@@ -5,7 +5,7 @@ using System.Collections;
 public class BedInteraction : MonoBehaviour
 {
     public GameObject textPanel; // El panel que recubre el texto, que contiene tanto el texto como el fondo.
-    public TextMeshProUGUI dayText; // El texto en la UI para mostrar el día.
+    public TextMeshProUGUI dayText; // El texto en la UI para mostrar el dï¿½a.
 
     public TextMeshProUGUI interactionText;
     public TextMeshProUGUI notNightText;
@@ -14,27 +14,27 @@ public class BedInteraction : MonoBehaviour
 
     public KeyCode interactionKey = KeyCode.E;
     public GameObject character; // El objeto del personaje que se va a mover.
-    private int currentDay = 1; // Suponiendo que el día actual esté almacenado aquí.
+    private int currentDay = 1; // Suponiendo que el dï¿½a actual estï¿½ almacenado aquï¿½.
 
-    // Define la posición de la casilla a la que se moverá el personaje al tocar la cama.
+    // Define la posiciï¿½n de la casilla a la que se moverï¿½ el personaje al tocar la cama.
     public Vector2 bedPosition = new Vector2(-25, -1);
 
     private bool isNight = false;
     private bool isNearBed = false;
 
     public AudioSource audioSource; // Componente para reproducir los sonidos.
-    public AudioClip[] dayTransitionClips; // Arreglo de clips de audio para cada día.
+    public AudioClip[] dayTransitionClips; // Arreglo de clips de audio para cada dï¿½a.
     public AudioSource houseAmbient;
 
     private void Start()
     {
-        // Cargar el día actual desde el CycleDayController
+        // Cargar el dï¿½a actual desde el CycleDayController
         LoadCurrentDay();
-        Debug.Log("Se cargó el día desde CycleDayController: " + currentDay);
+        Debug.Log("Se cargï¿½ el dï¿½a desde CycleDayController: " + currentDay);
 
         cycleDayController = FindObjectOfType<CycleDayController>();
 
-        // Asegúrate de que el panel (y el texto) esté completamente desactivado al iniciar.
+        // Asegï¿½rate de que el panel (y el texto) estï¿½ completamente desactivado al iniciar.
         textPanel.SetActive(false);
         interactionText.gameObject.SetActive(false);
         notNightText.gameObject.SetActive(false);
@@ -43,11 +43,11 @@ public class BedInteraction : MonoBehaviour
     private void Update()
     {
         isNight = cycleDayController.IsNight();
-        if (isNearBed && cycleDayController.IsNight())
+        if (isNearBed)// && cycleDayController.IsNight())
         {
             notNightText.gameObject.SetActive(false);
             interactionText.gameObject.SetActive(true); // Mostramos el texto
-            if (Input.GetKeyDown(interactionKey)) // Si el jugador presiona la tecla de interacción
+            if (Input.GetKeyDown(interactionKey)) // Si el jugador presiona la tecla de interacciï¿½n
             {
                 Dormir();
             }
@@ -60,32 +60,32 @@ public class BedInteraction : MonoBehaviour
         else
         {
             notNightText.gameObject.SetActive(false);
-            interactionText.gameObject.SetActive(false); // Ocultamos el texto si no está cerca
+            interactionText.gameObject.SetActive(false); // Ocultamos el texto si no estï¿½ cerca
         }
     }
 
-    // Este método se ejecuta cuando el personaje entra en contacto con la cama (usando Trigger).
+    // Este mï¿½todo se ejecuta cuando el personaje entra en contacto con la cama (usando Trigger).
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject == character)
         {
             isNearBed = true;
-            Debug.Log("El personaje está tocando la cama");
+            Debug.Log("El personaje estï¿½ tocando la cama");
         }
     }
 
     private void Dormir()
     {
-        // Incrementa el día actual
+        // Incrementa el dï¿½a actual
         currentDay++;
-        // Actualiza el día en CycleDayController
+        // Actualiza el dï¿½a en CycleDayController
         CycleDayController.currentDay = currentDay; // CycleDayHouseController
                                                     // Reinicia el tiempo del juego
         CycleDayController.gameTimeInMinutes = 300f;
 
-        // Guarda el día actual en PlayerPrefs (opcional)
+        // Guarda el dï¿½a actual en PlayerPrefs (opcional)
         PlayerPrefs.SetInt("CurrentDay", currentDay);
-        PlayerPrefs.Save(); // Asegúrate de guardar los cambios
+        PlayerPrefs.Save(); // Asegï¿½rate de guardar los cambios
 
         // Muestra el panel y el texto cuando el personaje toca la cama.
         //ShowDayOnScreen();
@@ -116,24 +116,24 @@ public class BedInteraction : MonoBehaviour
         }*/
     }
 
-    // Este método se ejecuta cuando el personaje deja de tocar la cama.
+    // Este mï¿½todo se ejecuta cuando el personaje deja de tocar la cama.
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject == character)
         {
             isNearBed = false;
-            // Agrega un log para saber cuándo el personaje deja de tocar la cama.
-            Debug.Log("El personaje dejó de tocar la cama");
+            // Agrega un log para saber cuï¿½ndo el personaje deja de tocar la cama.
+            Debug.Log("El personaje dejï¿½ de tocar la cama");
 
             // Oculta el panel y el texto cuando el personaje deja de tocar la cama.
             HideDayPanel();
         }
     }
 
-    // Función para mover el personaje a la casilla donde está la cama.
+    // Funciï¿½n para mover el personaje a la casilla donde estï¿½ la cama.
     private void MoveCharacterToBed()
     {
-        character.transform.position = bedPosition; // Mueve el personaje a la posición especificada.
+        character.transform.position = bedPosition; // Mueve el personaje a la posiciï¿½n especificada.
     }
 
     private void ShowClueOnScreen(int num)
@@ -145,19 +145,19 @@ public class BedInteraction : MonoBehaviour
         }
         else if (num == 2)
         {
-            clue = " \n LOBO: Atravesare tu ventana ... ";
+            clue =  " \n LOBO: Atravesare tu puerta ... ";
         }
         else if (num == 3)
         {
-            clue = " \n LOBO: Atravesare tu puerta ... ";
+            clue = " \n LOBO: Atravesare tu ventana ... ";
         }
         else if (num == 4)
         {
-            clue = " \n LOBO: Me meteré por tu chimenea ... \n ¡No podrás detenerme!";
+            clue = " \n LOBO: Me meterï¿½ por tu chimenea ... \n ï¿½No podrï¿½s detenerme!";
         }
 
         textPanel.SetActive(true); // Activa el panel que recubre el texto.
-        dayText.text = "Día: " + currentDay.ToString() + clue;
+        dayText.text = "Dï¿½a: " + currentDay.ToString() + clue;
 
         // Inicia la corrutina para esperar a que termine el audio antes de ocultar el panel.
         StartCoroutine(WaitForAudioAndHidePanel(currentDay));
@@ -174,22 +174,22 @@ public class BedInteraction : MonoBehaviour
             yield return null; // Espera un frame antes de volver a comprobar.
         }
 
-        // Una vez que el audio haya terminado, oculta el panel después de un breve retraso (opcional).
-        yield return new WaitForSeconds(1f); // Opcional: añade un retraso adicional.
+        // Una vez que el audio haya terminado, oculta el panel despuï¿½s de un breve retraso (opcional).
+        yield return new WaitForSeconds(1f); // Opcional: aï¿½ade un retraso adicional.
         HideDayPanel();
     }
 
-    // Esta función actualiza el texto en la UI.
+    // Esta funciï¿½n actualiza el texto en la UI.
     private void UpdateDayText()
     {
-        dayText.text = "Día: " + currentDay.ToString();
+        dayText.text = "Dï¿½a: " + currentDay.ToString();
     }
 
     private void HideDayPanel()
     {
         textPanel.SetActive(false); // Desactiva el panel y el texto.
 
-        // Detener la reproducción del audio si está sonando.
+        // Detener la reproducciï¿½n del audio si estï¿½ sonando.
         if (audioSource != null && audioSource.isPlaying)
         {
             audioSource.Stop();
@@ -197,11 +197,11 @@ public class BedInteraction : MonoBehaviour
         }
     }
 
-    // Método para cargar el día actual desde CycleDayController
+    // Mï¿½todo para cargar el dï¿½a actual desde CycleDayController
     private void LoadCurrentDay()
     {
         currentDay = CycleDayController.currentDay;
-        Debug.Log("Día cargado desde CycleDayController: " + currentDay);
+        Debug.Log("Dï¿½a cargado desde CycleDayController: " + currentDay);
     }
 
     private void PlayDayTransitionAudio(int day)
@@ -223,7 +223,7 @@ public class BedInteraction : MonoBehaviour
             {
                 audioSource.clip = clip;
                 audioSource.Play();
-                Debug.Log($"Reproduciendo audio de transición para el día {day}");
+                Debug.Log($"Reproduciendo audio de transiciï¿½n para el dï¿½a {day}");
 
                 // Inicia una corrutina para reactivar "houseAmbient" cuando termine
                 StartCoroutine(ResumeHouseAmbientAfterAudio());
@@ -231,13 +231,13 @@ public class BedInteraction : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No se encontró un clip para el día {day} o AudioSource no asignado");
+            Debug.LogWarning($"No se encontrï¿½ un clip para el dï¿½a {day} o AudioSource no asignado");
         }
     }
 
     private IEnumerator ResumeHouseAmbientAfterAudio()
     {
-        // Espera a que el audio de transición termine
+        // Espera a que el audio de transiciï¿½n termine
         while (audioSource.isPlaying)
         {
             yield return null; // Espera un frame

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveSystem : MonoBehaviour
 {
-    // Queremos guardar la posición del Player
+    // Queremos guardar la posiciï¿½n del Player
     PlayerController playerController;
     [SerializeField] InventoryToolbar inventory;
 
@@ -59,12 +59,12 @@ public class SaveSystem : MonoBehaviour
     public void NewGameButton()
     {
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("CurrentDay", 1);
-        PlayerPrefs.SetFloat("GameTimeInMinutes", 300f);
+        PlayerPrefs.SetInt("CurrentDay", 1); //poner en 1 luego de probar las cosas
+        PlayerPrefs.SetFloat("GameTimeInMinutes", 300f); 
         PlayerPrefs.Save();
 
-        CycleDayController.currentDay = 1;
-        CycleDayController.gameTimeInMinutes = 300f;
+        CycleDayController.currentDay = 1; //poner en 1 luego de probar las cosas
+        CycleDayController.gameTimeInMinutes = 300f; 
 
         if (inventory != null)
         {
@@ -76,13 +76,13 @@ public class SaveSystem : MonoBehaviour
 
     public void ContinueButton()
     {
-        // Cargar la escena principal y restaurar la posición del jugador
+        // Cargar la escena principal y restaurar la posiciï¿½n del jugador
         StartCoroutine(LoadGameSceneAndRestoreData(data));
     }
 
     private IEnumerator LoadGameSceneAndRestoreData(saveData dataToRestore)
     {
-        // Cargar la escena del juego de manera asíncrona
+        // Cargar la escena del juego de manera asï¿½ncrona
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main");
 
         // Esperar a que la escena se haya cargado completamente
@@ -91,14 +91,14 @@ public class SaveSystem : MonoBehaviour
             yield return null;
         }
 
-        // Esperar a que el PlayerController esté disponible
+        // Esperar a que el PlayerController estï¿½ disponible
         while (playerController == null)
         {
             playerController = FindObjectOfType<PlayerController>();
             yield return null; 
         }
 
-        // Restaurar la posición del jugador
+        // Restaurar la posiciï¿½n del jugador
         print("ContinueButton playerPos: " + dataToRestore.playerPosition);
         playerController.SetPosition(dataToRestore.playerPosition);
     }

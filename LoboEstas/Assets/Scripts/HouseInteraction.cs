@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class HouseInteraction : MonoBehaviour
 {
@@ -10,15 +11,37 @@ public class HouseInteraction : MonoBehaviour
     public bool insideHouse = false; // Para saber si est� dentro de la casa
     public Vector2 housePos = new Vector2(-25f, -2);
     public Vector2 forestPos = new Vector2(1f, 1f);
+    public VideoPlayer videoPlayer; 
+    public Canvas videoCanvas;
+
+    public RawImage rawImage;
     
     public GameObject brokenWindow;
+    public GameObject reinforcedWindow;
+
+    public GameObject brokenDoor;
+    public GameObject reinforcedDoor;
+
+    public GameObject deadPanel;
+
+    private bool breakDoor = true;
     private bool breakWindow = true;
     private bool canInteract = false; // Si el jugador puede interactuar con la casa
+    private bool reinforcedDoorCheck = true;
+    private bool reinforcedWindowCheck = true;
 
     public AudioSource audioSource;
     public AudioClip doorSound;
 
 
+    void Start()
+    {
+        //videoPlayer.Stop();
+        videoPlayer.gameObject.SetActive(false);
+        videoCanvas.gameObject.SetActive(false);
+        AdjustVideoAspect();
+        videoPlayer.loopPointReached += OnVideoEnd;
+    }
     void Update()
     {
         // Si el jugador est� cerca y puede interactuar
@@ -37,11 +60,79 @@ public class HouseInteraction : MonoBehaviour
                 audioSource.PlayOneShot(doorSound);
             }
         }
-        if(CycleDayController.currentDay == 2)
+        
+        if(CycleDayController.currentDay == 4)
         {
+            IsDoorReinforced();
+        }
+        if(CycleDayController.currentDay == 5)
+        {
+            IsWindowReinforced();
+        }
+    }
+
+    void AdjustVideoAspect()
+    {
+        // Obtén las dimensiones del video
+        float videoWidth = videoPlayer.targetTexture.width;
+        float videoHeight = videoPlayer.targetTexture.height;
+
+        // Obtén las dimensiones de la pantalla
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+
+        // Calcula las proporciones
+        float videoAspectRatio = videoWidth / videoHeight;
+        float screenAspectRatio = screenWidth / screenHeight;
+
+        // Ajusta el tamaño del Raw Image según las proporciones
+        if (videoAspectRatio > screenAspectRatio)
+        {
+            rawImage.rectTransform.sizeDelta = new Vector2(screenWidth, screenWidth / videoAspectRatio);
+        }
+        else
+        {
+            rawImage.rectTransform.sizeDelta = new Vector2(screenHeight * videoAspectRatio, screenHeight);
+        }
+    }
+
+     void OnVideoEnd(VideoPlayer vp)
+    {
+        Debug.Log("El video ha terminado.");
+        videoPlayer.gameObject.SetActive(false); // Desactiva el VideoPlayer
+        videoCanvas.gameObject.SetActive(false); // Desactiva el Canvas
+    }
+
+    private void IsDoorReinforced()
+    {
+        if(!reinforcedDoor.activeSelf && reinforcedDoorCheck)
+        {
+            reinforcedDoorCheck = false;
+            videoCanvas.gameObject.SetActive(true); 
+            videoPlayer.gameObject.SetActive(true); 
+            videoPlayer.Play();
+            deadPanel.SetActive(true);
+        }
+        else{
+            BreakDoor();
+        }
+    }
+
+    private void IsWindowReinforced()
+    {
+        if(!reinforcedWindow.activeSelf && reinforcedWindowCheck)
+        {
+            reinforcedWindowCheck = false;
+            videoCanvas.gameObject.SetActive(true);
+            videoPlayer.gameObject.SetActive(true); 
+            videoPlayer.Play();
+            deadPanel.SetActive(true);
+        }
+        else{
             BreakWindow();
         }
     }
+
 
     private void BreakWindow()
     {
@@ -50,6 +141,16 @@ public class HouseInteraction : MonoBehaviour
             brokenWindow.gameObject.SetActive(true);
             breakWindow = false;
         } 
+    }
+
+    private void BreakDoor()
+    {
+        while(breakDoor)
+        {
+            brokenDoor.gameObject.SetActive(true);
+            reinforcedDoor.SetActive(false);
+            breakDoor = false;
+        }
     }
 
     void EnterHouse()
