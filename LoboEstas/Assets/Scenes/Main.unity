@@ -94384,7 +94384,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 150
   m_TargetDisplay: 0
 --- !u!4 &1925721240 stripped
 Transform:
@@ -100671,6 +100671,14 @@ PrefabInstance:
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: followSpeed
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
+      propertyPath: reducedSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
+      propertyPath: captureDistance
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: wolfAudioSource

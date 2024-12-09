@@ -4,10 +4,10 @@ public class FollowPlayer : MonoBehaviour
 {
     public Transform player;
     public Vector3 offset;
-    public float followSpeed = 1.5f;  // Velocidad normal del lobo
-    public float captureDistance = 0.5f; // Distancia m�nima para atrapar al jugador
+    public float followSpeed = 2f;  // Velocidad normal del lobo
+    public float captureDistance = 0.75f; // Distancia m�nima para atrapar al jugador
     public float transitionDistance = 2.0f; // Distancia para cambiar entre caminata1 y caminata2
-    public float reducedSpeed = 0.4f; // Velocidad reducida cuando el lobo est� cerca del jugador
+    public float reducedSpeed = 1.5f; // Velocidad reducida cuando el lobo est� cerca del jugador
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -24,7 +24,6 @@ public class FollowPlayer : MonoBehaviour
     private bool isWolfActive = false;
     private bool isNight = false;
     private bool isDead = false;
-    //private bool isPlayerDead = false;
     private Vector3 lastPosition;
 
     // Variables para la histeresis
@@ -74,7 +73,7 @@ public class FollowPlayer : MonoBehaviour
             if (cycleDayController != null && isNight)
             {
                 // Si el lobo no est� activo y es de noche, activarlo
-                if (!isWolfActive) // && !isPlayerDead
+                if (!isWolfActive)
                 {
                     // Reproducir el sonido de la rama quebr�ndose solo una vez antes de la activaci�n
                     if (branchBreakSound != null && !hasBranchSoundPlayed)
