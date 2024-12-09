@@ -100725,6 +100725,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 24379498200972845, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a17a73866e447324d92832eb1607661c, type: 2}
     - target: {fileID: 1367248203033136164, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: m_Volume
       value: 0.909
