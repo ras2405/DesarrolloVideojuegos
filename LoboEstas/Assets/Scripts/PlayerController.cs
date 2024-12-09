@@ -32,8 +32,11 @@ public class PlayerController : MonoBehaviour
     public GameObject lightNoLamp;
     public GameObject lightWithLamp;
     public GameObject carrotIcon;
-    public float carrotIconDuration = 3f; // Tiempo que el ícono estará visible
+    public GameObject waterIcon;
+    public float carrotIconDuration = 3f;
+    public float waterIconDuration = 3f; 
     private bool isCarrotIconShown = false;
+    private bool isWaterIconShown = false;
 
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
@@ -77,6 +80,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        isCarrotIconShown = false;
+        isWaterIconShown = false;
         eating = false;
         animator.SetBool("eating", eating);
         EatCarrot();
@@ -88,10 +93,20 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
 
-        if(isRunning && TryMove(movementInput))
+        if (Keyboard.current.leftShiftKey.isPressed && stamina <= 0)
+        {
+            if (!isCarrotIconShown)
+            {
+                ShowCarrotIcon();
+            }
+        }
+
+        if (isRunning && TryMove(movementInput))
         {
             stamina -= runCost * Time.deltaTime;
-            if(stamina < 0)stamina = 0;
+            if (stamina <= 0) {
+                stamina = 0;
+            }
             staminaBar.fillAmount = stamina / maxStamina;
         }
 
@@ -124,10 +139,7 @@ public class PlayerController : MonoBehaviour
             lightNoLamp.gameObject.SetActive(false);
             lightWithLamp.gameObject.SetActive(true);
         }
-        if (stamina == 0 && !isCarrotIconShown)
-        {
-            ShowCarrotIcon();
-        }
+
     }
 
     private void FixedUpdate()
@@ -216,6 +228,11 @@ public class PlayerController : MonoBehaviour
                     else
                     {
                         Debug.Log("No tienes suficiente agua para regar la planta.");
+                        if (!isWaterIconShown)
+                        {
+                            ShowWaterIcon();
+                        }
+
                     }
                 }
                 else if (GameManager.instance.tileManager.IsInteractable(position) && SeedSelected())
@@ -251,7 +268,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory.selectedItem != null)
             {
-                if (inventory.selectedItem.tag == "Carrot" && Input.GetMouseButtonDown(1))
+                if (inventory.selectedItem.tag == "Carrot" && Keyboard.current.eKey.wasPressedThisFrame) //Input.GetMouseButtonDown(1)
                 {
                     if (audioSource != null && eatingSound != null)
                     {
@@ -283,10 +300,24 @@ public class PlayerController : MonoBehaviour
         Invoke(nameof(HideCarrotIcon), carrotIconDuration); // Oculta el ícono después de unos segundos
     }
 
+    private void ShowWaterIcon()
+    {
+        waterIcon.SetActive(true); // Activa el ícono de agua
+        isWaterIconShown = true; // Marca que ya se activó
+        Debug.Log("Ícono de sin agua activado porque barra de agua en 0.");
+        Invoke(nameof(HideWaterIcon), waterIconDuration); // Oculta el ícono después de unos segundos
+    }
+
     private void HideCarrotIcon()
     {
         carrotIcon.SetActive(false); // Desactiva el ícono de zanahoria
         Debug.Log("Ícono de zanahoria ocultado después de la duración establecida.");
+    }
+
+    private void HideWaterIcon()
+    {
+        waterIcon.SetActive(false); // Desactiva el ícono de zanahoria
+        Debug.Log("Ícono de sin agua oculto después de la duración establecida.");
     }
 
     public void FillWater()
