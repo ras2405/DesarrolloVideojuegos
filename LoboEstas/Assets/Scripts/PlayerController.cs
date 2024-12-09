@@ -268,7 +268,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory.selectedItem != null)
             {
-                if (inventory.selectedItem.tag == "Carrot" && Keyboard.current.eKey.wasPressedThisFrame) //Input.GetMouseButtonDown(1)
+                if (inventory.selectedItem.tag == "Carrot" && (Keyboard.current.eKey.wasPressedThisFrame || Input.GetMouseButtonDown(1))) //Input.GetMouseButtonDown(1)
                 {
                     if (audioSource != null && eatingSound != null)
                     {
