@@ -73,6 +73,7 @@ public class HouseInteraction : MonoBehaviour
         }
         if(CycleDayController.currentDay == 5)
         {
+            
             IsWindowReinforced();
         }
         if(CycleDayController.currentDay == 6)
@@ -139,7 +140,7 @@ public class HouseInteraction : MonoBehaviour
         if(!reinforcedDoor.activeSelf && reinforcedDoorCheck)
         {
             reinforcedDoorCheck = false;
-            videoCanvas.gameObject.SetActive(true); 
+            videoCanvas.gameObject.SetActive(true);
             videoPlayer.gameObject.SetActive(true); 
             videoPlayer.Play();
             deadPanel.SetActive(true);
@@ -167,6 +168,7 @@ public class HouseInteraction : MonoBehaviour
 
     private void BreakWindow()
     {
+        
         while(breakWindow)
         {
             brokenWindow.gameObject.SetActive(true);
@@ -179,7 +181,6 @@ public class HouseInteraction : MonoBehaviour
         while(breakDoor)
         {
             brokenDoor.gameObject.SetActive(true);
-            reinforcedDoor.SetActive(false);
             breakDoor = false;
         }
     }

@@ -49254,6 +49254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ReinforcedDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 2205720270103343797, guid: 36c5323ccf1e4ed448a1366d4b1637dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52289,6 +52293,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BrokenDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 1091656165161251390, guid: e062dbb2403649947aade197c7f6ba8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120885665813731183, guid: e062dbb2403649947aade197c7f6ba8f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4438596936260369655, guid: e062dbb2403649947aade197c7f6ba8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.186
@@ -53214,8 +53226,8 @@ Transform:
   - {fileID: 786415124}
   - {fileID: 1678592567}
   - {fileID: 436321207}
-  - {fileID: 704662751}
   - {fileID: 570532143}
+  - {fileID: 704662751}
   m_Father: {fileID: 1210395919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &769690648
