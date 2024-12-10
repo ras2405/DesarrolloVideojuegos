@@ -12,6 +12,8 @@ public class HouseInteraction : MonoBehaviour
     public Vector2 housePos = new Vector2(-25f, -2);
     public Vector2 forestPos = new Vector2(1f, 1f);
     public VideoPlayer videoPlayer; 
+
+    public VideoClip[] videoClips;
     public Canvas videoCanvas;
 
     public RawImage rawImage;
@@ -22,13 +24,17 @@ public class HouseInteraction : MonoBehaviour
     public GameObject brokenDoor;
     public GameObject reinforcedDoor;
 
+    public GameObject fire;
+
     public GameObject deadPanel;
+
 
     private bool breakDoor = true;
     private bool breakWindow = true;
     private bool canInteract = false; // Si el jugador puede interactuar con la casa
     private bool reinforcedDoorCheck = true;
     private bool reinforcedWindowCheck = true;
+    private bool fireOnCheck = true;
 
     public AudioSource audioSource;
     public AudioClip doorSound;
@@ -36,7 +42,7 @@ public class HouseInteraction : MonoBehaviour
 
     void Start()
     {
-        //videoPlayer.Stop();
+        videoPlayer.Stop();
         videoPlayer.gameObject.SetActive(false);
         videoCanvas.gameObject.SetActive(false);
         AdjustVideoAspect();
@@ -68,6 +74,10 @@ public class HouseInteraction : MonoBehaviour
         if(CycleDayController.currentDay == 5)
         {
             IsWindowReinforced();
+        }
+        if(CycleDayController.currentDay == 6)
+        {
+            IsFireOn();
         }
     }
 
@@ -101,6 +111,27 @@ public class HouseInteraction : MonoBehaviour
         Debug.Log("El video ha terminado.");
         videoPlayer.gameObject.SetActive(false); // Desactiva el VideoPlayer
         videoCanvas.gameObject.SetActive(false); // Desactiva el Canvas
+    }
+
+    private void IsFireOn()
+    {
+        if(!fire.activeSelf && fireOnCheck)
+        {
+            fireOnCheck = false;
+            videoCanvas.gameObject.SetActive(true); 
+            videoPlayer.gameObject.SetActive(true); 
+            videoPlayer.clip = videoClips[1];
+            videoPlayer.Play();
+            deadPanel.SetActive(true); 
+        }
+        else if(fire.activeSelf && fireOnCheck){
+            fireOnCheck = false;
+            videoCanvas.gameObject.SetActive(true); 
+            videoPlayer.gameObject.SetActive(true); 
+            videoPlayer.clip = videoClips[0];
+            videoPlayer.Play();
+            deadPanel.SetActive(true); 
+        }
     }
 
     private void IsDoorReinforced()

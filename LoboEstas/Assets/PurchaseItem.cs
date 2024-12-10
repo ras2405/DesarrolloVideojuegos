@@ -16,6 +16,7 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
     [SerializeField] Item carrot;
     [SerializeField] Item potato;
     [SerializeField] Item onion;
+    [SerializeField] Item match;
 
     [SerializeField] Item rock;
     [SerializeField] Item stick;
@@ -86,13 +87,27 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
 
     public void BuyOnion()
     {
-        Debug.Log("comprar cebolla");
         int count = 1;
         if (moneyController.currentMoney >= 100)
         {
             ExecuteBuySound();
             moneyController.Sub(100);
             GameManager.instance.inventoryContainer.Add(onionSeed, count);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
+    }
+
+    public void BuyMatch()
+    {
+        int count = 1;
+        if (moneyController.currentMoney >= 500)
+        {
+            ExecuteBuySound();
+            moneyController.Sub(500);
+            GameManager.instance.inventoryContainer.Add(match, count);
         }
         else
         {

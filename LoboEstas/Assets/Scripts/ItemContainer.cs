@@ -103,4 +103,13 @@ public class ItemContainer : ScriptableObject
    {
     Remove(selectedItem);
    }
+
+   public bool HasItem(string name)
+   {
+    foreach(ItemSlot slot in slots)
+    {
+        if(slot.item != null && slot.item.name == name) return true;
+    }
+    return false;
+   }
 }
