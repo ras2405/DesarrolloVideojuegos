@@ -101300,6 +101300,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1271822863}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
+      propertyPath: offset.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: deadPanel
       value: 
       objectReference: {fileID: 1253645398}
@@ -101309,15 +101313,15 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 294c25d21fc1f9541be1114d0f3c3a35, type: 3}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: followSpeed
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: reducedSpeed
-      value: 1.5
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: captureDistance
-      value: 0.75
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: wolfAudioSource

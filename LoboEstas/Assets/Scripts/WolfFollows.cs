@@ -4,10 +4,10 @@ public class FollowPlayer : MonoBehaviour
 {
     public Transform player;
     public Vector3 offset;
-    public float followSpeed = 2f;  // Velocidad normal del lobo
-    public float captureDistance = 0.75f; // Distancia m�nima para atrapar al jugador
-    public float transitionDistance = 2.0f; // Distancia para cambiar entre caminata1 y caminata2
-    public float reducedSpeed = 1.5f; // Velocidad reducida cuando el lobo est� cerca del jugador
+    public float followSpeed = 2.5f;  // Velocidad normal del lobo
+    public float captureDistance = 0.7f; // Distancia m�nima para atrapar al jugador
+    public float transitionDistance = 3.5f; // Distancia para cambiar entre caminata1 y caminata2
+    public float reducedSpeed = 0.9f; // Velocidad reducida cuando el lobo est� cerca del jugador
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -89,8 +89,8 @@ public class FollowPlayer : MonoBehaviour
                 if (isWolfActive && player != null)
                 {
                     // Verificar si el jugador est� dentro del �rea de -11f y 11f en X e Y
-                    if (player.position.x >= -11f && player.position.x <= 11f &&
-                        player.position.y >= -11f && player.position.y <= 11f)
+                    if (player.position.x >= -12f && player.position.x <= 12f &&
+                        player.position.y >= -12f && player.position.y <= 12f)
                     {
                         // Calcula la nueva posici�n hacia el jugador
                         Vector3 targetPosition = player.position + offset;
