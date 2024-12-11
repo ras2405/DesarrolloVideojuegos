@@ -85369,6 +85369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9626fd2e551a542a6a53997307419f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableMap: {fileID: 1834535053}
+  tierraSeca: {fileID: 11400000, guid: 2336dd68d6e622e4fa7c280507101773, type: 2}
   cornerFence1: {fileID: 790988163}
   cornerFence2: {fileID: 554021782}
   fence3: {fileID: 308696764}

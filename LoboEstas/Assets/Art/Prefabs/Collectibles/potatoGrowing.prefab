@@ -120,3 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantPrefab: {fileID: 4731349033437090325, guid: 1f8f102a6d6d1134da0c8a171fb97892, type: 3}
+  wateringCooldown: 5

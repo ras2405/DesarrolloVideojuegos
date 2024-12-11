@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: 
   slots:
-  - item: {fileID: 11400000, guid: ae603e1aff8916042aee5657ff1fedbc, type: 2}
-    count: 1
-  - item: {fileID: 11400000, guid: 5630a13289744054bbb8709d7c3fd7f0, type: 2}
-    count: 2
+  - item: {fileID: 11400000, guid: 978ed8e68bc550844b6610c85eb3a3b2, type: 2}
+    count: 4
   - item: {fileID: 0}
     count: 0
   - item: {fileID: 0}
@@ -25,4 +23,6 @@ MonoBehaviour:
     count: 0
   - item: {fileID: 0}
     count: 0
-  selectedItem: {fileID: 11400000, guid: 5630a13289744054bbb8709d7c3fd7f0, type: 2}
+  - item: {fileID: 0}
+    count: 0
+  selectedItem: {fileID: 11400000, guid: 978ed8e68bc550844b6610c85eb3a3b2, type: 2}
