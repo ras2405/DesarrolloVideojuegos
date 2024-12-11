@@ -29,6 +29,7 @@ public class HouseInteraction : MonoBehaviour
 
     public GameObject deadPanel;
     public GameObject deathTextPanel;
+    public GameObject dayAudio;
     public TextMeshProUGUI deathText;
 
 
@@ -69,10 +70,12 @@ public class HouseInteraction : MonoBehaviour
             if (!insideHouse)
             {
                 StartCoroutine(TeleportPlayer(housePos));
+                dayAudio.gameObject.SetActive(false);
             }
             else
             {
                 StartCoroutine(TeleportPlayer(forestPos));
+                dayAudio.gameObject.SetActive(true);
             }
             if (audioSource != null && doorSound != null)
             {
