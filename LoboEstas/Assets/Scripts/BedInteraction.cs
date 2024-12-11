@@ -25,6 +25,7 @@ public class BedInteraction : MonoBehaviour
     public AudioSource audioSource; // Componente para reproducir los sonidos.
     public AudioClip[] dayTransitionClips; // Arreglo de clips de audio para cada d�a.
     public AudioSource houseAmbient;
+    public AudioSource bgMusic;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class BedInteraction : MonoBehaviour
         textPanel.SetActive(false);
         interactionText.gameObject.SetActive(false);
         notNightText.gameObject.SetActive(false);
+        bgMusic.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -91,29 +93,6 @@ public class BedInteraction : MonoBehaviour
         //ShowDayOnScreen();
 
         ShowClueOnScreen(currentDay - 1);
-
-        // Dia 1 es de exploracion
-      /*  if (currentDay == 2)
-        {
-            Debug.Log("Fin del dia 1: Mostrar transicion 1 (Lobo indica que rompera los cultivos)");
-           
-        }
-        else if (currentDay == 3) {
-            Debug.Log("Fin del dia 2: Si las vallas no estan mejoradas, cultivos desaparecen. Mostrar transicion 2 (Lobo indica que rompera la ventana)");
-            
-        }
-        else if (currentDay == 4)
-        {
-            Debug.Log("Fin del dia 3: Si las vallas no estan mejoradas, cultivos desaparecen. Si ventana no reforzadas, Bad Ending. Sino mostrar transicion 3 (Lobo indica que rompera la puerta)");
-        }
-        else if (currentDay == 5)
-        {
-            Debug.Log("Fin del dia 4: Si las vallas no estan mejoradas, cultivos desaparecen. Si ventana y/o puerta no reforzada, Bad Ending. Sino mostrar transicion 4 (Lobo indica que ira a la chimenea)");
-        }
-        else if (currentDay == 6)
-        {
-            Debug.Log("Fin del dia 5: Si ventana y/o puerta no reforzada, Bad Ending. Si estufa apagada, Bad Ending. Sino mostrar Good Ending");
-        }*/
     }
 
     // Este m�todo se ejecuta cuando el personaje deja de tocar la cama.
@@ -138,26 +117,29 @@ public class BedInteraction : MonoBehaviour
 
     private void ShowClueOnScreen(int num)
     {
+        bgMusic.gameObject.SetActive(true);
+        houseAmbient.gameObject.SetActive(false);
+
         string clue = "";
         if (num == 1)
         {
-            clue = " \n LOBO: Aplastare tus cultivos ... \n Esto es solo el comienzo.";
+            clue = " \n LOBO: Te voy a romper los cultivos....";
         }
         else if (num == 2)
         {
-            clue =  " \n LOBO: Atravesare tu puerta ... ";
+            clue = " \n LOBO: Voy a romper tu puerta.... ";
         }
         else if (num == 3)
         {
-            clue = " \n LOBO: Atravesare tu ventana ... ";
+            clue = " \n LOBO: Voy a romperte la ventana! ";
         }
         else if (num == 4)
         {
-            clue = " \n LOBO: Me meter� por tu chimenea ... \n �No podr�s detenerme!";
-        }
+            clue = " \n LOBO: Voy a meterme por tu chimenea!";
+        } 
 
         textPanel.SetActive(true); // Activa el panel que recubre el texto.
-        dayText.text = "D�a: " + currentDay.ToString() + clue;
+        dayText.text = "Día: " + currentDay.ToString() + clue;
 
         // Inicia la corrutina para esperar a que termine el audio antes de ocultar el panel.
         StartCoroutine(WaitForAudioAndHidePanel(currentDay));
@@ -167,7 +149,6 @@ public class BedInteraction : MonoBehaviour
     private IEnumerator WaitForAudioAndHidePanel(int day)
     {
         PlayDayTransitionAudio(day); // Reproduce el audio.
-
         // Espera a que el audio termine.
         while (audioSource.isPlaying)
         {
@@ -207,12 +188,13 @@ public class BedInteraction : MonoBehaviour
     private void PlayDayTransitionAudio(int day)
     {
         Debug.Log("Se llama a PlayDayTransitionAudio(int day)");
-        int clipIndex = day;
+        int clipIndex = day - 2;
 
         // Desactiva el GameObject de "houseAmbient" antes de reproducir el clip
         if (houseAmbient != null && houseAmbient.gameObject.activeSelf)
         {
             houseAmbient.gameObject.SetActive(false);
+            bgMusic.gameObject.SetActive(true);
             Debug.Log("GameObject 'houseAmbient' desactivado.");
         }
 
@@ -247,6 +229,7 @@ public class BedInteraction : MonoBehaviour
         if (houseAmbient != null && !houseAmbient.gameObject.activeSelf)
         {
             houseAmbient.gameObject.SetActive(true);
+            bgMusic.gameObject.SetActive(false);
             Debug.Log("GameObject 'houseAmbient' reactivado.");
         }
     }
