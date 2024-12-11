@@ -26,11 +26,24 @@ public class BedInteraction : MonoBehaviour
     public AudioClip[] dayTransitionClips; // Arreglo de clips de audio para cada d�a.
     public AudioSource houseAmbient;
 
+    private HouseInteraction houseInteraction;
+
+
     private void Start()
     {
+        GameObject houseObject = GameObject.Find("house");
+        if (houseObject != null)
+        {
+            houseInteraction = houseObject.GetComponent<HouseInteraction>();
+        }
+
+        if (houseInteraction == null)
+        {
+            Debug.LogError("No se encontró HouseInteraction en el objeto 'HouseObject'.");
+        }
         // Cargar el d�a actual desde el CycleDayController
         LoadCurrentDay();
-        Debug.Log("Se carg� el d�a desde CycleDayController: " + currentDay);
+        Debug.Log("Se carg� el día desde CycleDayController: " + currentDay);
 
         cycleDayController = FindObjectOfType<CycleDayController>();
 
@@ -49,6 +62,7 @@ public class BedInteraction : MonoBehaviour
             interactionText.gameObject.SetActive(true); // Mostramos el texto
             if (Input.GetKeyDown(interactionKey)) // Si el jugador presiona la tecla de interacci�n
             {
+                Debug.Log("Se ejecuta Dormir en BedInteraction");
                 Dormir();
             }
         }
@@ -90,30 +104,10 @@ public class BedInteraction : MonoBehaviour
         // Muestra el panel y el texto cuando el personaje toca la cama.
         //ShowDayOnScreen();
 
-        ShowClueOnScreen(currentDay - 1);
 
-        // Dia 1 es de exploracion
-      /*  if (currentDay == 2)
-        {
-            Debug.Log("Fin del dia 1: Mostrar transicion 1 (Lobo indica que rompera los cultivos)");
-           
-        }
-        else if (currentDay == 3) {
-            Debug.Log("Fin del dia 2: Si las vallas no estan mejoradas, cultivos desaparecen. Mostrar transicion 2 (Lobo indica que rompera la ventana)");
-            
-        }
-        else if (currentDay == 4)
-        {
-            Debug.Log("Fin del dia 3: Si las vallas no estan mejoradas, cultivos desaparecen. Si ventana no reforzadas, Bad Ending. Sino mostrar transicion 3 (Lobo indica que rompera la puerta)");
-        }
-        else if (currentDay == 5)
-        {
-            Debug.Log("Fin del dia 4: Si las vallas no estan mejoradas, cultivos desaparecen. Si ventana y/o puerta no reforzada, Bad Ending. Sino mostrar transicion 4 (Lobo indica que ira a la chimenea)");
-        }
-        else if (currentDay == 6)
-        {
-            Debug.Log("Fin del dia 5: Si ventana y/o puerta no reforzada, Bad Ending. Si estufa apagada, Bad Ending. Sino mostrar Good Ending");
-        }*/
+        Debug.Log("Se ejecuta WaitForSecondsExample()");
+        //ShowClueOnScreen(currentDay - 1);
+        StartCoroutine(WaitForSecondsToClue());
     }
 
     // Este m�todo se ejecuta cuando el personaje deja de tocar la cama.
@@ -130,6 +124,14 @@ public class BedInteraction : MonoBehaviour
         }
     }
 
+    IEnumerator WaitForSecondsToClue()
+    {
+        yield return new WaitForSeconds((float)houseInteraction.VideoLength() - 4); // Espera que termine el video
+        //StartCoroutine(WaitForVideoAndShowClue());
+        Debug.Log("Video finalizado, ejecuta ShowClueOnScreen");
+        ShowClueOnScreen(currentDay - 1);
+    }
+
     // Funci�n para mover el personaje a la casilla donde est� la cama.
     private void MoveCharacterToBed()
     {
@@ -141,31 +143,36 @@ public class BedInteraction : MonoBehaviour
         string clue = "";
         if (num == 1)
         {
-            clue = " \n LOBO: Aplastare tus cultivos ... \n Esto es solo el comienzo.";
+            clue = " \n LOBO: Aplastaré tus cultivos ... \n Esto es solo el comienzo.";
         }
         else if (num == 2)
         {
-            clue =  " \n LOBO: Atravesare tu puerta ... ";
+            clue = " \n LOBO: Atravesaré tu puerta ... ";
         }
         else if (num == 3)
         {
-            clue = " \n LOBO: Atravesare tu ventana ... ";
+            clue = " \n LOBO: Atravesaré tu ventana ... ";
         }
         else if (num == 4)
         {
-            clue = " \n LOBO: Me meter� por tu chimenea ... \n �No podr�s detenerme!";
+            clue = " \n LOBO: Me meteré por tu chimenea ... \n No podrás detenerme!";
         }
 
         textPanel.SetActive(true); // Activa el panel que recubre el texto.
-        dayText.text = "D�a: " + currentDay.ToString() + clue;
-
+        dayText.text = "Día: " + currentDay.ToString() + clue;
+        Debug.Log("Se activa el panel con Día: " + currentDay.ToString() + clue);
         // Inicia la corrutina para esperar a que termine el audio antes de ocultar el panel.
+        Debug.Log("Ejecuta  StartCoroutine(WaitForAudioAndHidePanel(currentDay))");
         StartCoroutine(WaitForAudioAndHidePanel(currentDay));
     }
 
     // Corrutina para esperar a que termine el audio antes de ocultar el panel.
     private IEnumerator WaitForAudioAndHidePanel(int day)
     {
+        Debug.Log("WaitForAudioAndHidePanel, ejecuta el audio del mensaje:  PlayDayTransitionAudio(day)");
+        yield return new WaitForSeconds(3f); // Espera que termine el video
+                                                                                        //StartCoroutine(WaitForVideoAndShowClue());
+           
         PlayDayTransitionAudio(day); // Reproduce el audio.
 
         // Espera a que el audio termine.

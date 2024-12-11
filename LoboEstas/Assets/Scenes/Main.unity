@@ -53827,6 +53827,7 @@ MonoBehaviour:
   duration: 3
   audioSource: {fileID: 769690653}
   doorSound: {fileID: 8300000, guid: 968daf2dda8b61d4986d46ba3aed5d40, type: 3}
+  songAmbient: {fileID: 8300000, guid: 9876bc7c47129fe44b5f4034c7b11722, type: 3}
 --- !u!50 &769690651
 Rigidbody2D:
   serializedVersion: 4
@@ -78466,6 +78467,7 @@ MonoBehaviour:
   duration: 3
   audioSource: {fileID: 0}
   doorSound: {fileID: 0}
+  songAmbient: {fileID: 0}
 --- !u!1001 &1155755601
 PrefabInstance:
   m_ObjectHideFlags: 0
