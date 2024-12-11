@@ -53824,6 +53824,7 @@ MonoBehaviour:
   fire: {fileID: 1393714021}
   deadPanel: {fileID: 1253645398}
   deathTextPanel: {fileID: 2044422457}
+  dayAudio: {fileID: 1215699568}
   deathText: {fileID: 1064031009}
   duration: 3
   audioSource: {fileID: 769690653}
@@ -78465,6 +78466,7 @@ MonoBehaviour:
   fire: {fileID: 1393714021}
   deadPanel: {fileID: 1253645398}
   deathTextPanel: {fileID: 2044422457}
+  dayAudio: {fileID: 1215699568}
   deathText: {fileID: 1064031009}
   duration: 3
   audioSource: {fileID: 0}
