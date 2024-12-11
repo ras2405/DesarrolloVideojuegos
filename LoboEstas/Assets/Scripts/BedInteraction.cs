@@ -10,6 +10,8 @@ public class BedInteraction : MonoBehaviour
     public TextMeshProUGUI interactionText;
     public TextMeshProUGUI notNightText;
 
+    public GameObject cutsceneBG;
+
     private CycleDayController cycleDayController;
 
     public KeyCode interactionKey = KeyCode.E;
@@ -49,6 +51,7 @@ public class BedInteraction : MonoBehaviour
 
         // Aseg�rate de que el panel (y el texto) est� completamente desactivado al iniciar.
         textPanel.SetActive(false);
+        cutsceneBG.SetActive(false);
         interactionText.gameObject.SetActive(false);
         notNightText.gameObject.SetActive(false);
     }
@@ -107,6 +110,7 @@ public class BedInteraction : MonoBehaviour
 
         Debug.Log("Se ejecuta WaitForSecondsExample()");
         //ShowClueOnScreen(currentDay - 1);
+        cutsceneBG.SetActive(true);
         StartCoroutine(WaitForSecondsToClue());
     }
 
@@ -143,19 +147,19 @@ public class BedInteraction : MonoBehaviour
         string clue = "";
         if (num == 1)
         {
-            clue = " \n LOBO: Aplastaré tus cultivos ... \n Esto es solo el comienzo.";
+            clue = " \n Te voy a romper los cultivos....";
         }
         else if (num == 2)
         {
-            clue = " \n LOBO: Atravesaré tu puerta ... ";
+            clue = " \n Voy a romper tu puerta.... ";
         }
         else if (num == 3)
         {
-            clue = " \n LOBO: Atravesaré tu ventana ... ";
+            clue = " \n Voy a romperte la ventana! ";
         }
         else if (num == 4)
         {
-            clue = " \n LOBO: Me meteré por tu chimenea ... \n No podrás detenerme!";
+            clue = " \n Voy a meterme por tu chimenea! ";
         }
 
         textPanel.SetActive(true); // Activa el panel que recubre el texto.
@@ -171,8 +175,7 @@ public class BedInteraction : MonoBehaviour
     {
         Debug.Log("WaitForAudioAndHidePanel, ejecuta el audio del mensaje:  PlayDayTransitionAudio(day)");
         yield return new WaitForSeconds(3f); // Espera que termine el video
-                                                                                        //StartCoroutine(WaitForVideoAndShowClue());
-           
+                                             //StartCoroutine(WaitForVideoAndShowClue());
         PlayDayTransitionAudio(day); // Reproduce el audio.
 
         // Espera a que el audio termine.
@@ -194,6 +197,7 @@ public class BedInteraction : MonoBehaviour
 
     private void HideDayPanel()
     {
+        cutsceneBG.SetActive(false);
         textPanel.SetActive(false); // Desactiva el panel y el texto.
 
         // Detener la reproducci�n del audio si est� sonando.
@@ -214,7 +218,7 @@ public class BedInteraction : MonoBehaviour
     private void PlayDayTransitionAudio(int day)
     {
         Debug.Log("Se llama a PlayDayTransitionAudio(int day)");
-        int clipIndex = day;
+        int clipIndex = day - 2;
 
         // Desactiva el GameObject de "houseAmbient" antes de reproducir el clip
         if (houseAmbient != null && houseAmbient.gameObject.activeSelf)
