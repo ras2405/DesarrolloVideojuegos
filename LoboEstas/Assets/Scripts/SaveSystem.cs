@@ -59,11 +59,11 @@ public class SaveSystem : MonoBehaviour
     public void NewGameButton()
     {
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("CurrentDay", 3); //poner en 1 luego de probar las cosas
+        PlayerPrefs.SetInt("CurrentDay", 1); //poner en 1 luego de probar las cosas
         PlayerPrefs.SetFloat("GameTimeInMinutes", 300f); 
         PlayerPrefs.Save();
 
-        CycleDayController.currentDay = 3; //poner en 1 luego de probar las cosas
+        CycleDayController.currentDay = 1; //poner en 1 luego de probar las cosas
         CycleDayController.gameTimeInMinutes = 300f; 
 
         if (inventory != null)

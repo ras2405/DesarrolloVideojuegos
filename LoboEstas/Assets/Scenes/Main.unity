@@ -50667,7 +50667,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 825238789a520ca4c987b17e41676669, type: 3}
   - {fileID: 8300000, guid: 5cd796f5ce2804345b443d5b3f10f299, type: 3}
   houseAmbient: {fileID: 964839158}
-  bgMusic: {fileID: 1948614792}
 --- !u!82 &598520409
 AudioSource:
   m_ObjectHideFlags: 0
@@ -53621,6 +53620,7 @@ MonoBehaviour:
   videoClips:
   - {fileID: 32900000, guid: 45766aef97891b14ebe673df507986be, type: 3}
   - {fileID: 32900000, guid: 8b68c461943354f46bfca92504119101, type: 3}
+  - {fileID: 32900000, guid: ce2ce2a80d2b8d543af8beed5f3a469f, type: 3}
   videoCanvas: {fileID: 415865928}
   rawImage: {fileID: 587998547}
   brokenWindow: {fileID: 1678592566}
@@ -78115,6 +78115,7 @@ MonoBehaviour:
   videoClips:
   - {fileID: 32900000, guid: 45766aef97891b14ebe673df507986be, type: 3}
   - {fileID: 32900000, guid: 8b68c461943354f46bfca92504119101, type: 3}
+  - {fileID: 32900000, guid: ce2ce2a80d2b8d543af8beed5f3a469f, type: 3}
   videoCanvas: {fileID: 415865928}
   rawImage: {fileID: 587998547}
   brokenWindow: {fileID: 1678592566}

@@ -169,10 +169,15 @@ public class HouseInteraction : MonoBehaviour
             reinforcedDoorCheck = false;
             videoCanvas.gameObject.SetActive(true);
             videoPlayer.gameObject.SetActive(true); 
+            videoPlayer.clip = videoClips[1];
             videoPlayer.Play();
             deadPanel.SetActive(true);
         }
-        else{
+        else if(reinforcedDoorCheck) {
+            reinforcedDoorCheck=false;
+            videoCanvas.gameObject.SetActive(true);
+            videoPlayer.gameObject.SetActive(true); 
+            videoPlayer.clip = videoClips[2];
             BreakDoor();
         }
     }
@@ -185,10 +190,15 @@ public class HouseInteraction : MonoBehaviour
             reinforcedWindowCheck = false;
             videoCanvas.gameObject.SetActive(true);
             videoPlayer.gameObject.SetActive(true); 
+            videoPlayer.clip = videoClips[1];
             videoPlayer.Play();
             deadPanel.SetActive(true);
         }
-        else{
+        else if(reinforcedWindowCheck){
+            reinforcedWindowCheck = false;
+            videoCanvas.gameObject.SetActive(true);
+            videoPlayer.gameObject.SetActive(true); 
+            videoPlayer.clip = videoClips[2];
             BreakWindow();
         }
     }
