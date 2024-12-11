@@ -47,7 +47,9 @@ public class HouseInteraction : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip doorSound;
+    public AudioClip songAmbient;
 
+    private bool isVideoPlaying = false;
 
     void Start()
     {
@@ -57,6 +59,7 @@ public class HouseInteraction : MonoBehaviour
         videoCanvas.gameObject.SetActive(false);
         AdjustVideoAspect();
         videoPlayer.loopPointReached += OnVideoEnd;
+        isVideoPlaying = false;
     }
     void Update()
     {
@@ -91,7 +94,6 @@ public class HouseInteraction : MonoBehaviour
         }
         if(CycleDayController.currentDay == 5)
         {
-            
             IsWindowReinforced();
         }
         if(CycleDayController.currentDay == 6)
@@ -147,7 +149,12 @@ public class HouseInteraction : MonoBehaviour
     {
          if(video2)
         {
-            video2=false;
+            if (audioSource != null && songAmbient != null)
+            {
+                audioSource.PlayOneShot(songAmbient);
+            }
+            isVideoPlaying = true;
+            video2 =false;
             videoCanvas.gameObject.SetActive(true);
             videoPlayer.gameObject.SetActive(true); 
             videoPlayer.clip = videoClips[2];
@@ -158,7 +165,12 @@ public class HouseInteraction : MonoBehaviour
     {
          if(video3)
         {
-            video3=false;
+            if (audioSource != null && songAmbient != null)
+            {
+                audioSource.PlayOneShot(songAmbient);
+            }
+            isVideoPlaying = true;
+            video3 =false;
             videoCanvas.gameObject.SetActive(true);
             videoPlayer.gameObject.SetActive(true); 
             videoPlayer.clip = videoClips[2];
@@ -168,6 +180,7 @@ public class HouseInteraction : MonoBehaviour
 
      void OnVideoEnd(VideoPlayer vp)
     {
+        isVideoPlaying = false;
         Debug.Log("El video ha terminado.");
         videoPlayer.gameObject.SetActive(false); // Desactiva el VideoPlayer
         videoCanvas.gameObject.SetActive(false); // Desactiva el Canvas
@@ -175,7 +188,12 @@ public class HouseInteraction : MonoBehaviour
 
     private void IsFireOn()
     {
-        if(!fire.activeSelf && fireOnCheck)
+        if (audioSource != null && songAmbient != null)
+        {
+            audioSource.PlayOneShot(songAmbient);
+        }
+        isVideoPlaying = true;
+        if (!fire.activeSelf && fireOnCheck)
         {
             deathText.text = "No protegiste tu chimenea...";
             fireOnCheck = false;
@@ -198,7 +216,8 @@ public class HouseInteraction : MonoBehaviour
 
     private void IsDoorReinforced()
     {
-        if(!reinforcedDoor.activeSelf && reinforcedDoorCheck)
+        isVideoPlaying = true;
+        if (!reinforcedDoor.activeSelf && reinforcedDoorCheck)
         {
             deathText.text = "No protegiste tu puerta...";
             reinforcedDoorCheck = false;
@@ -209,7 +228,11 @@ public class HouseInteraction : MonoBehaviour
             deadPanel.SetActive(true);
         }
         else if(reinforcedDoorCheck) {
-            reinforcedDoorCheck=false;
+            if (audioSource != null && songAmbient != null)
+            {
+                audioSource.PlayOneShot(songAmbient);
+            }
+            reinforcedDoorCheck =false;
             videoCanvas.gameObject.SetActive(true);
             videoPlayer.gameObject.SetActive(true); 
             videoPlayer.clip = videoClips[2];
@@ -219,7 +242,8 @@ public class HouseInteraction : MonoBehaviour
 
     private void IsWindowReinforced()
     {
-        if(!reinforcedWindow.activeSelf && reinforcedWindowCheck)
+        isVideoPlaying = true;
+        if (!reinforcedWindow.activeSelf && reinforcedWindowCheck)
         {
             deathText.text = "No protegiste tu ventana...";
             reinforcedWindowCheck = false;
@@ -230,6 +254,10 @@ public class HouseInteraction : MonoBehaviour
             deadPanel.SetActive(true);
         }
         else if(reinforcedWindowCheck){
+            if (audioSource != null && songAmbient != null)
+            {
+                audioSource.PlayOneShot(songAmbient);
+            }
             reinforcedWindowCheck = false;
             videoCanvas.gameObject.SetActive(true);
             videoPlayer.gameObject.SetActive(true); 
@@ -312,4 +340,31 @@ public class HouseInteraction : MonoBehaviour
             canInteract = false; // Impide que el jugador interact�e
         }
     }
+
+    public bool IsVideoPlaying()
+    {
+        //bool isPlayingCinematic = videoPlayer.isPlaying;
+        Debug.Log("!videoPlayer.isPlaying ,videoPlayer.time >= videoPlayer.length: " +
+            videoPlayer.isPlaying + "," + videoPlayer.time +","+ videoPlayer.length);
+        //!videoPlayer.isPlaying && 
+        /*  if (videoPlayer.time >= videoPlayer.length)
+          {
+              Debug.Log("El video ha terminado.");
+              return false;
+              // Lógica adicional
+          }
+          else {
+              return true;
+          }*/
+        //  Debug.Log("y - HouseInteraction - IsVideoPlaying(): " + isVideoPlaying);
+        //  return isVideoPlaying;
+        return videoPlayer.time >= videoPlayer.length;
+    }
+
+    public double VideoLength()
+    {
+        return videoPlayer.length;
+    }
+
+
 }
