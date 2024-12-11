@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] ItemContainer inventory;
+    [SerializeField] private GameObject eatMessageText;
     public float moveSpeed = 1f;
     public float runSpeed = 1.3f;
     public float currentSpeed;
@@ -86,7 +87,8 @@ public class PlayerController : MonoBehaviour
         eating = false;
         animator.SetBool("eating", eating);
         EatCarrot();
-        if(Keyboard.current.leftShiftKey.isPressed && stamina > 0)
+        HandleEatMessage();
+        if (Keyboard.current.leftShiftKey.isPressed && stamina > 0)
         {
             isRunning = true;
             runTutorialPanel.SetActive(false);
@@ -151,6 +153,18 @@ public class PlayerController : MonoBehaviour
             HandleMovement();
             DetectMouseClick();
             stepTimer += Time.fixedDeltaTime; 
+        }
+    }
+
+    private void HandleEatMessage()
+    {
+        if (inventory.selectedItem != null && inventory.selectedItem.tag == "Carrot")
+        {
+            eatMessageText.SetActive(true);
+        }
+        else
+        {
+            eatMessageText.SetActive(false);
         }
     }
 
@@ -270,7 +284,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory.selectedItem != null)
             {
-                if (inventory.selectedItem.tag == "Carrot" && (Keyboard.current.eKey.wasPressedThisFrame || Input.GetMouseButtonDown(1))) //Input.GetMouseButtonDown(1)
+                if (inventory.selectedItem.tag == "Carrot" && Keyboard.current.qKey.wasPressedThisFrame ) //Keyboard.current.eKey.wasPressedThisFrame || Input.GetMouseButtonDown(1))
                 {
                     if (audioSource != null && eatingSound != null)
                     {
