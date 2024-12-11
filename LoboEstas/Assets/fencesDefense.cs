@@ -41,10 +41,13 @@ public class fencesDefense : MonoBehaviour
     private MoneyController moneyController;
     private bool cropsCheck = true;
 
+    public GameObject tileManager;
+    public TileManager tmscript;
 
     void Start()
     {
         moneyController = GameObject.FindWithTag("Money").GetComponent<MoneyController>();
+        tmscript = tileManager.GetComponent<TileManager>();
     }
 
     void Update()
@@ -127,7 +130,7 @@ public class fencesDefense : MonoBehaviour
             {
                 Destroy(carrot);
             }
-            //ResetTiles();
+            ResetTiles();
         }
     }
 
@@ -135,13 +138,14 @@ public class fencesDefense : MonoBehaviour
     {
         foreach (var position in interactableMap.cellBounds.allPositionsWithin)
         { // Mide en unidades de celda del tilemap no en pixeles
-            TileBase tile = interactableMap.GetTile(position);
+            tmscript.ResetTile(position);
+           /* TileBase tile = interactableMap.GetTile(position);
             if (tile != null && tile.name == "Tierra_Plantar")
             {
                 interactableMap.SetTile(position, tierraSeca);
-               // tileStates[position] = (false, 0); // Inicializa como no plantado y sin agua 
+                tileStates[position] = (false, 0); // Inicializa como no plantado y sin agua 
                 // Inicializa como no plantado, luego de cultivar queremos que vuelva a estar vacio y saber que esta plantado y cuantas veces se rego
-            }
+            }*/
         }
     }
 }

@@ -85399,6 +85399,8 @@ MonoBehaviour:
   verticalSprite: {fileID: 21300000, guid: 3f630967e34003141822629262947390, type: 3}
   normalSprite: {fileID: 21300000, guid: 3a0bbe62bc873a040ac3346cc38944fc, type: 3}
   cornerSprite: {fileID: 21300000, guid: dfe905e788fcdd744b32182046148901, type: 3}
+  tileManager: {fileID: 527549215}
+  tmscript: {fileID: 0}
 --- !u!4 &1448049194 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4494705525898334934, guid: 8d5ddc4e0f6d3664c8d907b8962c2545, type: 3}
