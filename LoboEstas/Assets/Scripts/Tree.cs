@@ -33,7 +33,7 @@ public class Tree : MonoBehaviour
             {
               //  print("El �rbol est� detr�s del jugador");
                 // El �rbol est� detr�s del jugador
-                spriteRenderer.sortingOrder = playerSortingOrder - 1;
+                spriteRenderer.sortingOrder = playerSortingOrder - 3;
                 //if (spriteRenderer.sortingOrder < playerSortingOrder)
               //  {
               //      spriteRenderer.sortingOrder = playerSortingOrder - 1; // Colocamos el �rbol detr�s
@@ -42,7 +42,7 @@ public class Tree : MonoBehaviour
             else
             {
                // print("El �rbol est� delante del jugador");
-                spriteRenderer.sortingOrder = playerSortingOrder + 1;
+                spriteRenderer.sortingOrder = playerSortingOrder + 3;
                 // El �rbol est� delante del jugador
                 // if (spriteRenderer.sortingOrder >= playerSortingOrder)
                 //  {
