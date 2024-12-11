@@ -30,6 +30,7 @@ public class BedInteraction : MonoBehaviour
 
     private HouseInteraction houseInteraction;
 
+    private bool isVidPlaying = false;
 
     private void Start()
     {
@@ -48,6 +49,7 @@ public class BedInteraction : MonoBehaviour
         Debug.Log("Se carg� el día desde CycleDayController: " + currentDay);
 
         cycleDayController = FindObjectOfType<CycleDayController>();
+        houseInteraction = FindObjectOfType<HouseInteraction>();
 
         // Aseg�rate de que el panel (y el texto) est� completamente desactivado al iniciar.
         textPanel.SetActive(false);
@@ -59,6 +61,7 @@ public class BedInteraction : MonoBehaviour
     private void Update()
     {
         isNight = cycleDayController.IsNight();
+        isVidPlaying = houseInteraction.vidPlaying;
         if (isNearBed)// && cycleDayController.IsNight())
         {
             notNightText.gameObject.SetActive(false);
@@ -144,30 +147,34 @@ public class BedInteraction : MonoBehaviour
 
     private void ShowClueOnScreen(int num)
     {
-        string clue = "";
-        if (num == 1)
+        if (!isVidPlaying)
         {
-            clue = " \n Te voy a romper los cultivos....";
-        }
-        else if (num == 2)
-        {
-            clue = " \n Voy a romper tu puerta.... ";
-        }
-        else if (num == 3)
-        {
-            clue = " \n Voy a romperte la ventana! ";
-        }
-        else if (num == 4)
-        {
-            clue = " \n Voy a meterme por tu chimenea! ";
-        }
+            string clue = "";
+            if (num == 1)
+            {
+                clue = " \n Te voy a romper los cultivos....";
+            }
+            else if (num == 2)
+            {
+                clue = " \n Voy a romper tu puerta.... ";
+            }
+            else if (num == 3)
+            {
+                clue = " \n Voy a romperte la ventana! ";
+            }
+            else if (num == 4)
+            {
+                clue = " \n Voy a meterme por tu chimenea! ";
+            }
 
-        textPanel.SetActive(true); // Activa el panel que recubre el texto.
-        dayText.text = "Día: " + currentDay.ToString() + clue;
-        Debug.Log("Se activa el panel con Día: " + currentDay.ToString() + clue);
-        // Inicia la corrutina para esperar a que termine el audio antes de ocultar el panel.
-        Debug.Log("Ejecuta  StartCoroutine(WaitForAudioAndHidePanel(currentDay))");
-        StartCoroutine(WaitForAudioAndHidePanel(currentDay));
+            textPanel.SetActive(true); // Activa el panel que recubre el texto.
+            dayText.text = "Día: " + currentDay.ToString() + clue;
+            Debug.Log("Se activa el panel con Día: " + currentDay.ToString() + clue);
+            // Inicia la corrutina para esperar a que termine el audio antes de ocultar el panel.
+            Debug.Log("Ejecuta  StartCoroutine(WaitForAudioAndHidePanel(currentDay))");
+            StartCoroutine(WaitForAudioAndHidePanel(currentDay));
+        }
+        
     }
 
     // Corrutina para esperar a que termine el audio antes de ocultar el panel.

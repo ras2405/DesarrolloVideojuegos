@@ -50,7 +50,8 @@ public class HouseInteraction : MonoBehaviour
     public AudioClip doorSound;
     public AudioClip songAmbient;
 
-    private bool isVideoPlaying = false;
+    public bool isVideoPlaying = false;
+    public bool vidPlaying = false;
 
     void Start()
     {
@@ -61,6 +62,7 @@ public class HouseInteraction : MonoBehaviour
         AdjustVideoAspect();
         videoPlayer.loopPointReached += OnVideoEnd;
         isVideoPlaying = false;
+        vidPlaying = false;
     }
     void Update()
     {
@@ -204,6 +206,7 @@ public class HouseInteraction : MonoBehaviour
             videoPlayer.gameObject.SetActive(true); 
             videoPlayer.clip = videoClips[1];
             videoPlayer.Play();
+            vidPlaying = true;
             deadPanel.SetActive(true); 
         }
         else if(fire.activeSelf && fireOnCheck){
@@ -213,6 +216,7 @@ public class HouseInteraction : MonoBehaviour
             videoPlayer.gameObject.SetActive(true); 
             videoPlayer.clip = videoClips[0];
             videoPlayer.Play();
+            vidPlaying = true;
             deadPanel.SetActive(true); 
         }
     }
@@ -228,6 +232,7 @@ public class HouseInteraction : MonoBehaviour
             videoPlayer.gameObject.SetActive(true); 
             videoPlayer.clip = videoClips[1];
             videoPlayer.Play();
+            vidPlaying = true;
             deadPanel.SetActive(true);
         }
         else if(reinforcedDoorCheck) {
@@ -254,6 +259,7 @@ public class HouseInteraction : MonoBehaviour
             videoPlayer.gameObject.SetActive(true); 
             videoPlayer.clip = videoClips[1];
             videoPlayer.Play();
+            vidPlaying = true;
             deadPanel.SetActive(true);
         }
         else if(reinforcedWindowCheck){

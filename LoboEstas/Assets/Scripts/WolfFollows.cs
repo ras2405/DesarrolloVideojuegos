@@ -14,6 +14,7 @@ public class FollowPlayer : MonoBehaviour
     private AudioSource wolfAudioSource;
 
     private CycleDayController cycleDayController;
+    private HouseInteraction houseInteraction;
 
     // Referencia al objeto "marco"
     public GameObject marco; // Asigna "marco" desde el Inspector
@@ -36,6 +37,8 @@ public class FollowPlayer : MonoBehaviour
     // Para controlar el momento de la activaci�n de la rama
     private bool hasBranchSoundPlayed = false;
 
+    private bool isVidPlaying = false;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -50,6 +53,7 @@ public class FollowPlayer : MonoBehaviour
 
         // Busca el controlador del ciclo del d�a en la escena
         cycleDayController = FindObjectOfType<CycleDayController>();
+        houseInteraction = FindObjectOfType<HouseInteraction>();
 
         // "marco" est� desactivado al iniciar
         if (marco != null)
@@ -66,6 +70,7 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
+        isVidPlaying = houseInteraction.isVideoPlaying;
         if (!isDead)
         {
             isNight = cycleDayController.IsNight();

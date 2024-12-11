@@ -19,16 +19,31 @@ public class gotCaught : MonoBehaviour
 
     private bool isFading = false; // Bandera para evitar que se ejecute más de una vez
 
+    private HouseInteraction houseInteraction;
+    private bool isVidPlaying = false;
+
     void Start()
     {
-        // Obtener la imagen del DeadPanel
-        if (deadPanel != null && deadImage != null)
-        {
-            Color tempColor = deadImage.color;
-            tempColor.a = 1f; // Asegura que inicie completamente opaco
-            deadImage.color = tempColor;
-        }
+        deathSound.Stop();
+        deathSound.gameObject.SetActive(false);
+        deadImage.gameObject.SetActive(false);
 
+        houseInteraction = FindObjectOfType<HouseInteraction>();
+        isVidPlaying = houseInteraction.vidPlaying;
+
+        if (!isVidPlaying)
+        {
+            deathSound.gameObject.SetActive(true);
+            deadImage.gameObject.SetActive(true);
+            // Obtener la imagen del DeadPanel
+            if (deadPanel != null && deadImage != null)
+            {
+                Color tempColor = deadImage.color;
+                tempColor.a = 1f; // Asegura que inicie completamente opaco
+                deadImage.color = tempColor;
+            }
+
+        }
         // Asegurar que el botón esté oculto al inicio
         if (restartButton != null)
         {
