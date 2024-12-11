@@ -39,6 +39,9 @@ public class HouseInteraction : MonoBehaviour
     private bool reinforcedWindowCheck = true;
     private bool fireOnCheck = true;
     private bool textDisplayed = false;
+    private bool video1 = true;
+    private bool video2 = true;
+    private bool video3 = true;
     private float displayTime = 7f;
     public float duration = 5f;
 
@@ -73,6 +76,14 @@ public class HouseInteraction : MonoBehaviour
                 audioSource.PlayOneShot(doorSound);
             }
         }
+        if(CycleDayController.currentDay == 2)
+        {
+            TransitionVideo2();
+        } 
+        if(CycleDayController.currentDay == 3)
+        {
+            TransitionVideo3();
+        } 
         
         if(CycleDayController.currentDay == 4)
         {
@@ -128,6 +139,30 @@ public class HouseInteraction : MonoBehaviour
         else
         {
             rawImage.rectTransform.sizeDelta = new Vector2(screenHeight * videoAspectRatio, screenHeight);
+        }
+    }
+
+
+    private void TransitionVideo2()
+    {
+         if(video2)
+        {
+            video2=false;
+            videoCanvas.gameObject.SetActive(true);
+            videoPlayer.gameObject.SetActive(true); 
+            videoPlayer.clip = videoClips[2];
+            videoPlayer.Play();
+        }
+    }
+    private void TransitionVideo3()
+    {
+         if(video3)
+        {
+            video3=false;
+            videoCanvas.gameObject.SetActive(true);
+            videoPlayer.gameObject.SetActive(true); 
+            videoPlayer.clip = videoClips[2];
+            videoPlayer.Play();
         }
     }
 
