@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public GameObject lightWithLamp;
     public GameObject carrotIcon;
     public GameObject waterIcon;
+    public GameObject runTutorialPanel;
     public float carrotIconDuration = 3f;
     public float waterIconDuration = 3f; 
     private bool isCarrotIconShown = false;
@@ -88,6 +89,7 @@ public class PlayerController : MonoBehaviour
         if(Keyboard.current.leftShiftKey.isPressed && stamina > 0)
         {
             isRunning = true;
+            runTutorialPanel.SetActive(false);
         }
         else{
             isRunning = false;

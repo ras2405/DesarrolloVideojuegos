@@ -45,7 +45,7 @@ public class BedInteraction : MonoBehaviour
     private void Update()
     {
         isNight = cycleDayController.IsNight();
-        if (isNearBed && cycleDayController.IsNight())
+        if (isNearBed)// && cycleDayController.IsNight())
         {
             notNightText.gameObject.SetActive(false);
             interactionText.gameObject.SetActive(true); // Mostramos el texto

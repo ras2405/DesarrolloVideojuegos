@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
+using TMPro;
 
 public class HouseInteraction : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class HouseInteraction : MonoBehaviour
     public GameObject fire;
 
     public GameObject deadPanel;
+    public GameObject deathTextPanel;
+    public TextMeshProUGUI deathText;
 
 
     private bool breakDoor = true;
@@ -35,6 +38,9 @@ public class HouseInteraction : MonoBehaviour
     private bool reinforcedDoorCheck = true;
     private bool reinforcedWindowCheck = true;
     private bool fireOnCheck = true;
+    private bool textDisplayed = false;
+    private float displayTime = 7f;
+    public float duration = 5f;
 
     public AudioSource audioSource;
     public AudioClip doorSound;
@@ -42,6 +48,7 @@ public class HouseInteraction : MonoBehaviour
 
     void Start()
     {
+        deathTextPanel.SetActive(false);
         videoPlayer.Stop();
         videoPlayer.gameObject.SetActive(false);
         videoCanvas.gameObject.SetActive(false);
@@ -80,6 +87,23 @@ public class HouseInteraction : MonoBehaviour
         {
             IsFireOn();
         }
+
+        if(videoPlayer.isPlaying && !textDisplayed)
+        {
+            if(videoPlayer.time >= displayTime)
+            {
+                 StartCoroutine(ShowText());
+            }
+        }
+    }
+
+    private IEnumerator ShowText()
+    {
+        textDisplayed = true; // Evita que el texto se muestre varias veces
+
+        deathTextPanel.SetActive(true); // Activa el texto
+        yield return new WaitForSeconds(duration); // Espera el tiempo que debe estar visible
+        deathTextPanel.SetActive(false); // Oculta el texto
     }
 
     void AdjustVideoAspect()
@@ -118,6 +142,7 @@ public class HouseInteraction : MonoBehaviour
     {
         if(!fire.activeSelf && fireOnCheck)
         {
+            deathText.text = "No protegiste tu chimenea...";
             fireOnCheck = false;
             videoCanvas.gameObject.SetActive(true); 
             videoPlayer.gameObject.SetActive(true); 
@@ -126,6 +151,7 @@ public class HouseInteraction : MonoBehaviour
             deadPanel.SetActive(true); 
         }
         else if(fire.activeSelf && fireOnCheck){
+            deathText.text = "";
             fireOnCheck = false;
             videoCanvas.gameObject.SetActive(true); 
             videoPlayer.gameObject.SetActive(true); 
@@ -139,6 +165,7 @@ public class HouseInteraction : MonoBehaviour
     {
         if(!reinforcedDoor.activeSelf && reinforcedDoorCheck)
         {
+            deathText.text = "No protegiste tu puerta...";
             reinforcedDoorCheck = false;
             videoCanvas.gameObject.SetActive(true);
             videoPlayer.gameObject.SetActive(true); 
@@ -154,6 +181,7 @@ public class HouseInteraction : MonoBehaviour
     {
         if(!reinforcedWindow.activeSelf && reinforcedWindowCheck)
         {
+            deathText.text = "No protegiste tu ventana...";
             reinforcedWindowCheck = false;
             videoCanvas.gameObject.SetActive(true);
             videoPlayer.gameObject.SetActive(true); 

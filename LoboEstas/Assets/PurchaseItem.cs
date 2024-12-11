@@ -147,7 +147,7 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         if (GameManager.instance.inventoryContainer.Remove(onion))
         {
             ExecuteBuySound();
-            moneyController.Add(250);
+            moneyController.Add(150);
         }
         else
         {
