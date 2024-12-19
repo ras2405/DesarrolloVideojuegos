@@ -102324,7 +102324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: reducedSpeed
-      value: 1.9
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 2713723745311380783, guid: 8480de2c825f9be4b98818d2cd00255f, type: 3}
       propertyPath: captureDistance

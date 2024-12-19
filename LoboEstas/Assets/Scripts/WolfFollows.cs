@@ -185,11 +185,37 @@ public class FollowPlayer : MonoBehaviour
             marco.SetActive(false);
         }
 
-        // Mueve al lobo a una posici�n random (para la pr�xima aparici�n)
-        float randomX = Random.Range(-10f, 10f);
-        float randomY = Random.Range(-10f, 10f);
+        // Limites del mapa (ajusta estos valores según tu mapa)
+        float minX = -12f;
+        float maxX = 13f;
+        float minY = -8f;
+        float maxY = 13f;
 
-        transform.position = new Vector3(randomX, randomY, transform.position.z);
+        // Randomiza el borde en el que aparecerá el lobo
+        int edge = Random.Range(0, 3); // 0 = Izquierda, 1 = Derecha, 2 = Arriba
+
+        float spawnX = 0f;
+        float spawnY = 0f;
+
+        switch (edge)
+        {
+            case 0: // Borde Izquierdo
+                spawnX = minX;
+                spawnY = Random.Range(minY, maxY);
+                break;
+
+            case 1: // Borde Derecho
+                spawnX = maxX;
+                spawnY = Random.Range(minY, maxY);
+                break;
+
+            case 2: // Borde Superior
+                spawnX = Random.Range(minX, maxX);
+                spawnY = maxY;
+                break;
+        }
+
+        transform.position = new Vector3(spawnX, spawnY, transform.position.z);
     }
 
     void ActivateWolf()

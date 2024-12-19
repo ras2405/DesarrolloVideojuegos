@@ -64,7 +64,7 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.Save();
 
         CycleDayController.currentDay = 1; //poner en 1 luego de probar las cosas
-        CycleDayController.gameTimeInMinutes = 300f; 
+        CycleDayController.gameTimeInMinutes = 300f; // dejar en 300f luego de probar cosas
 
         if (inventory != null)
         {
