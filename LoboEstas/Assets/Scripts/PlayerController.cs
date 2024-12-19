@@ -64,8 +64,11 @@ public class PlayerController : MonoBehaviour
     private bool collectingWater = false;
     private bool eating = false;
 
+    private WaterTutorial waterTutorial;
+
     void Start()
     {
+        waterTutorial = FindObjectOfType<WaterTutorial>();
         if (GameManager.instance == null)
         {
             Debug.LogError("GameManager no está inicializado");
@@ -460,33 +463,37 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("WaterZone"))
-        {
-            if (!waterZones.Contains(other))
-            {
-                waterZones.Add(other); 
-            }
-            UpdateWaterZoneStatus(); 
-            Debug.Log($"Entraste en una zona de agua. Total de zonas activas: {waterZones.Count}");
-        }
+        //if (other.CompareTag("WaterZone"))
+        //{
+        //    if (!waterZones.Contains(other))
+        //    {
+        //        waterZones.Add(other); 
+        //    }
+        //    UpdateWaterZoneStatus(); 
+        //    Debug.Log($"Entraste en una zona de agua. Total de zonas activas: {waterZones.Count}");
+        //}
+        UpdateWaterZoneStatus();
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("WaterZone"))
-        {
-            if (waterZones.Contains(other))
-            {
-                waterZones.Remove(other); 
-            }
-            UpdateWaterZoneStatus(); 
-            Debug.Log($"Saliste de una zona de agua. Total de zonas activas: {waterZones.Count}");
-        }
+        //if (other.CompareTag("WaterZone"))
+        //{
+        //    //if (waterZones.Contains(other))
+        //    //{
+        //    //    waterZones.Remove(other); 
+        //    //}
+        //    UpdateWaterZoneStatus(); 
+        //    Debug.Log($"Saliste de una zona de agua. Total de zonas activas: {waterZones.Count}");
+        //}
+        UpdateWaterZoneStatus();
+
     }
 
     private void UpdateWaterZoneStatus()
     {
-        isInWaterZone = waterZones.Count > 0; 
+        //isInWaterZone = waterZones.Count > 0; 
+        isInWaterZone = waterTutorial.inWaterZone;
         Debug.Log($"Estado actual de agua: {isInWaterZone}");
     }
 

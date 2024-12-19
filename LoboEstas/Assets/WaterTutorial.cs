@@ -5,8 +5,11 @@ using UnityEngine;
 public class WaterTutorial : MonoBehaviour
 {
     public GameObject textPanel;
+    public bool inWaterZone = false;
+
     void Start()
     {
+        inWaterZone = false;
         textPanel.SetActive(false);
     }
 
@@ -14,7 +17,8 @@ public class WaterTutorial : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Verifica que el jugador ha entrado
         {
-           textPanel.SetActive(true);
+            inWaterZone = true;
+            textPanel.SetActive(true);
         }
     }
 
@@ -22,7 +26,8 @@ public class WaterTutorial : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Verifica que el jugador ha salido
         {
-           textPanel.SetActive(false);
+            inWaterZone = false;
+            textPanel.SetActive(false);
         }
     }
 }

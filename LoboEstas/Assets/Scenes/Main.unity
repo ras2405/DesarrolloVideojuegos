@@ -9016,7 +9016,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 101
   m_Sprite: {fileID: 21300000, guid: a3e1e02c83ea4b34ab2a682ba55046cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -85962,8 +85962,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1485649406}
-  - component: {fileID: 1485649405}
   - component: {fileID: 1485649404}
+  - component: {fileID: 1485649407}
   m_Layer: 0
   m_Name: WaterCollider
   m_TagString: Untagged
@@ -85984,7 +85984,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textPanel: {fileID: 1956756238}
---- !u!68 &1485649405
+  inWaterZone: 0
+--- !u!4 &1485649406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485649403}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.12, y: -10.08, z: 133.80855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1956756239}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &1485649407
 EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86019,46 +86036,50 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -10.775736, y: -1.8055372}
-  - {x: -8.013128, y: -1.7865582}
-  - {x: -7.975626, y: -1.1935244}
-  - {x: -7.3730373, y: -1.1495781}
-  - {x: -7.3694286, y: -0.5502186}
-  - {x: -5.5256624, y: -0.49046707}
-  - {x: -5.510575, y: 0.06472111}
-  - {x: -1.7166995, y: 0.11895847}
-  - {x: -1.554439, y: -0.58586216}
-  - {x: -0.26143032, y: -0.635849}
-  - {x: -0.28220004, y: -1.1454515}
-  - {x: 1.5817122, y: -1.1633348}
-  - {x: 1.6162516, y: -1.7946482}
-  - {x: 5.891024, y: -1.7742729}
-  - {x: 6.101142, y: -1.1705151}
-  - {x: 6.6827335, y: -1.1509008}
-  - {x: 6.7164707, y: -0.5324049}
-  - {x: 10.471523, y: -0.5687084}
-  - {x: 10.610926, y: 0.12911892}
-  - {x: 12.777305, y: 0.1441555}
+  - {x: 15.130549, y: 0.47578335}
+  - {x: 11.737503, y: 0.46757793}
+  - {x: 11.729532, y: -0.15756512}
+  - {x: 7.947614, y: -0.1515379}
+  - {x: 7.897064, y: -0.82521534}
+  - {x: 7.2989063, y: -0.8640652}
+  - {x: 7.249743, y: -1.4479237}
+  - {x: 2.7396429, y: -1.447175}
+  - {x: 2.760217, y: -0.8207817}
+  - {x: 0.84502447, y: -0.81878376}
+  - {x: 0.80595005, y: -0.20746994}
+  - {x: -0.4638765, y: -0.18013954}
+  - {x: -0.4723153, y: 0.43703175}
+  - {x: -4.2177663, y: 0.43175888}
+  - {x: -4.2253785, y: -0.17378807}
+  - {x: -6.1384478, y: -0.21503544}
+  - {x: -6.1424026, y: -0.83571243}
+  - {x: -6.7905006, y: -0.8647585}
+  - {x: -6.7953005, y: -1.4425077}
+  - {x: -10.66064, y: -1.4533949}
+  - {x: -10.640139, y: -1.1593065}
+  - {x: -6.997079, y: -1.1906862}
+  - {x: -6.999654, y: -0.58895683}
+  - {x: -6.355462, y: -0.5917578}
+  - {x: -6.349163, y: 0.085059166}
+  - {x: -4.433837, y: 0.08228302}
+  - {x: -4.4300113, y: 0.71858215}
+  - {x: -0.29799175, y: 0.7258158}
+  - {x: -0.2873702, y: 0.04508686}
+  - {x: 0.9556823, y: 0.05167389}
+  - {x: 0.9576824, y: -0.5889454}
+  - {x: 2.9499667, y: -0.5902567}
+  - {x: 2.9394097, y: -1.1964998}
+  - {x: 7.1181984, y: -1.1674137}
+  - {x: 7.118744, y: -0.5768852}
+  - {x: 7.764975, y: -0.5824051}
+  - {x: 7.7786593, y: 0.0778141}
+  - {x: 11.547657, y: 0.081894875}
+  - {x: 11.553916, y: 0.67761135}
+  - {x: 15.154609, y: 0.7029867}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!4 &1485649406
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485649403}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.93390286, y: -9.6687565, z: 133.80855}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1956756239}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1488167267 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5638193288118265937, guid: bbf0f38da7a92a640a1a4db3fd94e22c, type: 3}
