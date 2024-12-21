@@ -22,9 +22,9 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 21300000, guid: 88e4c9ce32e10af4cb6ee75ab53239ae, type: 3}
-    - time: 5
+    - time: 15
       value: {fileID: 21300000, guid: b688e7fdd3133b743900af879497a3ab, type: 3}
-    - time: 10
+    - time: 16
       value: {fileID: 21300000, guid: b688e7fdd3133b743900af879497a3ab, type: 3}
     attribute: m_Sprite
     path: 
@@ -56,7 +56,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 11
+    m_StopTime: 17
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -83,7 +83,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 10
+  - time: 16
     functionName: EndGrow1
     data: 
     objectReferenceParameter: {fileID: 0}
