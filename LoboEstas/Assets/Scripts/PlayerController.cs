@@ -19,11 +19,11 @@ public class PlayerController : MonoBehaviour
     public Transform playerBase;
 
     public AudioClip footstepsSound;
-    private float stepCooldown = 0.5f; 
+    private float stepCooldown = 0.5f;
     private float stepTimer;
 
-    public AudioSource audioSource; 
-    public AudioClip wateringSound; 
+    public AudioSource audioSource;
+    public AudioClip wateringSound;
     public AudioClip graveSound;
     public AudioClip collectingSound;
     public AudioClip sowSound;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public GameObject waterIcon;
     public GameObject runTutorialPanel;
     public float carrotIconDuration = 3f;
-    public float waterIconDuration = 3f; 
+    public float waterIconDuration = 3f;
     private bool isCarrotIconShown = false;
     private bool isWaterIconShown = false;
 
@@ -60,24 +60,21 @@ public class PlayerController : MonoBehaviour
     private bool isInWaterZone = false;
     public Image waterBar;
     public float water, maxWater;
-    public float waterCost; 
+    public float waterCost;
     private bool collectingWater = false;
     private bool eating = false;
 
-    private WaterTutorial waterTutorial;
-
     void Start()
     {
-        waterTutorial = FindObjectOfType<WaterTutorial>();
         if (GameManager.instance == null)
         {
             Debug.LogError("GameManager no está inicializado");
         }
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
-        stepTimer = 0; 
+        stepTimer = 0;
         contadorChocadas = tiempoEntreChocadas;
         currentSpeed = moveSpeed;
 
@@ -96,7 +93,8 @@ public class PlayerController : MonoBehaviour
             isRunning = true;
             runTutorialPanel.SetActive(false);
         }
-        else{
+        else
+        {
             isRunning = false;
         }
 
@@ -111,7 +109,8 @@ public class PlayerController : MonoBehaviour
         if (isRunning && TryMove(movementInput))
         {
             stamina -= runCost * Time.deltaTime;
-            if (stamina <= 0) {
+            if (stamina <= 0)
+            {
                 stamina = 0;
             }
             staminaBar.fillAmount = stamina / maxStamina;
@@ -124,7 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             contadorChocadas -= Time.deltaTime;
 
-        
+
             if (contadorChocadas <= 0)
             {
                 animator.SetBool("isChocandoManos", true);
@@ -155,7 +154,7 @@ public class PlayerController : MonoBehaviour
         {
             HandleMovement();
             DetectMouseClick();
-            stepTimer += Time.fixedDeltaTime; 
+            stepTimer += Time.fixedDeltaTime;
         }
     }
 
@@ -173,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
     private bool HasLamp()
     {
-        foreach(ItemSlot slot in inventory.slots)
+        foreach (ItemSlot slot in inventory.slots)
         {
             if (slot.item != null && slot.item.name == "LampWithLight")
             {
@@ -204,7 +203,7 @@ public class PlayerController : MonoBehaviour
             if (success && stepTimer >= stepCooldown)
             {
                 audioSource.PlayOneShot(footstepsSound);
-                stepTimer = 0; 
+                stepTimer = 0;
             }
 
             spriteRenderer.flipX = movementInput.x < 0;
@@ -213,7 +212,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isMovingR", false);
             animator.SetBool("isRunning", false);
-            audioSource.Stop(); 
+            audioSource.Stop();
         }
     }
 
@@ -228,13 +227,13 @@ public class PlayerController : MonoBehaviour
                 if (GameManager.instance.tileManager.IsPlanted(position))
                 {
 
-                    if (water > waterCost) 
+                    if (water > waterCost)
                     {
                         animator.SetTrigger("watering");
                         GameManager.instance.tileManager.WaterPlant(position);
 
                         water -= waterCost;
-                        if (water < 0) water = 0; 
+                        if (water < 0) water = 0;
                         waterBar.fillAmount = water / maxWater;
 
                         if (audioSource != null && wateringSound != null)
@@ -275,11 +274,11 @@ public class PlayerController : MonoBehaviour
     }
 
     public bool SeedSelected()
-   {
-    Debug.Log(inventory.selectedItem);
-    if (inventory.selectedItem != null && inventory.selectedItem.tag == "seed")return true;
-    return false;
-   }
+    {
+        Debug.Log(inventory.selectedItem);
+        if (inventory.selectedItem != null && inventory.selectedItem.tag == "seed") return true;
+        return false;
+    }
 
     public void EatCarrot()
     {
@@ -287,7 +286,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory.selectedItem != null)
             {
-                if (inventory.selectedItem.tag == "Carrot" && Keyboard.current.qKey.wasPressedThisFrame ) //Keyboard.current.eKey.wasPressedThisFrame || Input.GetMouseButtonDown(1))
+                if (inventory.selectedItem.tag == "Carrot" && Keyboard.current.qKey.wasPressedThisFrame) //Keyboard.current.eKey.wasPressedThisFrame || Input.GetMouseButtonDown(1))
                 {
                     if (audioSource != null && eatingSound != null)
                     {
@@ -304,7 +303,7 @@ public class PlayerController : MonoBehaviour
                     staminaBar.fillAmount = stamina / maxStamina;
                     if (stamina > 0 && isCarrotIconShown)
                     {
-                        isCarrotIconShown= false;
+                        isCarrotIconShown = false;
                     }
                 }
             }
@@ -313,29 +312,29 @@ public class PlayerController : MonoBehaviour
 
     private void ShowCarrotIcon()
     {
-        carrotIcon.SetActive(true); // Activa el ícono de zanahoria
-        isCarrotIconShown = true; // Marca que ya se activó
+        carrotIcon.SetActive(true); 
+        isCarrotIconShown = true; 
         Debug.Log("Ícono de zanahoria activado porque la stamina llegó a 0.");
-        Invoke(nameof(HideCarrotIcon), carrotIconDuration); // Oculta el ícono después de unos segundos
+        Invoke(nameof(HideCarrotIcon), carrotIconDuration); 
     }
 
     private void ShowWaterIcon()
     {
-        waterIcon.SetActive(true); // Activa el ícono de agua
-        isWaterIconShown = true; // Marca que ya se activó
+        waterIcon.SetActive(true); 
+        isWaterIconShown = true; 
         Debug.Log("Ícono de sin agua activado porque barra de agua en 0.");
-        Invoke(nameof(HideWaterIcon), waterIconDuration); // Oculta el ícono después de unos segundos
+        Invoke(nameof(HideWaterIcon), waterIconDuration); 
     }
 
     private void HideCarrotIcon()
     {
-        carrotIcon.SetActive(false); // Desactiva el ícono de zanahoria
+        carrotIcon.SetActive(false); 
         Debug.Log("Ícono de zanahoria ocultado después de la duración establecida.");
     }
 
     private void HideWaterIcon()
     {
-        waterIcon.SetActive(false); // Desactiva el ícono de zanahoria
+        waterIcon.SetActive(false); 
         Debug.Log("Ícono de sin agua oculto después de la duración establecida.");
     }
 
@@ -343,16 +342,16 @@ public class PlayerController : MonoBehaviour
     {
         if (isInWaterZone)
         {
-            if (Keyboard.current.eKey.isPressed) 
+            if (Keyboard.current.eKey.isPressed)
             {
-                collectingWater = true; 
+                collectingWater = true;
                 animator.SetBool("collectingWater", collectingWater);
                 if (waterFillingCoroutine == null)
                 {
                     waterFillingCoroutine = StartCoroutine(FillWaterGradually());
                 }
             }
-            else if (Keyboard.current.eKey.wasReleasedThisFrame) 
+            else if (Keyboard.current.eKey.wasReleasedThisFrame)
             {
                 if (waterFillingCoroutine != null)
                 {
@@ -381,56 +380,57 @@ public class PlayerController : MonoBehaviour
                 water = maxWater;
             }
 
-            waterBar.fillAmount = water / maxWater; 
+            waterBar.fillAmount = water / maxWater;
 
             Debug.Log("Agua actual: " + water);
 
-            yield return new WaitForSeconds(0.1f); 
+            yield return new WaitForSeconds(0.1f);
         }
 
-        waterFillingCoroutine = null; 
+        waterFillingCoroutine = null;
         Debug.Log("Barra de agua completamente rellenada.");
     }
 
     private Vector3Int MapPlayerAndInteractableMapPosition()
-    { 
+    {
         return MapPositionInteractiveTilemap();
     }
 
-    private Vector3Int MapPositionInteractiveTilemap() {
-          double posx = transform.position.x;
-          double posy = transform.position.y;
-          double posx_f = 0;
-          double posy_f = 0;
-          double posx_i = -2.554902; 
-          double posy_i = -2.858896;
-          double tileLength = 0.64; 
+    private Vector3Int MapPositionInteractiveTilemap()
+    {
+        double posx = transform.position.x;
+        double posy = transform.position.y;
+        double posx_f = 0;
+        double posy_f = 0;
+        double posx_i = -2.554902;
+        double posy_i = -2.858896;
+        double tileLength = 0.64;
 
-          if (posx >= posx_i && posx <= posx_i + tileLength)
-          {
-              posx_f = -4;
-          }
-          else if (posx >= posx_i + tileLength && posx <= posx_i + 2 * tileLength)
-          {
-              posx_f = -3;
-          }
-          else if (posx >= posx_i + 6 * tileLength && posx <= posx_i + 7 * tileLength)
-          {
-              posx_f = 2;
-          }
-          else if (posx >= posx_i + 7 * tileLength && posx <= posx_i + 8 * tileLength)
-          {
-              posx_f = 3;
-          }
+        if (posx >= posx_i && posx <= posx_i + tileLength)
+        {
+            posx_f = -4;
+        }
+        else if (posx >= posx_i + tileLength && posx <= posx_i + 2 * tileLength)
+        {
+            posx_f = -3;
+        }
+        else if (posx >= posx_i + 6 * tileLength && posx <= posx_i + 7 * tileLength)
+        {
+            posx_f = 2;
+        }
+        else if (posx >= posx_i + 7 * tileLength && posx <= posx_i + 8 * tileLength)
+        {
+            posx_f = 3;
+        }
 
-          if (posy >= posy_i && posy <= posy_i + tileLength)
-          {
-              posy_f = -5;
-          }
-          else if (posy >= posy_i + tileLength && posy <= posy_i + 2 * tileLength)
-          {
-              posy_f = -4;
-          }
+        if (posy >= posy_i && posy <= posy_i + tileLength)
+        {
+            posy_f = -5;
+        }
+        else if (posy >= posy_i + tileLength && posy <= posy_i + 2 * tileLength)
+        {
+            posy_f = -4;
+        }
 
         return new Vector3Int(((int)posx_f), ((int)posy_f), 0);
     }
@@ -443,11 +443,11 @@ public class PlayerController : MonoBehaviour
                 direction,
                 movementFilter,
                 castCollisions,
-                currentSpeed * Time.fixedDeltaTime + collisionOffset 
+                currentSpeed * Time.fixedDeltaTime + collisionOffset
             );
             if (count == 0)
             {
-                rb.MovePosition(rb.position + direction * currentSpeed * Time.fixedDeltaTime); 
+                rb.MovePosition(rb.position + direction * currentSpeed * Time.fixedDeltaTime);
                 return true;
             }
             else
@@ -463,37 +463,33 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //if (other.CompareTag("WaterZone"))
-        //{
-        //    if (!waterZones.Contains(other))
-        //    {
-        //        waterZones.Add(other); 
-        //    }
-        //    UpdateWaterZoneStatus(); 
-        //    Debug.Log($"Entraste en una zona de agua. Total de zonas activas: {waterZones.Count}");
-        //}
-        UpdateWaterZoneStatus();
+        if (other.CompareTag("WaterZone"))
+        {
+            if (!waterZones.Contains(other))
+            {
+                waterZones.Add(other);
+            }
+            UpdateWaterZoneStatus();
+            Debug.Log($"Entraste en una zona de agua. Total de zonas activas: {waterZones.Count}");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        //if (other.CompareTag("WaterZone"))
-        //{
-        //    //if (waterZones.Contains(other))
-        //    //{
-        //    //    waterZones.Remove(other); 
-        //    //}
-        //    UpdateWaterZoneStatus(); 
-        //    Debug.Log($"Saliste de una zona de agua. Total de zonas activas: {waterZones.Count}");
-        //}
-        UpdateWaterZoneStatus();
-
+        if (other.CompareTag("WaterZone"))
+        {
+            if (waterZones.Contains(other))
+            {
+                waterZones.Remove(other);
+            }
+            UpdateWaterZoneStatus();
+            Debug.Log($"Saliste de una zona de agua. Total de zonas activas: {waterZones.Count}");
+        }
     }
 
     private void UpdateWaterZoneStatus()
     {
-        //isInWaterZone = waterZones.Count > 0; 
-        isInWaterZone = waterTutorial.inWaterZone;
+        isInWaterZone = waterZones.Count > 0;
         Debug.Log($"Estado actual de agua: {isInWaterZone}");
     }
 
@@ -502,15 +498,18 @@ public class PlayerController : MonoBehaviour
         movementInput = movementValue.Get<Vector2>();
     }
 
-    
-    void OnFire() {
+
+    void OnFire()
+    {
         animator.SetTrigger("attack");
     }
 
-    public void LockMovement() {
+    public void LockMovement()
+    {
         canMove = false;
     }
-    public void UnlockMovement() {
+    public void UnlockMovement()
+    {
         canMove = true;
     }
 
@@ -559,7 +558,7 @@ public class PlayerController : MonoBehaviour
         {
             if (audioSource != null && graveSound != null)
             {
-                audioSource.PlayOneShot(graveSound);  
+                audioSource.PlayOneShot(graveSound);
                 Debug.Log("Se hizo clic en una tumba y se reprodujo el sonido.");
             }
         }
@@ -585,6 +584,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollectAnimationComplete()
     {
-        UnlockMovement(); 
+        UnlockMovement();
+    }
+
+    public void RestoreStamina()
+    {
+        stamina = maxStamina;
+        staminaBar.fillAmount = stamina / maxStamina;
+        Debug.Log("Stamina completamente restaurada.");
     }
 }
