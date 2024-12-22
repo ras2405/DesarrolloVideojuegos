@@ -102610,96 +102610,96 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: water
-      value: 100
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: runCost
-      value: 17.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: stamina
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: maxWater
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: runSpeed
-      value: 2.5
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: sowSound
       value: 
-      objectReference: {fileID: 8300000, guid: 35a81e27f42ea0648a1864badaa48a64, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: waterBar
       value: 
-      objectReference: {fileID: 944473085}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 11400000, guid: e10a180662a2a084f88ef4eed1a26044, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: moveSpeed
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: waterCost
-      value: 17.5
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: waterIcon
       value: 
-      objectReference: {fileID: 45530738}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: carrotIcon
       value: 
-      objectReference: {fileID: 196779433}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: graveSound
       value: 
-      objectReference: {fileID: 8300000, guid: d5676de8e18186b49b39d44a71dea467, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: maxStamina
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: playerBase
       value: 
-      objectReference: {fileID: 147495506}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: staminaBar
       value: 
-      objectReference: {fileID: 2112627568}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1271822877}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: eatingSound
       value: 
-      objectReference: {fileID: 8300000, guid: 54d3a97dc07d449408ebc6aa2c2383ae, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: lightNoLamp
       value: 
-      objectReference: {fileID: 1817455118}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: fillCanSound
       value: 
-      objectReference: {fileID: 8300000, guid: 1d24cdbf60a05c346a587e2f4bbea217, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: lightWithLamp
       value: 
-      objectReference: {fileID: 583318301}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: wateringSound
       value: 
-      objectReference: {fileID: 8300000, guid: 0d3d5d0dfed45264f80a326c22636567, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: eatMessageText
       value: 
-      objectReference: {fileID: 920511724}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: footstepsSound
       value: 
@@ -102707,22 +102707,22 @@ PrefabInstance:
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: collectingSound
       value: 
-      objectReference: {fileID: 8300000, guid: eb28f0e68942bf04689e33281836ca24, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: collisionOffset
-      value: 0.02
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: runTutorialPanel
       value: 
-      objectReference: {fileID: 596493991}
+      objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: tiempoEntreChocadas
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 630311692251322094, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: movementFilter.layerMask.m_Bits
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2743503778192643636, guid: ff4eda35cdd68684fa015787d5f42a6d, type: 3}
       propertyPath: m_Name

@@ -62,6 +62,7 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.SetInt("CurrentDay", 1); //poner en 1 luego de probar las cosas
         PlayerPrefs.SetFloat("GameTimeInMinutes", 300f); 
         PlayerPrefs.Save();
+        GameManager.instance.inventoryContainer.selectedItem = null;
 
         CycleDayController.currentDay = 1; //poner en 1 luego de probar las cosas
         CycleDayController.gameTimeInMinutes = 300f; // dejar en 300f luego de probar cosas
