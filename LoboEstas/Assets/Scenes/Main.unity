@@ -46752,8 +46752,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -50375,8 +50375,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 0}
   stick: {fileID: 0}
   reinforcedWindow: {fileID: 0}
@@ -52170,8 +52170,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 0}
   stick: {fileID: 0}
   reinforcedWindow: {fileID: 0}
@@ -56105,8 +56105,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -57286,7 +57286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &920017955
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -58214,8 +58214,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -60080,8 +60080,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 0}
   stick: {fileID: 0}
   reinforcedWindow: {fileID: 0}
@@ -61296,8 +61296,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 0}
   stick: {fileID: 0}
   reinforcedWindow: {fileID: 0}
@@ -77960,7 +77960,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1078409800}
         m_TargetAssemblyTypeName: PurchaseItem, Assembly-CSharp
-        m_MethodName: SellOnion
+        m_MethodName: SellSeta
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -89202,8 +89202,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -94467,8 +94467,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -95242,8 +95242,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 0}
   stick: {fileID: 0}
   reinforcedWindow: {fileID: 0}
@@ -97734,8 +97734,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -98553,8 +98553,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -99217,7 +99217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1984564939
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -101301,7 +101301,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 576905059}
         m_TargetAssemblyTypeName: PurchaseItem, Assembly-CSharp
-        m_MethodName: SellOnion
+        m_MethodName: SellBaya
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
