@@ -80,19 +80,22 @@ public class InventoryToolbar : MonoBehaviour
 
     public void ResetInventory()
     {
-        // Limpiar los �tems del contenedor del inventario
         foreach (var slot in inventory.slots)
         {
-            slot.item = null; // Eliminar el �tem de cada slot
+            slot.item = null; 
             slot.count = 0;
         }
 
-        // Limpiar la interfaz de la barra de herramientas
+        inventory.selectedItem = null;
+
         foreach (var toolbarSlot in slots)
         {
-            toolbarSlot.Clean(); // Limpiar visualmente los slots de la toolbar
+            toolbarSlot.Clean(); 
         }
+        Clean();
     }
+
+
 
     public void SelectItem1()
     {
