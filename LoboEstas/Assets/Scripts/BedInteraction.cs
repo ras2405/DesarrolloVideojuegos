@@ -96,6 +96,7 @@ public class BedInteraction : MonoBehaviour
 
     private void Dormir()
     {
+        houseAmbient.gameObject.SetActive(false);
         currentDay++;
         CycleDayController.currentDay = currentDay; 
         CycleDayController.gameTimeInMinutes = 300f;
