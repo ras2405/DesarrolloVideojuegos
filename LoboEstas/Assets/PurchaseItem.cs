@@ -136,7 +136,7 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         if (GameManager.instance.inventoryContainer.Remove(baya))
         {
             ExecuteBuySound();
-            moneyController.Add(40);
+            moneyController.Add(10);
         }
         else
         {
@@ -149,7 +149,7 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         if (GameManager.instance.inventoryContainer.Remove(seta))
         {
             ExecuteBuySound();
-            moneyController.Add(40);
+            moneyController.Add(10);
         }
         else
         {
@@ -176,7 +176,7 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         if (GameManager.instance.inventoryContainer.Remove(onion))
         {
             ExecuteBuySound();
-            moneyController.Add(150);
+            moneyController.Add(190);
         }
         else
         {
