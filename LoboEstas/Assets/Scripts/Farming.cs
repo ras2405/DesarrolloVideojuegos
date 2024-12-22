@@ -5,10 +5,8 @@ using UnityEngine;
 public class Farming : MonoBehaviour
 {
     public GameObject onCollectEffect;
-    public GameObject carrotPrefab;
     public Item item;
     public int count = 1;
-    private float state; //0 is growing, 1 is ready to harvest
 
     private Inventario inventario;
 
