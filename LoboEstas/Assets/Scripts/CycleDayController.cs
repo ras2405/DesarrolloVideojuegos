@@ -6,10 +6,10 @@ using TMPro;
 
 public class CycleDayController : MonoBehaviour
 {
-    [SerializeField] private Light2D globalLight; // Referencia a la luz global
-    [SerializeField] private CycleDay[] cyclesDay; // Referencia a los ciclos del día
-    [SerializeField] private TextMeshProUGUI timeText; // Referencia al texto de hora
-    [SerializeField] private GameObject[] clockHands; // Arreglo de GameObjects para los sprites de las agujas
+    [SerializeField] private Light2D globalLight;
+    [SerializeField] private CycleDay[] cyclesDay; 
+    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private GameObject[] clockHands; 
 
     private int actualCycle = 0;
     private int nextCycle = 1;
@@ -18,48 +18,34 @@ public class CycleDayController : MonoBehaviour
 
     private void Start()
     {
-        // Cargar el día desde PlayerPrefs
         LoadCurrentDay();
-
-        // Establecer el color de la luz según el ciclo inicial
         globalLight.color = cyclesDay[0].cycleColor;
-        UpdateTimeAndDayText(); // Actualizar el texto al iniciar
-        UpdateClockHands(0); // Inicia mostrando el sprite correspondiente a "Mañana"
+        UpdateTimeAndDayText();
+        UpdateClockHands(0); 
     }
 
     private void Update()
     {
-        // Incrementar el tiempo del juego en minutos
-        gameTimeInMinutes += (Time.deltaTime / (7 * 60)) * 1140; // 7 minutos en tiempo real = 1140 minutos en el juego
-                                                                 // 1140 siendo minutos entre 5am y 12am 
-        // antes era: ( ... (5*60)) * 1440
-
-        if (gameTimeInMinutes >= 1439) // Si es 11:59 PM en el reloj del juego
+        gameTimeInMinutes += (Time.deltaTime / (7 * 60)) * 1140; 
+        if (gameTimeInMinutes >= 1439)
         {
             currentDay++;
-            gameTimeInMinutes = 0; // Reiniciar el tiempo del juego
+            gameTimeInMinutes = 0; 
         }
-
         PlayerPrefs.SetInt("CurrentDay", currentDay);
         PlayerPrefs.SetFloat("GameTimeInMinutes", gameTimeInMinutes);
         PlayerPrefs.Save();
-
-        // Actualizar la luz según el tiempo actual
         UpdateDayStageAndLight();
-
-        // Actualizar el texto del tiempo y día
         UpdateTimeAndDayText();
     }
 
     private void UpdateDayStageAndLight()
     {
-        int totalMinutes = Mathf.FloorToInt(gameTimeInMinutes) % 1440; // 1440 minutos en un día
-
-        // Verificar el tiempo y ajustar la luz y los sprites de acuerdo con el ciclo
+        int totalMinutes = Mathf.FloorToInt(gameTimeInMinutes) % 1440; 
         if (totalMinutes >= 300 && totalMinutes < 480) // 5:00 AM - 7:59 AM
         {
             SetDayStage(0); // Mañana
-            UpdateClockHands(0); // Activar AgujaMorning
+            UpdateClockHands(0); 
         }
         else if (totalMinutes >= 480 && totalMinutes < 960) // 8:00 AM - 3:59 PM
         {
@@ -87,23 +73,23 @@ public class CycleDayController : MonoBehaviour
     {
         for (int i = 0; i < clockHands.Length; i++)
         {
-            clockHands[i].SetActive(i == activeIndex); // Activa solo el sprite correspondiente
+            clockHands[i].SetActive(i == activeIndex); 
         }
     }
 
     private void SetDayStage(int stageIndex)
     {
-        if (actualCycle != stageIndex) // Solo cambiar si el ciclo es diferente
+        if (actualCycle != stageIndex) 
         {
             actualCycle = stageIndex;
             nextCycle = (stageIndex + 1) % cyclesDay.Length;
-            globalLight.color = cyclesDay[actualCycle].cycleColor; // Actualizar el color inmediatamente
+            globalLight.color = cyclesDay[actualCycle].cycleColor; 
         }
     }
 
     private void UpdateTimeAndDayText()
     {
-        int totalMinutes = Mathf.FloorToInt(gameTimeInMinutes) % 1440; // 1440 minutos en un día
+        int totalMinutes = Mathf.FloorToInt(gameTimeInMinutes) % 1440; 
         int displayHour = totalMinutes / 60;
         int displayMinute = totalMinutes % 60;
 
