@@ -21,7 +21,7 @@ public class ItemRespawnManager : MonoBehaviour
 
     [Header("Configuración")]
     public ItemSpawnConfig[] itemConfigs; // Array de configuraciones de items
-    public int itemsPerDay = 10;
+    public int itemsPerDay = 7;
     [SerializeField] private float spawnRadius = 10f;
 
     [Header("Referencias")]
