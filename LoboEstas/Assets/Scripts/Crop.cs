@@ -8,11 +8,11 @@ public class Crop : MonoBehaviour
     [Header("Animaci�n")]
     private Animator animator;
 
-    [Header("Plant Prefab")] //Esta es la planta que dropea zanahorias
+    [Header("Plant Prefab")] 
     [SerializeField] private GameObject plantPrefab;
 
     [Header("Riego")]
-    [SerializeField] private float wateringCooldown = 5f; // Tiempo en segundos
+    [SerializeField] private float wateringCooldown = 5f; 
     private bool isWatered = false;
     private bool isInCooldown = false;
 
@@ -100,33 +100,11 @@ public class Crop : MonoBehaviour
 
     }
 
-   /* public void WaterPlant()
-    {
-        if (isInCooldown)
-        {
-            Debug.Log("No puedes regar esta planta aún. Espera a que termine el tiempo de enfriamiento.");
-            return;
-        }
-
-        if (!isWatered)
-        {
-            isWatered = true;
-            animator.SetTrigger("watered");
-            Debug.Log("La planta ha sido regada. Se ejecutó trigger de watered y growthPhase: " + growthPhase);
-
-            StartCoroutine(StartWateringCooldown());
-        }
-        else
-        {
-            Debug.Log("Esta planta ya está regada.");
-        }
-    }*/
-
     private IEnumerator StartWateringCooldown()
     {
-        isInCooldown = true; // Inicia el periodo de enfriamiento
+        isInCooldown = true;
         yield return new WaitForSeconds(wateringCooldown);
-        isInCooldown = false; // Permite regar nuevamente
+        isInCooldown = false; 
         Debug.Log("El periodo de enfriamiento ha terminado. Puedes regar la planta nuevamente.");
     }
 

@@ -22,7 +22,6 @@ public class CollectibleVegetable : MonoBehaviour
                 inventario.UpdateCollectibleDisplay();
             }
             Destroy(gameObject);
-            // Instantiate(onCollectEffect, transform.position, transform.rotation);
         }
     }
 }
