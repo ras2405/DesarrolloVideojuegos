@@ -86664,14 +86664,14 @@ MonoBehaviour:
   itemConfigs:
   - prefab: {fileID: 7630693245374377707}
     itemData: {fileID: 11400000, guid: 5630a13289744054bbb8709d7c3fd7f0, type: 2}
-    spawnWeight: 3
+    spawnWeight: 5
   - prefab: {fileID: 503163732}
     itemData: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
-    spawnWeight: 3
+    spawnWeight: 1
   - prefab: {fileID: 2065694685}
     itemData: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
-    spawnWeight: 3
-  itemsPerDay: 10
+    spawnWeight: 1
+  itemsPerDay: 7
   spawnRadius: 10
   spawnCenter: {fileID: 1183864833}
   onCollectEffectPrefab: {fileID: 1380895836}
