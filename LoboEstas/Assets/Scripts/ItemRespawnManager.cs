@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ItemSpawnConfig
 {
     public GameObject prefab;
-    public Item itemData; // Referencia al ScriptableObject Item
+    public Item itemData;
     public int spawnWeight = 1; // probabilidad de que salga el item como respawn
 }
 
@@ -26,7 +26,7 @@ public class ItemRespawnManager : MonoBehaviour
 
     [Header("Referencias")]
     public Transform spawnCenter;
-    public GameObject onCollectEffectPrefab; // Prefab del efecto de recolección
+    public GameObject onCollectEffectPrefab; 
 
     private List<ItemSpawnPoint> spawnPoints = new List<ItemSpawnPoint>();
     private CycleDayController cycleController;
@@ -138,7 +138,7 @@ public class ItemRespawnManager : MonoBehaviour
             }
         }
 
-        // Si no se selecciona un ítem (esto debería ser raro), devolver
+        // Si no se selecciona un ítem, devolver
         if (selectedConfig == null)
         {
             Debug.LogWarning("No se pudo seleccionar un item.");
@@ -148,21 +148,15 @@ public class ItemRespawnManager : MonoBehaviour
         int randomIndex = Random.Range(0, availablePoints.Count);
         ItemSpawnPoint selectedPoint = availablePoints[randomIndex];
 
-        // Seleccionar config de item aleatoria
-        //ItemSpawnConfig selectedConfig = itemConfigs[Random.Range(0, itemConfigs.Length)];
-
-        // Crear el item
         GameObject newItem = Instantiate(selectedConfig.prefab, selectedPoint.position, Quaternion.identity);
         newItem.SetActive(true);
 
-        // Configurar el componente Farming
         Farming farmingComponent = newItem.GetComponent<Farming>();
         if (farmingComponent == null)
         {
             farmingComponent = newItem.AddComponent<Farming>();
         }
 
-        // Configurar los componentes necesarios
         SetupItem(newItem, farmingComponent, selectedConfig);
 
         selectedPoint.isOccupied = true;
@@ -172,16 +166,14 @@ public class ItemRespawnManager : MonoBehaviour
     private void SetupItem(GameObject newItem, Farming farmingComponent, ItemSpawnConfig config)
     {
         BoxCollider2D itemCollider = newItem.GetComponent<BoxCollider2D>();
-        // Asegurarnos que tiene un Collider2D
         if (itemCollider == null)
         {
            itemCollider = newItem.AddComponent<BoxCollider2D>();
         }
         itemCollider.isTrigger = true;
-        itemCollider.size = new Vector2(0.3f, 0.3f); // PROBAR
+        itemCollider.size = new Vector2(0.3f, 0.3f);
         itemCollider.enabled = true;
 
-        // Configurar el componente Farming
         farmingComponent.onCollectEffect = onCollectEffectPrefab;
         farmingComponent.item = config.itemData;
         farmingComponent.count = 1;
@@ -195,17 +187,13 @@ public class ItemRespawnManager : MonoBehaviour
     private void CleanupExistingItems()
     {
         Farming[] existingItems = FindObjectsOfType<Farming>();
-        //foreach (Farming item in existingItems)
-        //{
-        //    Destroy(item.gameObject);
-        //}
+
         foreach (Farming item in existingItems)
         {
-            // Verificamos si el item es uno de los predefinidos
             bool isPredefined = false;
             foreach (var predefinedItem in predefinedItems)
             {
-                if (item.gameObject.CompareTag(predefinedItem.tag))  // Compara si el tag es el mismo
+                if (item.gameObject.CompareTag(predefinedItem.tag)) 
                 {
                     isPredefined = true;
                     break;
