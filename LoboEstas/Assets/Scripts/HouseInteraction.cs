@@ -8,8 +8,8 @@ using TMPro;
 
 public class HouseInteraction : MonoBehaviour
 {
-    public GameObject player; // Referencia al jugador
-    public bool insideHouse = false; // Para saber si est� dentro de la casa
+    public GameObject player; 
+    public bool insideHouse = false; 
     public Vector2 housePos = new Vector2(-25f, -2);
     public Vector2 forestPos = new Vector2(1f, 1f);
     public VideoPlayer videoPlayer; 
@@ -35,7 +35,7 @@ public class HouseInteraction : MonoBehaviour
 
     private bool breakDoor = true;
     private bool breakWindow = true;
-    private bool canInteract = false; // Si el jugador puede interactuar con la casa
+    private bool canInteract = false; 
     private bool reinforcedDoorCheck = true;
     private bool reinforcedWindowCheck = true;
     private bool fireOnCheck = true;
@@ -117,11 +117,11 @@ public class HouseInteraction : MonoBehaviour
 
     private IEnumerator ShowText()
     {
-        textDisplayed = true; // Evita que el texto se muestre varias veces
+        textDisplayed = true; 
 
-        deathTextPanel.SetActive(true); // Activa el texto
-        yield return new WaitForSeconds(duration); // Espera el tiempo que debe estar visible
-        deathTextPanel.SetActive(false); // Oculta el texto
+        deathTextPanel.SetActive(true);
+        yield return new WaitForSeconds(duration); 
+        deathTextPanel.SetActive(false); 
     }
 
     void AdjustVideoAspect()
@@ -187,8 +187,8 @@ public class HouseInteraction : MonoBehaviour
     {
         isVideoPlaying = false;
         Debug.Log("El video ha terminado.");
-        videoPlayer.gameObject.SetActive(false); // Desactiva el VideoPlayer
-        videoCanvas.gameObject.SetActive(false); // Desactiva el Canvas
+        videoPlayer.gameObject.SetActive(false); 
+        videoCanvas.gameObject.SetActive(false); 
     }
 
     private void IsFireOn()
@@ -275,7 +275,6 @@ public class HouseInteraction : MonoBehaviour
         }
     }
 
-
     private void BreakWindow()
     {
         
@@ -331,42 +330,26 @@ public class HouseInteraction : MonoBehaviour
         virtualCamera.enabled = true; // Reactiva la c�mara
     }
 
-
-    // Detecta si el jugador entra en el �rea de la puerta
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject == player)
         {
-            canInteract = true; // Permite que el jugador pueda entrar a la casa
+            canInteract = true; 
         }
     }
 
-    // Detecta si el jugador sale del �rea de la puerta
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject == player)
         {
-            canInteract = false; // Impide que el jugador interact�e
+            canInteract = false; 
         }
     }
 
     public bool IsVideoPlaying()
     {
-        //bool isPlayingCinematic = videoPlayer.isPlaying;
         Debug.Log("!videoPlayer.isPlaying ,videoPlayer.time >= videoPlayer.length: " +
             videoPlayer.isPlaying + "," + videoPlayer.time +","+ videoPlayer.length);
-        //!videoPlayer.isPlaying && 
-        /*  if (videoPlayer.time >= videoPlayer.length)
-          {
-              Debug.Log("El video ha terminado.");
-              return false;
-              // Lógica adicional
-          }
-          else {
-              return true;
-          }*/
-        //  Debug.Log("y - HouseInteraction - IsVideoPlaying(): " + isVideoPlaying);
-        //  return isVideoPlaying;
         return videoPlayer.time >= videoPlayer.length;
     }
 
@@ -374,6 +357,4 @@ public class HouseInteraction : MonoBehaviour
     {
         return videoPlayer.length;
     }
-
-
 }
