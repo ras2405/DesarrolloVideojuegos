@@ -50523,7 +50523,7 @@ SpriteRenderer:
   m_SortingLayerID: 1432924239
   m_SortingLayer: 1
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: 2e61ceb3586c8e54e9cc25e1b26134d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d3343a097d227448a132c95c5e3aefc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -52222,7 +52222,7 @@ SpriteRenderer:
   m_SortingLayerID: 1432924239
   m_SortingLayer: 1
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: f3843067fc44a9149bba43e5109ae9d6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 099ebad2b15704b4eb3b6ec957f09209, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -61444,7 +61444,7 @@ SpriteRenderer:
   m_SortingLayerID: 1432924239
   m_SortingLayer: 1
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: 232da1a7aaa8a624f941f5efa5135d68, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a04cb638b4cd9824d9451f19032d8286, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101361,8 +101361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSprite: {fileID: 21300000, guid: 269e3d3356eb68e488c8b63b669cf784, type: 3}
-  clickedSprite: {fileID: 21300000, guid: c59170b34baf95a47a30743365a95c71, type: 3}
+  normalSprite: {fileID: 21300000, guid: 1d3343a097d227448a132c95c5e3aefc, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 5aee3fe8675e786419739422bb1a19e4, type: 3}
   targetObject: {fileID: 576905057}
 --- !u!1001 &2072391304
 PrefabInstance:
