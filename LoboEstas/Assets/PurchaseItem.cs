@@ -18,6 +18,9 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
     [SerializeField] Item onion;
     [SerializeField] Item match;
 
+    [SerializeField] Item seta;
+    [SerializeField] Item baya;
+
     [SerializeField] Item rock;
     [SerializeField] Item stick;
 
@@ -121,6 +124,32 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         {
             ExecuteBuySound();
             moneyController.Add(20);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
+    }
+
+    public void SellBaya()
+    {
+        if (GameManager.instance.inventoryContainer.Remove(baya))
+        {
+            ExecuteBuySound();
+            moneyController.Add(40);
+        }
+        else
+        {
+            ExecuteSelectObjectSound();
+        }
+    }
+
+    public void SellSeta()
+    {
+        if (GameManager.instance.inventoryContainer.Remove(seta))
+        {
+            ExecuteBuySound();
+            moneyController.Add(40);
         }
         else
         {
