@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3671576990353148036}
   - component: {fileID: 354740169095963062}
   - component: {fileID: 5744058483606732516}
+  - component: {fileID: 442045503995238526}
   m_Layer: 0
   m_Name: Firefly
   m_TagString: Untagged
@@ -218,3 +219,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lamp: {fileID: 11400000, guid: 0180697d82fdcc746ba475aed78e5189, type: 2}
   lampWithFly: {fileID: 11400000, guid: 70e16d6ca60fe8543af3f19d08687bec, type: 2}
+--- !u!95 &442045503995238526
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594251317940755216}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b19c1e997e7e394cb648789537da3b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
