@@ -46752,8 +46752,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -50375,8 +50375,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 0}
   stick: {fileID: 0}
   reinforcedWindow: {fileID: 0}
@@ -52170,8 +52170,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 0}
   stick: {fileID: 0}
   reinforcedWindow: {fileID: 0}
@@ -54617,6 +54617,7 @@ GameObject:
   - component: {fileID: 785603238}
   - component: {fileID: 785603237}
   - component: {fileID: 785603236}
+  - component: {fileID: 785603239}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -54737,6 +54738,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785603234}
   m_CullTransparentMesh: 1
+--- !u!114 &785603239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785603234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 82b55be9886b4b84980526ee721b3462, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 14f24fb38b70bdf428ff3a4537b6b1cc, type: 3}
+  targetObject: {fileID: 1806090407}
 --- !u!1 &786415123
 GameObject:
   m_ObjectHideFlags: 0
@@ -55427,6 +55443,7 @@ GameObject:
   - component: {fileID: 836552312}
   - component: {fileID: 836552311}
   - component: {fileID: 836552310}
+  - component: {fileID: 836552313}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -55547,6 +55564,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836552308}
   m_CullTransparentMesh: 1
+--- !u!114 &836552313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836552308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: a18eede2d2761164a8f70fb282b67614, type: 3}
+  clickedSprite: {fileID: 21300000, guid: fcb6f4437956f384a915bb2e654b4f1e, type: 3}
+  targetObject: {fileID: 1557769349}
 --- !u!1 &838417467
 GameObject:
   m_ObjectHideFlags: 0
@@ -56073,8 +56105,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -58182,8 +58214,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -59551,6 +59583,7 @@ GameObject:
   - component: {fileID: 1023204256}
   - component: {fileID: 1023204255}
   - component: {fileID: 1023204254}
+  - component: {fileID: 1023204257}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -59671,6 +59704,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023204252}
   m_CullTransparentMesh: 1
+--- !u!114 &1023204257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023204252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 9e606f9fab94b3b42b05397b4e9b26d0, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 130a374c874b2354abacedbedb154cb9, type: 3}
+  targetObject: {fileID: 441378014}
 --- !u!1 &1027557422
 GameObject:
   m_ObjectHideFlags: 0
@@ -60032,8 +60080,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 0}
   stick: {fileID: 0}
   reinforcedWindow: {fileID: 0}
@@ -60819,6 +60867,7 @@ GameObject:
   - component: {fileID: 1068709093}
   - component: {fileID: 1068709092}
   - component: {fileID: 1068709091}
+  - component: {fileID: 1068709094}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -60939,6 +60988,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068709089}
   m_CullTransparentMesh: 1
+--- !u!114 &1068709094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068709089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 66e9f4823fb9bdf499d73967114800a8, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 22041695870cf264cb6f6dedd1139073, type: 3}
+  targetObject: {fileID: 953135088}
 --- !u!4 &1069682709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3454641355027586635, guid: 3f5a59c76debdea42b4c808b13aeb119, type: 3}
@@ -61232,8 +61296,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 0}
   stick: {fileID: 0}
   reinforcedWindow: {fileID: 0}
@@ -77823,6 +77887,7 @@ GameObject:
   - component: {fileID: 1084022163}
   - component: {fileID: 1084022162}
   - component: {fileID: 1084022161}
+  - component: {fileID: 1084022164}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -77895,7 +77960,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1078409800}
         m_TargetAssemblyTypeName: PurchaseItem, Assembly-CSharp
-        m_MethodName: SellOnion
+        m_MethodName: SellSeta
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -77943,6 +78008,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084022159}
   m_CullTransparentMesh: 1
+--- !u!114 &1084022164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084022159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: a04cb638b4cd9824d9451f19032d8286, type: 3}
+  clickedSprite: {fileID: 21300000, guid: f087d1ff561934e43b5508f5c75582bf, type: 3}
+  targetObject: {fileID: 1078409798}
 --- !u!224 &1084084093 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1102396500602585581, guid: ce398f34351683c4a9916e365d2658f4, type: 3}
@@ -78456,6 +78536,7 @@ GameObject:
   - component: {fileID: 1113829969}
   - component: {fileID: 1113829968}
   - component: {fileID: 1113829967}
+  - component: {fileID: 1113829970}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -78576,6 +78657,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113829965}
   m_CullTransparentMesh: 1
+--- !u!114 &1113829970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113829965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 411e2fbdff6c3594f98076c0784c5246, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 413263602efc6d847836be3cb941521e, type: 3}
+  targetObject: {fileID: 1837906402}
 --- !u!1 &1114906045
 GameObject:
   m_ObjectHideFlags: 0
@@ -78945,6 +79041,7 @@ GameObject:
   - component: {fileID: 1130485375}
   - component: {fileID: 1130485374}
   - component: {fileID: 1130485373}
+  - component: {fileID: 1130485376}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -79065,6 +79162,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130485371}
   m_CullTransparentMesh: 1
+--- !u!114 &1130485376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130485371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 61de894afed16dd4c801afa403d79cb0, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 98c7524cc8e6e234da3bde9565b946b8, type: 3}
+  targetObject: {fileID: 1038108042}
 --- !u!1 &1139493170
 GameObject:
   m_ObjectHideFlags: 0
@@ -79234,6 +79346,7 @@ GameObject:
   - component: {fileID: 1149433505}
   - component: {fileID: 1149433504}
   - component: {fileID: 1149433503}
+  - component: {fileID: 1149433506}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -79354,6 +79467,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149433501}
   m_CullTransparentMesh: 1
+--- !u!114 &1149433506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149433501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 9f0e6ec2bb6b3b244a2764cca6b8404b, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 5c5821a80dccff047921e1aae3c14dee, type: 3}
+  targetObject: {fileID: 1950882849}
 --- !u!1 &1155383556
 GameObject:
   m_ObjectHideFlags: 0
@@ -89074,8 +89202,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -91007,6 +91135,7 @@ GameObject:
   - component: {fileID: 1655517720}
   - component: {fileID: 1655517719}
   - component: {fileID: 1655517718}
+  - component: {fileID: 1655517721}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -91127,6 +91256,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655517716}
   m_CullTransparentMesh: 1
+--- !u!114 &1655517721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655517716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 5c3c1a7715e5d9d4796751577ec0f7e5, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 98bffd4d2daf5ae4a8afb5e69444c18f, type: 3}
+  targetObject: {fileID: 1929451328}
 --- !u!1 &1659129916
 GameObject:
   m_ObjectHideFlags: 0
@@ -92919,6 +93063,7 @@ GameObject:
   - component: {fileID: 1751907322}
   - component: {fileID: 1751907321}
   - component: {fileID: 1751907320}
+  - component: {fileID: 1751907323}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -93039,6 +93184,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751907318}
   m_CullTransparentMesh: 1
+--- !u!114 &1751907323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751907318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: b51c5559b458fda46bc72ae3e0cb02ce, type: 3}
+  clickedSprite: {fileID: 21300000, guid: cc7564f8fa266df46a1053ff15c008ca, type: 3}
+  targetObject: {fileID: 890613156}
 --- !u!1001 &1752861317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94307,8 +94467,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -95082,8 +95242,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 0}
   stick: {fileID: 0}
   reinforcedWindow: {fileID: 0}
@@ -95263,6 +95423,7 @@ GameObject:
   - component: {fileID: 1843294916}
   - component: {fileID: 1843294915}
   - component: {fileID: 1843294914}
+  - component: {fileID: 1843294917}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -95383,6 +95544,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843294912}
   m_CullTransparentMesh: 1
+--- !u!114 &1843294917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843294912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 099ebad2b15704b4eb3b6ec957f09209, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 9f175ac180fb3914e964537d23004f6a, type: 3}
+  targetObject: {fileID: 651900151}
 --- !u!1 &1844151842
 GameObject:
   m_ObjectHideFlags: 0
@@ -97558,8 +97734,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -98377,8 +98553,8 @@ MonoBehaviour:
   potato: {fileID: 11400000, guid: 6ab8c395a3017b3438bac3e36c8b9b43, type: 2}
   onion: {fileID: 11400000, guid: ae7e7e92af4b222429932a40e2f6e42d, type: 2}
   match: {fileID: 11400000, guid: 682b482cf8d114b4f8b2e62f496d0f63, type: 2}
-  seta: {fileID: 0}
-  baya: {fileID: 0}
+  seta: {fileID: 11400000, guid: b3cc41b2cf1ca6d43a40d90d4c41386c, type: 2}
+  baya: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
   rock: {fileID: 11400000, guid: 6eda4ba4efe98454d92760ed99ec7998, type: 2}
   stick: {fileID: 11400000, guid: 56279bc72dbdc354a9ac0b2504445997, type: 2}
   reinforcedWindow: {fileID: 436321206}
@@ -101052,6 +101228,7 @@ GameObject:
   - component: {fileID: 2071177186}
   - component: {fileID: 2071177185}
   - component: {fileID: 2071177184}
+  - component: {fileID: 2071177187}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -101124,7 +101301,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 576905059}
         m_TargetAssemblyTypeName: PurchaseItem, Assembly-CSharp
-        m_MethodName: SellOnion
+        m_MethodName: SellBaya
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -101172,6 +101349,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071177182}
   m_CullTransparentMesh: 1
+--- !u!114 &2071177187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071177182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704240518ded3b4cb13537956167e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 269e3d3356eb68e488c8b63b669cf784, type: 3}
+  clickedSprite: {fileID: 21300000, guid: c59170b34baf95a47a30743365a95c71, type: 3}
+  targetObject: {fileID: 576905057}
 --- !u!1001 &2072391304
 PrefabInstance:
   m_ObjectHideFlags: 0
