@@ -47433,7 +47433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &503163733
 Transform:
   m_ObjectHideFlags: 0
@@ -86664,7 +86664,7 @@ MonoBehaviour:
   itemConfigs:
   - prefab: {fileID: 7630693245374377707}
     itemData: {fileID: 11400000, guid: 5630a13289744054bbb8709d7c3fd7f0, type: 2}
-    spawnWeight: 5
+    spawnWeight: 7
   - prefab: {fileID: 503163732}
     itemData: {fileID: 11400000, guid: 2d57060ae413c0c43959fa9e4ca2cbff, type: 2}
     spawnWeight: 1
@@ -100871,7 +100871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2065694686
 Transform:
   m_ObjectHideFlags: 0

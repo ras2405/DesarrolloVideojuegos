@@ -114,14 +114,46 @@ public class ItemRespawnManager : MonoBehaviour
             return;
         }
 
+        // Calcular el peso total
+        int totalWeight = 0;
+        foreach (var config in itemConfigs)
+        {
+            totalWeight += config.spawnWeight;  // Sumar todos los pesos
+        }
+
+        int randomWeight = Random.Range(0, totalWeight);
+
+        int cumulativeWeight = 0;
+        ItemSpawnConfig selectedConfig = null;
+
+        // Selección del ítem basado en los pesos
+        foreach (var config in itemConfigs)
+        {
+            cumulativeWeight += config.spawnWeight;
+
+            if (randomWeight < cumulativeWeight)
+            {
+                selectedConfig = config;
+                break;
+            }
+        }
+
+        // Si no se selecciona un ítem (esto debería ser raro), devolver
+        if (selectedConfig == null)
+        {
+            Debug.LogWarning("No se pudo seleccionar un item.");
+            return;
+        }
+
         int randomIndex = Random.Range(0, availablePoints.Count);
         ItemSpawnPoint selectedPoint = availablePoints[randomIndex];
 
         // Seleccionar config de item aleatoria
-        ItemSpawnConfig selectedConfig = itemConfigs[Random.Range(0, itemConfigs.Length)];
+        //ItemSpawnConfig selectedConfig = itemConfigs[Random.Range(0, itemConfigs.Length)];
 
         // Crear el item
         GameObject newItem = Instantiate(selectedConfig.prefab, selectedPoint.position, Quaternion.identity);
+        newItem.SetActive(true);
 
         // Configurar el componente Farming
         Farming farmingComponent = newItem.GetComponent<Farming>();
