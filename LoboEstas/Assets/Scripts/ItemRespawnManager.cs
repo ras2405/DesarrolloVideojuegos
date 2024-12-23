@@ -31,6 +31,8 @@ public class ItemRespawnManager : MonoBehaviour
     private List<ItemSpawnPoint> spawnPoints = new List<ItemSpawnPoint>();
     private CycleDayController cycleController;
     private int lastSpawnDay = 0;
+    private bool isSpawning = false;
+    private bool isDayChanging = false;
 
     public GameObject[] predefinedItems; // los items que no tienen que ser eliminados (ejemplo semillas)
 
@@ -50,10 +52,33 @@ public class ItemRespawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (CycleDayController.currentDay != lastSpawnDay)
+        if (CycleDayController.currentDay != lastSpawnDay && !isDayChanging && !isSpawning)
         {
-            SpawnItems();
-            lastSpawnDay = CycleDayController.currentDay;
+            StartNewDay();
+        }
+    }
+
+    private void StartNewDay()
+    {
+        isDayChanging = true;
+
+        CleanupExistingItems();
+
+        isSpawning = true;
+        GenerateSpawnPoints();
+        SpawnItems();
+        isSpawning = false;
+
+        lastSpawnDay = CycleDayController.currentDay;
+        isDayChanging = false;
+    }
+
+    public void OnItemCollected(ItemSpawnPoint spawnPoint)
+    {
+        if (spawnPoint != null)
+        {
+            spawnPoint.isOccupied = false;
+            spawnPoint.itemPrefab = null;
         }
     }
 
@@ -61,7 +86,9 @@ public class ItemRespawnManager : MonoBehaviour
     {
         spawnPoints.Clear();
 
-        for (int i = 0; i < itemsPerDay * 2; i++)
+        int attempts = itemsPerDay * 50; // Para generacion de puntos validos
+
+        for (int i = 0; i < attempts; i++)
         {
             float angle = Random.Range(0f, 360f);
             float distance = Random.Range(0f, spawnRadius);
@@ -85,52 +112,62 @@ public class ItemRespawnManager : MonoBehaviour
 
     private bool IsValidSpawnPoint(Vector2 position)
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, 0.5f);
-        return colliders.Length == 0;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, 2f);
+        foreach (var collider in colliders)
+        {
+            if (!collider.isTrigger)
+                return false;
+        }
+        return true;
     }
 
     private void SpawnItems()
     {
-        CleanupExistingItems();
+        if (spawnPoints.Count == 0) return;
 
-        foreach (var point in spawnPoints)
-        {
-            point.isOccupied = false;
-        }
+        List<ItemSpawnPoint> availablePoints = new List<ItemSpawnPoint>(spawnPoints);
 
         for (int i = 0; i < itemsPerDay; i++)
         {
-            SpawnSingleItem();
+            if (availablePoints.Count == 0) break;
+            int randomIndex = Random.Range(0, availablePoints.Count);
+            ItemSpawnPoint selectedPoint = availablePoints[randomIndex];
+            availablePoints.RemoveAt(randomIndex);
+
+            SpawnSingleItem(selectedPoint);
         }
     }
 
-    private void SpawnSingleItem()
+    private void SpawnSingleItem(ItemSpawnPoint selectedPoint)
     {
-        List<ItemSpawnPoint> availablePoints = spawnPoints.FindAll(p => !p.isOccupied);
-
-        if (availablePoints.Count == 0 || itemConfigs.Length == 0)
-        {
-            Debug.LogWarning("No hay puntos de spawn disponibles o no hay items configurados.");
-            return;
-        }
-
+        if (itemConfigs == null || itemConfigs.Length == 0 || selectedPoint == null) return;
         // Calcular el peso total
         int totalWeight = 0;
         foreach (var config in itemConfigs)
         {
-            totalWeight += config.spawnWeight;  // Sumar todos los pesos
+            if (config != null && config.prefab != null)
+            {
+                totalWeight += config.spawnWeight;
+            }
+        }
+
+        if (totalWeight <= 0)
+        {
+            Debug.Log("No hay peso total para los ítems, no se generará ninguno.");
+            return;
+            //totalWeight = 8;
         }
 
         int randomWeight = Random.Range(0, totalWeight);
-
         int cumulativeWeight = 0;
+
         ItemSpawnConfig selectedConfig = null;
 
-        // Selección del ítem basado en los pesos
+        // Seleccionar ítem basado en pesos
         foreach (var config in itemConfigs)
         {
+            if (config == null || config.prefab == null) continue;
             cumulativeWeight += config.spawnWeight;
-
             if (randomWeight < cumulativeWeight)
             {
                 selectedConfig = config;
@@ -138,31 +175,15 @@ public class ItemRespawnManager : MonoBehaviour
             }
         }
 
-        // Si no se selecciona un ítem (esto debería ser raro), devolver
-        if (selectedConfig == null)
-        {
-            Debug.LogWarning("No se pudo seleccionar un item.");
-            return;
-        }
+        if (selectedConfig?.prefab == null) return;
 
-        int randomIndex = Random.Range(0, availablePoints.Count);
-        ItemSpawnPoint selectedPoint = availablePoints[randomIndex];
-
-        // Seleccionar config de item aleatoria
-        //ItemSpawnConfig selectedConfig = itemConfigs[Random.Range(0, itemConfigs.Length)];
-
-        // Crear el item
-        GameObject newItem = Instantiate(selectedConfig.prefab, selectedPoint.position, Quaternion.identity);
+        // Crear el nuevo ítem
+        Vector2 spawnPos = selectedPoint.position + (Vector2)Random.insideUnitCircle * 0.1f;
+        GameObject newItem = Instantiate(selectedConfig.prefab, spawnPos, Quaternion.identity);
         newItem.SetActive(true);
 
-        // Configurar el componente Farming
-        Farming farmingComponent = newItem.GetComponent<Farming>();
-        if (farmingComponent == null)
-        {
-            farmingComponent = newItem.AddComponent<Farming>();
-        }
-
-        // Configurar los componentes necesarios
+        Farming farmingComponent = newItem.GetComponent<Farming>() ?? newItem.AddComponent<Farming>();
+        farmingComponent.isRespawnable = true;
         SetupItem(newItem, farmingComponent, selectedConfig);
 
         selectedPoint.isOccupied = true;
@@ -178,7 +199,7 @@ public class ItemRespawnManager : MonoBehaviour
            itemCollider = newItem.AddComponent<BoxCollider2D>();
         }
         itemCollider.isTrigger = true;
-        itemCollider.size = new Vector2(0.3f, 0.3f); // PROBAR
+        itemCollider.size = new Vector2(0.3f, 0.3f);
         itemCollider.enabled = true;
 
         // Configurar el componente Farming
@@ -194,29 +215,23 @@ public class ItemRespawnManager : MonoBehaviour
 
     private void CleanupExistingItems()
     {
-        Farming[] existingItems = FindObjectsOfType<Farming>();
-        //foreach (Farming item in existingItems)
-        //{
-        //    Destroy(item.gameObject);
-        //}
+        if (isSpawning) return;
+
+        Farming[] existingItems = FindObjectsOfType<Farming>(true);
+
         foreach (Farming item in existingItems)
         {
-            // Verificamos si el item es uno de los predefinidos
-            bool isPredefined = false;
-            foreach (var predefinedItem in predefinedItems)
-            {
-                if (item.gameObject.CompareTag(predefinedItem.tag))  // Compara si el tag es el mismo
-                {
-                    isPredefined = true;
-                    break;
-                }
-            }
-
-            // Si no es predefinido, lo destruimos
-            if (!isPredefined)
+            if (item == null || item.gameObject == null) continue;
+            if (item.isRespawnable)
             {
                 Destroy(item.gameObject);
             }
+        }
+
+        foreach (var point in spawnPoints)
+        {
+            point.isOccupied = false;
+            point.itemPrefab = null;
         }
     }
 

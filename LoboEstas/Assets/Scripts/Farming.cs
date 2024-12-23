@@ -8,7 +8,12 @@ public class Farming : MonoBehaviour
     public Item item;
     public int count = 1;
 
+    public ItemRespawnManager respawnManager; // Referencia al respawn manager
+    public ItemRespawnManager.ItemSpawnPoint spawnPoint; // Punto de spawn del ítem
+
     private Inventario inventario;
+
+    public bool isRespawnable = false;
 
     private void Start()
     {
@@ -43,26 +48,6 @@ public class Farming : MonoBehaviour
                     Destroy(gameObject); 
                     Instantiate(onCollectEffect, transform.position, transform.rotation);
                 }
-
-            // Agregar lógica para el inventario y efectos visuales si es necesario
-                if (GameManager.instance.inventoryContainer != null)
-                {
-                    GameManager.instance.inventoryContainer.Add(item, count);
-                }
-                else
-                {
-                    Debug.LogWarning("No inventory container attached to the game manager");
-                }
-
-                if (inventario == null)
-                {
-                    Debug.LogError("El inventario no está asignado!");
-                }
-                else
-                {
-                    inventario.HarvestCarrot(count);
-                    inventario.UpdateCollectibleDisplay();
-                }
             }
         }
         
@@ -73,14 +58,51 @@ public class Farming : MonoBehaviour
         // Espera hasta la mitad de la duración de la animación
         yield return new WaitForSeconds(animationDuration / 2);
 
-        // Destruye el objeto y muestra el efecto de recogida
-        Destroy(gameObject);
-        Instantiate(onCollectEffect, transform.position, transform.rotation);
+        CollectItem();
 
         // Espera el resto de la duración de la animación
         //yield return new WaitForSeconds(animationDuration / 2);
 
         // Llama al método para desbloquear el movimiento
         player.UnlockMovement();
+    }
+
+    private void CollectItem()
+    {
+        // Mostrar el efecto visual
+        if (onCollectEffect != null)
+        {
+            GameObject effect = Instantiate(onCollectEffect, transform.position, transform.rotation);
+            Destroy(effect, 3f);
+        }
+
+        // Agregar el ítem al inventario
+        if (GameManager.instance.inventoryContainer != null)
+        {
+            GameManager.instance.inventoryContainer.Add(item, count);
+        }
+        else
+        {
+            Debug.LogWarning("No inventory container attached to the game manager");
+        }
+
+        if (inventario == null)
+        {
+            Debug.LogError("El inventario no está asignado!");
+        }
+        else
+        {
+            inventario.HarvestCarrot(count);
+            inventario.UpdateCollectibleDisplay();
+        }
+
+        // Notificar al respawn manager que el punto de spawn está libre
+        if (respawnManager != null && spawnPoint != null)
+        {
+            respawnManager.OnItemCollected(spawnPoint);
+        }
+
+        // Destruir el objeto
+        Destroy(gameObject);
     }
 }

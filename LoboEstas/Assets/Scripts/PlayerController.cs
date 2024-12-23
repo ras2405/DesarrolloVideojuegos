@@ -122,22 +122,22 @@ public class PlayerController : MonoBehaviour
         if (movementInput == Vector2.zero)
         {
             contadorChocadas -= Time.deltaTime;
-            Debug.Log("contadorChocadas " + contadorChocadas);
+            //Debug.Log("contadorChocadas " + contadorChocadas);
             if (contadorChocadas <= 0)
             {
-                Debug.Log("isChocandoManos true");
+                //Debug.Log("isChocandoManos true");
                 animator.SetBool("isChocandoManos", true);
                 contadorChocadas = tiempoEntreChocadas;
             }
             else
             {
-                Debug.Log("Esperar - isChocandoManos false");
+                //Debug.Log("Esperar - isChocandoManos false");
                 animator.SetBool("isChocandoManos", false);
             }
         }
         else
         {
-            Debug.Log("Se mueve - isChocandoManos false");
+            //Debug.Log("Se mueve - isChocandoManos false");
             animator.SetBool("isChocandoManos", false);
             contadorChocadas = tiempoEntreChocadas;
         }
