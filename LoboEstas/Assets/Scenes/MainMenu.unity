@@ -395,7 +395,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9572fb635fb84c44a96788e0dd75c581, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aaf51df7c81195146865d919b2a9ea6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -425,8 +425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc40ad59155c244d8e403ae360c3a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSprite: {fileID: 21300000, guid: 9572fb635fb84c44a96788e0dd75c581, type: 3}
-  clickedSprite: {fileID: 21300000, guid: 5c1f8ab91f87eb24b8c41229bad61bd9, type: 3}
+  normalSprite: {fileID: 21300000, guid: aaf51df7c81195146865d919b2a9ea6d, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 4473091cb50dd0f49b3116da6a14cdb1, type: 3}
 --- !u!1 &135908709
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,6 +2700,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "E + Selecci\xF3n de semillas en inventario para plantar"
       objectReference: {fileID: 0}
+    - target: {fileID: 6763155578480775796, guid: f2b1aae71c56d424da7bcfd00a91ed97, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 34d2a9f593feec34286815fcbad87b3f, type: 3}
     - target: {fileID: 7183598354143992911, guid: f2b1aae71c56d424da7bcfd00a91ed97, type: 3}
       propertyPath: m_Pivot.x
       value: 1
