@@ -8,15 +8,14 @@ public class PersistTilemap : MonoBehaviour
 
     private void Awake()
     {
-        // Si ya existe una instancia de este objeto, destruir el duplicado
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Hacer que el Tilemap persista entre escenas
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
-            Destroy(gameObject); // Destruir duplicados si existen
+            Destroy(gameObject);
         }
     }
 }

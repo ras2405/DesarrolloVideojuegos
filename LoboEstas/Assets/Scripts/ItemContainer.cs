@@ -10,7 +10,6 @@ public class ItemSlot
     public int count;
 }
 
-
 [CreateAssetMenu(menuName="Data/Item Container")]
 public class ItemContainer : ScriptableObject
 {

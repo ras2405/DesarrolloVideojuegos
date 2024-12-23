@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class SaveSystem : MonoBehaviour
 {
-    // Queremos guardar la posici�n del Player
     PlayerController playerController;
     [SerializeField] InventoryToolbar inventory;
 
@@ -18,16 +17,13 @@ public class SaveSystem : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         savePath = Application.persistentDataPath + "/save.dat";
 
-        // Verificar si existe un archivo de guardado
         if (!File.Exists(savePath))
         {
-            // Crear un nuevo archivo de guardado si no existe
             saveData newData = new saveData();
             newData.playerPosition = Vector3.zero;
             SaveGame(newData);
         }
 
-        // Cargar los datos guardados
         data = LoadGame();
     }
 
@@ -45,7 +41,7 @@ public class SaveSystem : MonoBehaviour
             saveData dataToReturn = JsonUtility.FromJson<saveData>(loadedData);
             return dataToReturn;
         }
-        return null; // Retornar null si no hay datos
+        return null; 
     }
 
     public void SaveGameButton()
@@ -59,12 +55,12 @@ public class SaveSystem : MonoBehaviour
     public void NewGameButton()
     {
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("CurrentDay", 1); //poner en 1 luego de probar las cosas
+        PlayerPrefs.SetInt("CurrentDay", 1); 
         PlayerPrefs.SetFloat("GameTimeInMinutes", 300f); 
         PlayerPrefs.Save();
 
-        CycleDayController.currentDay = 1; //poner en 1 luego de probar las cosas
-        CycleDayController.gameTimeInMinutes = 300f; // dejar en 300f luego de probar cosas
+        CycleDayController.currentDay = 1; 
+        CycleDayController.gameTimeInMinutes = 300f; 
 
         if (inventory != null)
         {
@@ -76,29 +72,24 @@ public class SaveSystem : MonoBehaviour
 
     public void ContinueButton()
     {
-        // Cargar la escena principal y restaurar la posici�n del jugador
         StartCoroutine(LoadGameSceneAndRestoreData(data));
     }
 
     private IEnumerator LoadGameSceneAndRestoreData(saveData dataToRestore)
     {
-        // Cargar la escena del juego de manera as�ncrona
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main");
 
-        // Esperar a que la escena se haya cargado completamente
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
 
-        // Esperar a que el PlayerController est� disponible
         while (playerController == null)
         {
             playerController = FindObjectOfType<PlayerController>();
             yield return null; 
         }
 
-        // Restaurar la posici�n del jugador
         print("ContinueButton playerPos: " + dataToRestore.playerPosition);
         playerController.SetPosition(dataToRestore.playerPosition);
     }

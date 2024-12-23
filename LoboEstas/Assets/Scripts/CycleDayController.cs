@@ -50,22 +50,22 @@ public class CycleDayController : MonoBehaviour
         else if (totalMinutes >= 480 && totalMinutes < 960) // 8:00 AM - 3:59 PM
         {
             SetDayStage(1); // Día
-            UpdateClockHands(1); // Activar AgujaDay
+            UpdateClockHands(1); 
         }
         else if (totalMinutes >= 960 && totalMinutes < 1080) // 4:00 PM - 5:59 PM
         {
             SetDayStage(2); // Tarde
-            UpdateClockHands(2); // Activar AgujaEvening
+            UpdateClockHands(2); 
         }
         else if (totalMinutes >= 1080 && totalMinutes < 1260) // 6:00 PM - 8:59 PM
         {
             SetDayStage(3); // Atardecer
-            UpdateClockHands(3); // Activar AgujaNight
+            UpdateClockHands(3); 
         }
         else // 9:00 PM - 4:59 AM
         {
             SetDayStage(4); // Noche
-            UpdateClockHands(4); // Activar AgujaLateNight
+            UpdateClockHands(4); 
         }
     }
 

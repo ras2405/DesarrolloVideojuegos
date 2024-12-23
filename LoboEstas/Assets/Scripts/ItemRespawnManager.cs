@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class ItemSpawnConfig
 {
     public GameObject prefab;
-    public Item itemData; // Referencia al ScriptableObject Item
-    public int spawnWeight = 1; // probabilidad de que salga el item como respawn
+    public Item itemData; 
+    public int spawnWeight = 1; 
 }
 
 public class ItemRespawnManager : MonoBehaviour
@@ -20,13 +20,13 @@ public class ItemRespawnManager : MonoBehaviour
     }
 
     [Header("Configuración")]
-    public ItemSpawnConfig[] itemConfigs; // Array de configuraciones de items
+    public ItemSpawnConfig[] itemConfigs; 
     public int itemsPerDay = 7;
     [SerializeField] private float spawnRadius = 10f;
 
     [Header("Referencias")]
     public Transform spawnCenter;
-    public GameObject onCollectEffectPrefab; // Prefab del efecto de recolección
+    public GameObject onCollectEffectPrefab; 
 
     private List<ItemSpawnPoint> spawnPoints = new List<ItemSpawnPoint>();
     private CycleDayController cycleController;
@@ -34,7 +34,7 @@ public class ItemRespawnManager : MonoBehaviour
     private bool isSpawning = false;
     private bool isDayChanging = false;
 
-    public GameObject[] predefinedItems; // los items que no tienen que ser eliminados (ejemplo semillas)
+    public GameObject[] predefinedItems; 
 
     private void Start()
     {
@@ -86,7 +86,7 @@ public class ItemRespawnManager : MonoBehaviour
     {
         spawnPoints.Clear();
 
-        int attempts = itemsPerDay * 50; // Para generacion de puntos validos
+        int attempts = itemsPerDay * 50; 
 
         for (int i = 0; i < attempts; i++)
         {
@@ -141,7 +141,6 @@ public class ItemRespawnManager : MonoBehaviour
     private void SpawnSingleItem(ItemSpawnPoint selectedPoint)
     {
         if (itemConfigs == null || itemConfigs.Length == 0 || selectedPoint == null) return;
-        // Calcular el peso total
         int totalWeight = 0;
         foreach (var config in itemConfigs)
         {
@@ -155,7 +154,6 @@ public class ItemRespawnManager : MonoBehaviour
         {
             Debug.Log("No hay peso total para los ítems, no se generará ninguno.");
             return;
-            //totalWeight = 8;
         }
 
         int randomWeight = Random.Range(0, totalWeight);
@@ -163,7 +161,6 @@ public class ItemRespawnManager : MonoBehaviour
 
         ItemSpawnConfig selectedConfig = null;
 
-        // Seleccionar ítem basado en pesos
         foreach (var config in itemConfigs)
         {
             if (config == null || config.prefab == null) continue;
@@ -177,7 +174,6 @@ public class ItemRespawnManager : MonoBehaviour
 
         if (selectedConfig?.prefab == null) return;
 
-        // Crear el nuevo ítem
         Vector2 spawnPos = selectedPoint.position + (Vector2)Random.insideUnitCircle * 0.1f;
         GameObject newItem = Instantiate(selectedConfig.prefab, spawnPos, Quaternion.identity);
         newItem.SetActive(true);
@@ -193,7 +189,6 @@ public class ItemRespawnManager : MonoBehaviour
     private void SetupItem(GameObject newItem, Farming farmingComponent, ItemSpawnConfig config)
     {
         BoxCollider2D itemCollider = newItem.GetComponent<BoxCollider2D>();
-        // Asegurarnos que tiene un Collider2D
         if (itemCollider == null)
         {
            itemCollider = newItem.AddComponent<BoxCollider2D>();
@@ -202,7 +197,6 @@ public class ItemRespawnManager : MonoBehaviour
         itemCollider.size = new Vector2(0.3f, 0.3f);
         itemCollider.enabled = true;
 
-        // Configurar el componente Farming
         farmingComponent.onCollectEffect = onCollectEffectPrefab;
         farmingComponent.item = config.itemData;
         farmingComponent.count = 1;

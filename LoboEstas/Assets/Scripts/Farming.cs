@@ -8,8 +8,8 @@ public class Farming : MonoBehaviour
     public Item item;
     public int count = 1;
 
-    public ItemRespawnManager respawnManager; // Referencia al respawn manager
-    public ItemRespawnManager.ItemSpawnPoint spawnPoint; // Punto de spawn del ítem
+    public ItemRespawnManager respawnManager; 
+    public ItemRespawnManager.ItemSpawnPoint spawnPoint; 
 
     private Inventario inventario;
 
@@ -33,14 +33,9 @@ public class Farming : MonoBehaviour
             {
 
                 if (player != null && item != null && (item.name != "Firefly"))
-                 //item.name == "Stone" || item.name == "Wood" || item.name == "Carrot") || item.name == "CarrotSeed")//|| item.name == "Firefly" (DEBEN AGREGARCE AL TARRO)
                 {
-                    player.StartAnimationCollect(); // Inicia la animación y bloquea el movimiento
-
-                    // Obtiene la duración de la animación
+                    player.StartAnimationCollect(); 
                     float animationDuration = player.animator.GetCurrentAnimatorStateInfo(0).length;
-
-                // Inicia la coroutine para esperar la duración de la animación
                     StartCoroutine(WaitForAnimation(player, animationDuration));
                 }
                 else
@@ -50,33 +45,24 @@ public class Farming : MonoBehaviour
                 }
             }
         }
-        
     }
 
     private IEnumerator WaitForAnimation(PlayerController player, float animationDuration)
     {
-        // Espera hasta la mitad de la duración de la animación
         yield return new WaitForSeconds(animationDuration / 2);
 
         CollectItem();
-
-        // Espera el resto de la duración de la animación
-        //yield return new WaitForSeconds(animationDuration / 2);
-
-        // Llama al método para desbloquear el movimiento
         player.UnlockMovement();
     }
 
     private void CollectItem()
     {
-        // Mostrar el efecto visual
         if (onCollectEffect != null)
         {
             GameObject effect = Instantiate(onCollectEffect, transform.position, transform.rotation);
             Destroy(effect, 3f);
         }
 
-        // Agregar el ítem al inventario
         if (GameManager.instance.inventoryContainer != null)
         {
             GameManager.instance.inventoryContainer.Add(item, count);
@@ -96,13 +82,11 @@ public class Farming : MonoBehaviour
             inventario.UpdateCollectibleDisplay();
         }
 
-        // Notificar al respawn manager que el punto de spawn está libre
         if (respawnManager != null && spawnPoint != null)
         {
             respawnManager.OnItemCollected(spawnPoint);
         }
 
-        // Destruir el objeto
         Destroy(gameObject);
     }
 }
