@@ -45,13 +45,10 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
         moneyController = GameObject.FindWithTag("Money").GetComponent<MoneyController>();
     }
 
-    // Este método se llamará cuando se detecte un clic sobre el objeto
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Verificar si el clic fue el derecho
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            // Llamar a la función que quieres ejecutar
             Debug.LogWarning("Click derecho presionado");
             OnRightClick();
         }
@@ -256,6 +253,4 @@ public class PurchaseItem : MonoBehaviour, IPointerClickHandler
             audioSource.PlayOneShot(selectObjectSound);
         }
     }
-
-
 }

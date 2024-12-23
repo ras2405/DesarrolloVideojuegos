@@ -73,14 +73,12 @@ public class fencesDefense : MonoBehaviour
             AssignSprite(RcornerFence1, cornerReinforcedSprite);
             AssignSprite(RcornerFence2, cornerReinforcedSprite);
 
-            // Asignar sprites a los fence normales
             AssignSprite(fence3, normalReinforcedSprite);
             AssignSprite(fence4, normalReinforcedSprite);
 
             AssignSprite(Rfence3, normalReinforcedSprite);
             AssignSprite(Rfence4, normalReinforcedSprite);
 
-        // Asignar sprites a los verticalFence
             AssignSprite(verticalFence5, verticalReinforcedSprite);
             AssignSprite(verticalFence6, verticalReinforcedSprite);
             AssignSprite(verticalFence7, verticalReinforcedSprite);
@@ -104,7 +102,7 @@ public class fencesDefense : MonoBehaviour
             SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
-                sr.sprite = sprite; // Asigna el sprite
+                sr.sprite = sprite; 
             }
             else
             {
@@ -125,7 +123,6 @@ public class fencesDefense : MonoBehaviour
         {
             GameObject[] carrots = GameObject.FindGameObjectsWithTag("Carrot");
 
-            // Itera sobre cada uno y los destruye
             foreach (GameObject carrot in carrots)
             {
                 Destroy(carrot);
@@ -137,15 +134,8 @@ public class fencesDefense : MonoBehaviour
     private void ResetTiles()
     {
         foreach (var position in interactableMap.cellBounds.allPositionsWithin)
-        { // Mide en unidades de celda del tilemap no en pixeles
+        { 
             tmscript.ResetTile(position);
-           /* TileBase tile = interactableMap.GetTile(position);
-            if (tile != null && tile.name == "Tierra_Plantar")
-            {
-                interactableMap.SetTile(position, tierraSeca);
-                tileStates[position] = (false, 0); // Inicializa como no plantado y sin agua 
-                // Inicializa como no plantado, luego de cultivar queremos que vuelva a estar vacio y saber que esta plantado y cuantas veces se rego
-            }*/
         }
     }
 }

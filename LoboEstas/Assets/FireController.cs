@@ -41,7 +41,7 @@ public class FireController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && fireOff) // Verifica que el jugador ha entrado
+        if (other.CompareTag("Player") && fireOff)
         {
            textPanel.SetActive(true);
            if(GameManager.instance.inventoryContainer.HasItem("Match"))
@@ -54,7 +54,7 @@ public class FireController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Verifica que el jugador ha salido
+        if (other.CompareTag("Player"))
         {
            textPanel.SetActive(false);
            inRange = false;

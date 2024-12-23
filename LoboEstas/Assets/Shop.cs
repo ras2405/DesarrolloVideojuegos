@@ -10,10 +10,7 @@ public class Shop : MonoBehaviour
     public GameObject newShopTemplate;
     private Animator animator;
     
-
-    private bool playerInZone = false; // Variable para saber si el jugador está en la zona
-
-    // Se llama cuando un objeto con un Collider entra en la zona (trigger)
+    private bool playerInZone = false; 
     
     public void Start()
     {
@@ -26,7 +23,6 @@ public class Shop : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("juagor en zona tienda");
-        // Verifica si el objeto que entra tiene el tag "Player" (puedes cambiar esto según tus necesidades)
         if (other.CompareTag("Player"))
         {
             Debug.Log("entra al if");
@@ -37,10 +33,8 @@ public class Shop : MonoBehaviour
        
     }
 
-    // Se llama cuando un objeto con un Collider sale de la zona (trigger)
     private void OnTriggerExit2D(Collider2D other)
     {
-        // Verifica si el objeto que sale tiene el tag "Player"
         if (other.CompareTag("Player"))
         {
             playerInZone = false;
@@ -53,7 +47,6 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
-        // Verifica si el jugador está en la zona y presiona la tecla 'E'
         if (playerInZone && Input.GetKeyDown(KeyCode.E))
         {
             ExecuteAction();
@@ -61,7 +54,6 @@ public class Shop : MonoBehaviour
         }
     }
 
-    // Función que se ejecutará al presionar 'E' en la zona
     private void ExecuteAction()
     {
         newShopTemplate.gameObject.SetActive(true);

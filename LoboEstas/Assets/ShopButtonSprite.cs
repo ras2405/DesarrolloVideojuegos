@@ -5,16 +5,15 @@ using UnityEngine.EventSystems;
 
 public class ShopButtonSprite : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public Sprite normalSprite;   // El sprite normal del objeto
-    public Sprite clickedSprite;  // El sprite al hacer clic
-    public GameObject targetObject; // El objeto cuyo SpriteRenderer debe cambiar
+    public Sprite normalSprite;   
+    public Sprite clickedSprite;  
+    public GameObject targetObject; 
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         if (targetObject != null)
         {
-            // Obtén el SpriteRenderer del objeto asignado
             spriteRenderer = targetObject.GetComponent<SpriteRenderer>();
 
             if (spriteRenderer == null)
@@ -28,21 +27,19 @@ public class ShopButtonSprite : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         }
     }
 
-    // Este método se llama cuando el puntero hace clic en el botón (Pointer Down)
     public void OnPointerDown(PointerEventData eventData)
     {
         if (spriteRenderer != null)
         {
-            spriteRenderer.sprite = clickedSprite;  // Cambia al sprite de clic
+            spriteRenderer.sprite = clickedSprite;  
         }
     }
 
-    // Este método se llama cuando el puntero deja de hacer clic en el botón (Pointer Up)
     public void OnPointerUp(PointerEventData eventData)
     {
         if (spriteRenderer != null)
         {
-            spriteRenderer.sprite = normalSprite;  // Vuelve al sprite normal
+            spriteRenderer.sprite = normalSprite; 
         }
     }
 }

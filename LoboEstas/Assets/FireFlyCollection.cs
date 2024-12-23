@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class FireFlyCollection : MonoBehaviour
 {
-    private bool isPlayerInRange; // Indica si el jugador está en rango.
+    private bool isPlayerInRange; 
 
     public Item lamp;
     public Item lampWithFly;
 
     private void Update()
     {
-        // Si el jugador está en rango y presiona "E"
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            CollectItem(); // Llama al método para recoger el objeto.
+            CollectItem(); 
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Comprueba si el objeto que entra es el jugador.
+        if (other.CompareTag("Player")) 
         {
-            isPlayerInRange = true; // Indica que el jugador está en rango.
+            isPlayerInRange = true; 
         }
     }
 
@@ -30,7 +29,7 @@ public class FireFlyCollection : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerInRange = false; // Indica que el jugador ha salido del rango.
+            isPlayerInRange = false; 
         }
     }
 
